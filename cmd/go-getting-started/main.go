@@ -2,23 +2,27 @@ package main
 
 import (
 	"bytes"
-	"flag"
 	"fmt"
 	"log"
 	"net"
+	"os"
 	"time"
 )
 
-var portFlag = flag.Int("p", 8080, "Http Server Port")
-
 func main() {
-	ln, err := net.Listen("tcp", fmt.Sprintf("%s:%d", "", *portFlag))
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
+
+	ln, err := net.Listen("tcp", fmt.Sprintf("%s:%s", "", port))
 	defer ln.Close()
 	if err != nil {
 		panic(err)
 	}
 
-	log.Printf("<<<Server Accepting on Port %d>>>\n\n", *portFlag)
+	log.Printf("<<<Server Accepting on Port %s>>>\n\n", port)
 	for {
 		conn, err := ln.Accept()
 		if err != nil {
