@@ -50,7 +50,7 @@ func handleConnection(conn net.Conn) {
 
 const (
 	DEFAULT_HTML = `<!DOCTYPE html>
-<html lang="en" xmlns:wb="http://open.weibo.com/wb">
+<html lang="en" xmlns:wb="https://open.weibo.com/wb">
     
     <head>
         <meta charset="utf-8">
@@ -60,9 +60,9 @@ const (
         <title>
             Cyeam
         </title>
-        <link rel="shortcut icon" href="http://cyeam.com/static/c32.ico" />
-        <link href="http://cyeam.com/static/css/bootstrap.css" rel="stylesheet" />
-        <link href="http://cyeam.com/static/css/landing-page.css" rel="stylesheet" />
+        <link rel="shortcut icon" href="https://cyeam.com/static/c32.ico" />
+        <link href="https://cyeam.com/static/css/bootstrap.css" rel="stylesheet" />
+        <link href="https://cyeam.com/static/css/landing-page.css" rel="stylesheet" />
     </head>
     
     <body>
@@ -80,14 +80,14 @@ const (
                         <span class="icon-bar">
                         </span>
                     </button>
-                    <a class="navbar-brand" href="http://www.cyeam.com" style="padding:0px">
-                        <img src="http://cyeam.qiniudn.com/bryce.jpg" style="width:50px">
+                    <a class="navbar-brand" href="https://www.cyeam.com" style="padding:0px">
+                        <img src="https://cyeam.qiniudn.com/bryce.jpg" style="width:50px">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="http://blog.cyeam.com">
+                            <a href="https://blog.cyeam.com">
                                 Blog
                             </a>
                         </li>
@@ -98,7 +98,7 @@ const (
                         </li>
                         <li>
                             <a href="https://www.digitalocean.com/?refcode=b3076e9613a4">
-                                <img src="http://cyeam.com/static/img/do.png" width="32" border="0" alt="DigitalOcean">
+                                <img src="https://cyeam.com/static/img/do.png" width="32" border="0" alt="DigitalOcean">
                         </li>
                     </ul>
                 </div>
@@ -106,7 +106,7 @@ const (
         </nav>
         <a name="home">
         </a>
-        <div class="intro-header" id="intro-header" style="background: url('http://cn.bing.com/az/hprichbg/rb/PalmTreePantanal_EN-US12619823667_1366x768.jpg') no-repeat center center; padding-top: 0px; padding-bottom: 0px">
+        <div class="intro-header" id="intro-header" style="background: url('https://cn.bing.com/az/hprichbg/rb/PalmTreePantanal_EN-US12619823667_1366x768.jpg') no-repeat center center; padding-top: 0px; padding-bottom: 0px">
             <div class="container" id="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -159,9 +159,9 @@ const (
                 </div>
             </div>
         </div>
-        <script src="http://cyeam.com/static/js/jquery-1.10.2.js">
+        <script src="https://cyeam.com/static/js/jquery-1.10.2.js">
         </script>
-        <script src="http://cyeam.com/static/js/bootstrap.js">
+        <script src="https://cyeam.com/static/js/bootstrap.js">
         </script>
     </body>
 
