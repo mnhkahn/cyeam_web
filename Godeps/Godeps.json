@@ -4,5 +4,10 @@
 	"Packages": [
 		"./..."
 	],
-	"Deps": []
+	"Deps": [
+		{
+			"ImportPath": "github.com/mnhkahn/http",
+			"Rev": "bda2e51446f735441484ab7109c763576c2cce4b"
+		}
+	]
 }

@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/mnhkahn/http"
+	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/http"
 )
 
 func main() {
