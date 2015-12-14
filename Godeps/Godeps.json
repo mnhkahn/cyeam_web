@@ -6,8 +6,50 @@
 	],
 	"Deps": [
 		{
+			"ImportPath": "github.com/PuerkitoBio/goquery",
+			"Comment": "v0.3.2-80-g417cce8",
+			"Rev": "417cce822c7b9a379df5824be95228d177c5698b"
+		},
+		{
+			"ImportPath": "github.com/andybalholm/cascadia",
+			"Rev": "3ad29d1ad1c4f2023e355603324348cf1f4b2d48"
+		},
+		{
+			"ImportPath": "github.com/bitly/go-simplejson",
+			"Comment": "v0.5.0",
+			"Rev": "aabad6e819789e569bd6aabf444c935aa9ba1e44"
+		},
+		{
+			"ImportPath": "github.com/going/toolkit/dig",
+			"Rev": "5bff591dc40da25dcc875d3fa1a3373d74d45411"
+		},
+		{
+			"ImportPath": "github.com/going/toolkit/to",
+			"Rev": "5bff591dc40da25dcc875d3fa1a3373d74d45411"
+		},
+		{
+			"ImportPath": "github.com/golang/glog",
+			"Rev": "fca8c8854093a154ff1eb580aae10276ad6b1b5f"
+		},
+		{
+			"ImportPath": "github.com/gosexy/to",
+			"Rev": "c20e083e31230b84ffa23c5d2fb0bc55f5292681"
+		},
+		{
 			"ImportPath": "github.com/mnhkahn/http",
 			"Rev": "bda2e51446f735441484ab7109c763576c2cce4b"
+		},
+		{
+			"ImportPath": "github.com/mnhkahn/maodou",
+			"Rev": "06b9fd977d818eb471ab3a5d011af225ff06442e"
+		},
+		{
+			"ImportPath": "github.com/xiocode/weigo",
+			"Rev": "65f979f9ef5162a3336dd28a1fe8f1d753c4d3bf"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html",
+			"Rev": "21af302bb52737bcf1e6ce0128ec5932bf0d8ae9"
 		}
 	]
 }

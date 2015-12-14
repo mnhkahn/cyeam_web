@@ -15,3 +15,7 @@ func main() {
 
 	http.Serve(":" + port)
 }
+
+func init() {
+	go HaixiuzuStart()
+}
