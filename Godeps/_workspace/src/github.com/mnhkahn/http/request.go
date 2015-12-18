@@ -30,6 +30,7 @@ func NewRequest() *Request {
 
 func (this *Request) Init() {
 	b := string(this.Raw.Bytes())
+	println(b, "***********")
 	this.Headers = make(map[string][]string, 0)
 
 	startLine := strings.Split(b[:strings.Index(b, CRLF)], " ")
