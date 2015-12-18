@@ -3,11 +3,26 @@ package http
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"log"
 	"net"
+	"os"
+	"reflect"
 	"strings"
 	"time"
 )
+
+var ErrLog *log.Logger
+
+var HTTP_METHOD = map[string]string{
+	"GET": "GET",
+	//	"POST":    "POST",
+	//	"HEAD":    "HEAD",
+	//	"PUT":     "PUT",
+	//	"TRACE":   "TRACE",
+	"OPTIONS": "OPTIONS",
+	//	"DELETE":  "DELETE",
+}
 
 type Address struct {
 	Host string
@@ -28,7 +43,9 @@ func (this *Address) String() string {
 }
 
 type Server struct {
-	Addr *Address
+	Addr             *Address
+	Routes           *Route
+	AllowHttpMethods []string
 }
 
 var DEFAULT_SERVER *Server
@@ -41,11 +58,11 @@ func Serve(addr string) {
 		panic(err)
 	}
 
-	log.Printf("<<<Server Accepting on Port %s>>>\n\n", DEFAULT_SERVER.Addr.Port)
+	log.Printf("<<<Server Accepting on Port %s>>>\n", DEFAULT_SERVER.Addr.Port)
 	for {
 		conn, err := ln.Accept()
 		if err != nil {
-			log.Panicln(err)
+			ErrLog.Println(err)
 		}
 		go handleConnection(conn)
 	}
@@ -53,153 +70,92 @@ func Serve(addr string) {
 
 func init() {
 	DEFAULT_SERVER = new(Server)
+	DEFAULT_SERVER.Routes = NewRoute()
+
+	Router("/", "OPTIONS", &Controller{}, "Option")
+
+	errlogFile, logErr := os.OpenFile("error.log", os.O_CREATE|os.O_RDWR|os.O_APPEND, 0666)
+
+	if logErr != nil {
+		fmt.Println("Fail to find", "error.log", " start Failed")
+	}
+
+	ErrLog = log.New(errlogFile, "", log.LstdFlags|log.Llongfile)
 }
 
 func handleConnection(conn net.Conn) {
+	serve_time := time.Now()
+
 	defer conn.Close()
-	log.Printf("[%s]<<<Request From %s>>>\n", time.Now().String(), conn.RemoteAddr())
 
 	ctx := NewContext()
+	ctx.Req = NewRequest()
+	ctx.Resp = NewResponse()
 
-	buf := make([]byte, 1024)
-	reqLen, err := conn.Read(buf)
-	if err != nil {
-		log.Println("Error to read message because of ", err)
-		return
+	for {
+		buf := make([]byte, 1024)
+		reqLen, err := conn.Read(buf)
+		if reqLen > 0 && err == nil {
+			ctx.Req.Raw.Write(buf)
+			if reqLen < len(buf) && err == nil {
+				break
+			}
+		} else if err == io.EOF {
+			break
+		} else if neterr, ok := err.(net.Error); ok && neterr.Timeout() {
+			break
+		} else {
+			ErrLog.Println("Error to read message because of ", err, reqLen)
+			ctx.Resp.StatusCode = StatusInternalServerError
+			break
+		}
 	}
-	ctx.Req = NewRequst(string(buf[:reqLen-1]))
 
-	serve_time := time.Now()
+	ctx.Req.Init()
+	ctx.Resp.Proto = ctx.Req.Proto
+	if DEFAULT_SERVER.Routes.routes[ctx.Req.Method][ctx.Req.Url] != nil {
+		DEFAULT_SERVER.Routes.routes[ctx.Req.Method][ctx.Req.Url].ServeHTTP(ctx)
+	} else {
+		if _, exists := HTTP_METHOD[ctx.Req.Method]; !exists {
+			ctx.Resp.StatusCode = StatusMethodNotAllowed
+		} else {
+			ctx.Resp.StatusCode = StatusNotFound
+		}
+	}
+
+	if ctx.Resp.StatusCode == StatusNotFound {
+		ctx.Resp.Body = DEFAULT_ERROR_PAGE
+	}
+	ctx.Resp.Headers.Add(HTTP_HEAD_DATE, serve_time.Format(time.RFC1123))
+	ctx.Resp.Headers.Add(HTTP_HEAD_CONTENTLENGTH, fmt.Sprintf("%d", len(ctx.Resp.Body)))
+
 	buffers := bytes.Buffer{}
-	buffers.WriteString("HTTP/1.1 200 OK\r\n")
-	buffers.WriteString("Server: Cyeam\r\n")
-	buffers.WriteString("Date: " + serve_time.Format(time.RFC1123) + "\r\n")
-	buffers.WriteString("Content-Type: text/html; charset=utf-8\r\n")
-	buffers.WriteString("Content-length:" + fmt.Sprintf("%d", len(DEFAULT_HTML)) + "\r\n")
-	buffers.WriteString("\r\n")
-	buffers.WriteString(DEFAULT_HTML)
-	_, err = conn.Write(buffers.Bytes())
-	if err != nil {
-		log.Println(err)
+	buffers.WriteString(fmt.Sprintf("%s %d %s\r\n", ctx.Resp.Proto, ctx.Resp.StatusCode, StatusText(ctx.Resp.StatusCode)))
+	for k, v := range ctx.Resp.Headers {
+		for _, vv := range v {
+			buffers.WriteString(fmt.Sprintf("%s: %s\r\n", k, vv))
+		}
 	}
+	buffers.WriteString("\r\n")
+	buffers.WriteString(ctx.Resp.Body)
+	_, err := conn.Write(buffers.Bytes())
+	if err != nil {
+		ErrLog.Println(err)
+	}
+	ctx.elapse = time.Now().Sub(serve_time)
+	log.Println(ctx)
 }
 
-const (
-	DEFAULT_HTML = `<!DOCTYPE html>
-<html lang="en" xmlns:wb="https://open.weibo.com/wb">
-    
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="Bryce">
-        <title>
-            Cyeam
-        </title>
-        <link rel="shortcut icon" href="https://cyeam.com/static/c32.ico" />
-        <link href="https://cyeam.com/static/css/bootstrap.css" rel="stylesheet" />
-        <link href="https://cyeam.com/static/css/landing-page.css" rel="stylesheet" />
-    </head>
-    
-    <body>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">
-                            Toggle navigation
-                        </span>
-                        <span class="icon-bar">
-                        </span>
-                        <span class="icon-bar">
-                        </span>
-                        <span class="icon-bar">
-                        </span>
-                    </button>
-                    <a class="navbar-brand" href="https://www.cyeam.com" style="padding:0px">
-                        <img src="http://cyeam.qiniudn.com/bryce.jpg" style="width:50px">
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="https://blog.cyeam.com">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.cyeam.com/haixiuzu">
-                                骚年，来一发
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.digitalocean.com/?refcode=b3076e9613a4">
-                                <img src="https://cyeam.com/static/img/do.png" width="32" border="0" alt="DigitalOcean">
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <a name="home">
-        </a>
-        <div class="intro-header" id="intro-header" style="background: url('https://cn.bing.com/az/hprichbg/rb/PalmTreePantanal_EN-US12619823667_1366x768.jpg') no-repeat center center; padding-top: 0px; padding-bottom: 0px">
-            <div class="container" id="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="intro-message">
-                            <h1>
-                                Cyeam
-                            </h1>
-                            <hr class="intro-divider">
-                            <ul class="list-inline intro-social-buttons">
-                                <li>
-                                    <a href="/resume" class="btn btn-default btn-lg">
-                                        <i class="fa fa-twitter fa-fw">
-                                        </i>
-                                        <span class="network-name">
-                                            Resume
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://github.com/mnhkahn" class="btn btn-default btn-lg">
-                                        <i class="fa fa-github fa-fw">
-                                        </i>
-                                        <span class="network-name">
-                                            Github
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="btn btn-default btn-lg" data-email="%6c%69%63%68%61%6f%30%34%30%37%40%67%6d%61%69%6c%2e%63%6f%6d"
-                                    href="/cdn-cgi/l/email-protection#1975707a717876597a607c7874377a7674">
-                                        <i class="fa fa-github fa-fw">
-                                        </i>
-                                        <span class="network-name">
-                                            Email
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <p class="copyright text-muted small">
-                                Copyright &copy; Cyeam 2015. All Rights Reserved
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script src="https://cyeam.com/static/js/jquery-1.10.2.js">
-        </script>
-        <script src="https://cyeam.com/static/js/bootstrap.js">
-        </script>
-    </body>
+func Router(path string, method string, ctrl ControllerIfac, methodName string) {
+	if _, exists := HTTP_METHOD[method]; !exists {
+		ErrLog.Println("Method not allowed", method, path, methodName)
+		return
+	}
+	handler := new(Handle)
+	handler.ctrl = ctrl
+	handler.methodName = methodName
+	handler.fn = reflect.ValueOf(handler.ctrl).MethodByName(handler.methodName)
+	DEFAULT_SERVER.Routes.routes[method][path] = handler
+}
 
-</html>	`
-)
+var DEFAULT_ERROR_PAGE = "<iframe scrolling='no' frameborder='0' src='http://yibo.iyiyun.com/js/yibo404/key/2354' width='640' height='464' style='display:block;'></iframe>"
