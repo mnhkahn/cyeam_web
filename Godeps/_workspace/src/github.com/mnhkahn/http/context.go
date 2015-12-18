@@ -17,7 +17,7 @@ func NewContext() *Context {
 }
 
 const (
-	LOG_CONTEXT = "%d %s %s %s %s %v"
+	LOG_CONTEXT = "stats code: %d method: %s url: %s useragent: %s host: %s %v"
 )
 
 func (this *Context) String() string {
