@@ -68,13 +68,13 @@ const (
                         </span>
                     </button>
                     <a class="navbar-brand" href="/" style="padding:0px">
-                        <img src="http://cyeam.qiniudn.com/bryce.jpg" style="width:50px">
+                        <img src="/bryce.jpg" style="width:50px">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="//blog.cyeam.com">
+                            <a href="http://blog.cyeam.com">
                                 Blog
                             </a>
                         </li>

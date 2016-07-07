@@ -1,8 +1,9 @@
 package models
 
 import (
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/httplib"
 	"encoding/xml"
+
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/httplib"
 )
 
 func GetBing() string {
@@ -12,10 +13,10 @@ func GetBing() string {
 	if len(v.Images) > 0 && err == nil {
 		return bingURL + v.Images[0].Url
 	}
-	return "http://cyeam.qiniudn.com/zhonghuan.jpg"
+	return "//cyeam.qiniudn.com/zhonghuan.jpg"
 }
 
-const bingURL = `http://cn.bing.com`
+const bingURL = `//cn.bing.com`
 
 type Bing struct {
 	XMLName xml.Name `xml:"images"`
