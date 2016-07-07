@@ -48,8 +48,8 @@ const (
             Cyeam
         </title>
         <link rel="shortcut icon" href="/static/c32.ico" />
-        <link href="/static/css/bootstrap.css" rel="stylesheet" />
-        <link href="/static/css/landing-page.css" rel="stylesheet" />
+        <link href="/static/bootstrap.css" rel="stylesheet" />
+        <link href="/static/landing-page.css" rel="stylesheet" />
     </head>
     
     <body>
@@ -85,7 +85,7 @@ const (
                         </li>
                         <li>
                             <a href="//www.digitalocean.com/?refcode=b3076e9613a4">
-                                <img src="/static/img/do.png" width="32" border="0" alt="DigitalOcean">
+                                <img src="/static/do.png" width="32" border="0" alt="DigitalOcean">
                         </li>
                     </ul>
                 </div>
@@ -146,9 +146,9 @@ const (
                 </div>
             </div>
         </div>
-        <script src="/static/js/jquery-1.10.2.js">
+        <script src="/static/jquery-1.10.2.js">
         </script>
-        <script src="/static/js/bootstrap.js">
+        <script src="/static/bootstrap.js">
         </script>
     </body>
 
