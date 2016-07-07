@@ -68,7 +68,7 @@ const (
                         </span>
                     </button>
                     <a class="navbar-brand" href="/" style="padding:0px">
-                        <img src="/bryce.jpg" style="width:50px">
+                        <img src="/static/bryce.jpg" style="width:50px">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
