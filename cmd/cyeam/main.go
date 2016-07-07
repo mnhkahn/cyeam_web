@@ -47,9 +47,9 @@ const (
         <title>
             Cyeam
         </title>
-        <link rel="shortcut icon" href="https://cyeam.com/static/c32.ico" />
-        <link href="https://cyeam.com/static/css/bootstrap.css" rel="stylesheet" />
-        <link href="https://cyeam.com/static/css/landing-page.css" rel="stylesheet" />
+        <link rel="shortcut icon" href="/static/c32.ico" />
+        <link href="/static/css/bootstrap.css" rel="stylesheet" />
+        <link href="/static/css/landing-page.css" rel="stylesheet" />
     </head>
     
     <body>
@@ -67,25 +67,25 @@ const (
                         <span class="icon-bar">
                         </span>
                     </button>
-                    <a class="navbar-brand" href="https://www.cyeam.com" style="padding:0px">
+                    <a class="navbar-brand" href="/" style="padding:0px">
                         <img src="http://cyeam.qiniudn.com/bryce.jpg" style="width:50px">
                     </a>
                 </div>
                 <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="https://blog.cyeam.com">
+                            <a href="//blog.cyeam.com">
                                 Blog
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.cyeam.com/haixiuzu">
+                            <a href="/haixiuzu">
                                 骚年，来一发
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.digitalocean.com/?refcode=b3076e9613a4">
-                                <img src="https://cyeam.com/static/img/do.png" width="32" border="0" alt="DigitalOcean">
+                            <a href="//www.digitalocean.com/?refcode=b3076e9613a4">
+                                <img src="/static/img/do.png" width="32" border="0" alt="DigitalOcean">
                         </li>
                     </ul>
                 </div>
@@ -113,7 +113,7 @@ const (
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://github.com/mnhkahn" class="btn btn-default btn-lg">
+                                    <a href="//github.com/mnhkahn" class="btn btn-default btn-lg">
                                         <i class="fa fa-github fa-fw">
                                         </i>
                                         <span class="network-name">
@@ -146,9 +146,9 @@ const (
                 </div>
             </div>
         </div>
-        <script src="https://cyeam.com/static/js/jquery-1.10.2.js">
+        <script src="/static/js/jquery-1.10.2.js">
         </script>
-        <script src="https://cyeam.com/static/js/bootstrap.js">
+        <script src="/static/js/bootstrap.js">
         </script>
     </body>
 
