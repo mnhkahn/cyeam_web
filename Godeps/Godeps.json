@@ -6,17 +6,25 @@
 	],
 	"Deps": [
 		{
-			"ImportPath": "github.com/astaxie/beego/httplib",
+			"ImportPath": "github.com/astaxie/beego",
 			"Comment": "v1.5.0-9-gfb7314f",
 			"Rev": "fb7314f8ac86b83ccd34386518d97cf2363e2ae5"
 		},
 		{
 			"ImportPath": "github.com/mnhkahn/Cyeam/models",
-			"Rev": "dda94a4cabb7d7a49047339377fd8b20d98d04b8"
+			"Rev": "0658e89c4ce43df199e94d10f1bf931ebc613d86"
 		},
 		{
-			"ImportPath": "github.com/mnhkahn/http",
-			"Rev": "4752a948e112f5f6fb66edc82afb9735f8064dc8"
+			"ImportPath": "github.com/mnhkahn/cygo/net/http",
+			"Rev": "cf8536245c9497072d25d6dde0cb8ce33975e45b"
+		},
+		{
+			"ImportPath": "github.com/mnhkahn/cygo/net/url",
+			"Rev": "cf8536245c9497072d25d6dde0cb8ce33975e45b"
+		},
+		{
+			"ImportPath": "github.com/mnhkahn/cygo/strings",
+			"Rev": "cf8536245c9497072d25d6dde0cb8ce33975e45b"
 		}
 	]
 }

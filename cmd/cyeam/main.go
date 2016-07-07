@@ -4,7 +4,7 @@ import (
 	"os"
 
 	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/Cyeam/models"
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/http"
+	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/http"
 )
 
 type MainController struct {
