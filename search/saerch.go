@@ -32,7 +32,7 @@ func Index() {
 	}
 
 	searcher.Init(types.EngineInitOptions{
-		SegmenterDictionaries: "cyeam/Godeps/_workspace/src/github.com/huichen/wukong/data/dictionary.txt"})
+		SegmenterDictionaries: "./dictionary.txt"})
 	defer searcher.Close()
 
 	// 将文档加入索引
