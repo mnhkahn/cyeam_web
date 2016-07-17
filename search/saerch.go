@@ -2,7 +2,6 @@ package search
 
 import (
 	"cyeam/structs"
-	"os"
 	"strings"
 	"time"
 
@@ -33,7 +32,7 @@ func Index() {
 	}
 
 	searcher.Init(types.EngineInitOptions{
-		SegmenterDictionaries: os.Getenv("GOPATH") + "/src/github.com/huichen/wukong/data/dictionary.txt"})
+		SegmenterDictionaries: "cyeam/Godeps/_workspace/src/github.com/huichen/wukong/data/dictionary.txt"})
 	defer searcher.Close()
 
 	// 将文档加入索引
