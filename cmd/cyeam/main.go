@@ -1,9 +1,10 @@
 package main
 
 import (
+	"cyeam/models"
+	"cyeam/search"
 	"os"
 
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/Cyeam/models"
 	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/http"
 )
 
@@ -13,6 +14,11 @@ type MainController struct {
 
 func (this *MainController) Get() {
 	this.Ctx.Resp.Body = DEFAULT_HTML
+}
+
+func (this *MainController) Search() {
+	t := this.GetString("t")
+	this.ServeJson(search.Search(t))
 }
 
 func (this *MainController) Bing() {
@@ -31,7 +37,10 @@ func main() {
 }
 
 func init() {
+	search.Index()
+
 	http.Router("/", "GET", &MainController{}, "Get")
+	http.Router("/s", "GET", &MainController{}, "Search")
 	http.Router("/bing", "GET", &MainController{}, "Bing")
 }
 
