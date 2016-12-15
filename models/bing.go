@@ -3,7 +3,7 @@ package models
 import (
 	"encoding/xml"
 
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/httplib"
+	"github.com/astaxie/beego/httplib"
 )
 
 func GetBing() string {

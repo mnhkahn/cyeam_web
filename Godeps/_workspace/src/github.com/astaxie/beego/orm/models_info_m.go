@@ -15,6 +15,7 @@
 package orm
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"reflect"
@@ -36,6 +37,11 @@ type modelInfo struct {
 
 // new model info
 func newModelInfo(val reflect.Value) (info *modelInfo) {
+	var (
+		err error
+		fi  *fieldInfo
+		sf  reflect.StructField
+	)
 
 	info = &modelInfo{}
 	info.fields = newFields()
@@ -48,31 +54,13 @@ func newModelInfo(val reflect.Value) (info *modelInfo) {
 	info.name = typ.Name()
 	info.fullName = getFullName(typ)
 
-	addModelFields(info, ind, "", []int{})
-
-	return
-}
-
-func addModelFields(info *modelInfo, ind reflect.Value, mName string, index []int) {
-	var (
-		err error
-		fi  *fieldInfo
-		sf  reflect.StructField
-	)
-
 	for i := 0; i < ind.NumField(); i++ {
 		field := ind.Field(i)
 		sf = ind.Type().Field(i)
 		if sf.PkgPath != "" {
 			continue
 		}
-		// add anonymous struct fields
-		if sf.Anonymous {
-			addModelFields(info, field, mName+"."+sf.Name, append(index, i))
-			continue
-		}
-
-		fi, err = newFieldInfo(info, field, sf, mName)
+		fi, err = newFieldInfo(info, field, sf)
 
 		if err != nil {
 			if err == errSkipField {
@@ -84,20 +72,20 @@ func addModelFields(info *modelInfo, ind reflect.Value, mName string, index []in
 
 		added := info.fields.Add(fi)
 		if added == false {
-			err = fmt.Errorf("duplicate column name: %s", fi.column)
+			err = errors.New(fmt.Sprintf("duplicate column name: %s", fi.column))
 			break
 		}
 
 		if fi.pk {
 			if info.fields.pk != nil {
-				err = fmt.Errorf("one model must have one pk field only")
+				err = errors.New(fmt.Sprintf("one model must have one pk field only"))
 				break
 			} else {
 				info.fields.pk = fi
 			}
 		}
 
-		fi.fieldIndex = append(index, i)
+		fi.fieldIndex = i
 		fi.mi = info
 		fi.inModel = true
 	}
@@ -106,6 +94,8 @@ func addModelFields(info *modelInfo, ind reflect.Value, mName string, index []in
 		fmt.Println(fmt.Errorf("field: %s.%s, %s", ind.Type(), sf.Name, err))
 		os.Exit(2)
 	}
+
+	return
 }
 
 // combine related model info to new model info.

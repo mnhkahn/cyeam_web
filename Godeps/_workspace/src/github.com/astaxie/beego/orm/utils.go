@@ -22,10 +22,9 @@ import (
 	"time"
 )
 
-// StrTo is the target string
 type StrTo string
 
-// Set string
+// set string
 func (f *StrTo) Set(v string) {
 	if v != "" {
 		*f = StrTo(v)
@@ -34,93 +33,93 @@ func (f *StrTo) Set(v string) {
 	}
 }
 
-// Clear string
+// clean string
 func (f *StrTo) Clear() {
 	*f = StrTo(0x1E)
 }
 
-// Exist check string exist
+// check string exist
 func (f StrTo) Exist() bool {
 	return string(f) != string(0x1E)
 }
 
-// Bool string to bool
+// string to bool
 func (f StrTo) Bool() (bool, error) {
 	return strconv.ParseBool(f.String())
 }
 
-// Float32 string to float32
+// string to float32
 func (f StrTo) Float32() (float32, error) {
 	v, err := strconv.ParseFloat(f.String(), 32)
 	return float32(v), err
 }
 
-// Float64 string to float64
+// string to float64
 func (f StrTo) Float64() (float64, error) {
 	return strconv.ParseFloat(f.String(), 64)
 }
 
-// Int string to int
+// string to int
 func (f StrTo) Int() (int, error) {
 	v, err := strconv.ParseInt(f.String(), 10, 32)
 	return int(v), err
 }
 
-// Int8 string to int8
+// string to int8
 func (f StrTo) Int8() (int8, error) {
 	v, err := strconv.ParseInt(f.String(), 10, 8)
 	return int8(v), err
 }
 
-// Int16 string to int16
+// string to int16
 func (f StrTo) Int16() (int16, error) {
 	v, err := strconv.ParseInt(f.String(), 10, 16)
 	return int16(v), err
 }
 
-// Int32 string to int32
+// string to int32
 func (f StrTo) Int32() (int32, error) {
 	v, err := strconv.ParseInt(f.String(), 10, 32)
 	return int32(v), err
 }
 
-// Int64 string to int64
+// string to int64
 func (f StrTo) Int64() (int64, error) {
 	v, err := strconv.ParseInt(f.String(), 10, 64)
 	return int64(v), err
 }
 
-// Uint string to uint
+// string to uint
 func (f StrTo) Uint() (uint, error) {
 	v, err := strconv.ParseUint(f.String(), 10, 32)
 	return uint(v), err
 }
 
-// Uint8 string to uint8
+// string to uint8
 func (f StrTo) Uint8() (uint8, error) {
 	v, err := strconv.ParseUint(f.String(), 10, 8)
 	return uint8(v), err
 }
 
-// Uint16 string to uint16
+// string to uint16
 func (f StrTo) Uint16() (uint16, error) {
 	v, err := strconv.ParseUint(f.String(), 10, 16)
 	return uint16(v), err
 }
 
-// Uint32 string to uint31
+// string to uint31
 func (f StrTo) Uint32() (uint32, error) {
 	v, err := strconv.ParseUint(f.String(), 10, 32)
 	return uint32(v), err
 }
 
-// Uint64 string to uint64
+// string to uint64
 func (f StrTo) Uint64() (uint64, error) {
 	v, err := strconv.ParseUint(f.String(), 10, 64)
 	return uint64(v), err
 }
 
-// String string to string
+// string to string
 func (f StrTo) String() string {
 	if f.Exist() {
 		return string(f)
@@ -128,7 +127,7 @@ func (f StrTo) String() string {
 	return ""
 }
 
-// ToStr interface to string
+// interface to string
 func ToStr(value interface{}, args ...int) (s string) {
 	switch v := value.(type) {
 	case bool:
@@ -167,7 +166,7 @@ func ToStr(value interface{}, args ...int) (s string) {
 	return s
 }
 
-// ToInt64 interface to int64
+// interface to int64
 func ToInt64(value interface{}) (d int64) {
 	val := reflect.ValueOf(value)
 	switch value.(type) {
@@ -196,7 +195,7 @@ func snakeString(s string) string {
 		}
 		data = append(data, d)
 	}
-	return strings.ToLower(string(data[:]))
+	return strings.ToLower(string(data[:len(data)]))
 }
 
 // camel string, xx_yy to XxYy
@@ -221,7 +220,7 @@ func camelString(s string) string {
 		}
 		data = append(data, d)
 	}
-	return string(data[:])
+	return string(data[:len(data)])
 }
 
 type argString []string
@@ -249,10 +248,28 @@ func (a argInt) Get(i int, args ...int) (r int) {
 	return
 }
 
+type argAny []interface{}
+
+// get interface by index from interface slice
+func (a argAny) Get(i int, args ...interface{}) (r interface{}) {
+	if i >= 0 && i < len(a) {
+		r = a[i]
+	}
+	if len(args) > 0 {
+		r = args[0]
+	}
+	return
+}
+
 // parse time to string with location
 func timeParse(dateString, format string) (time.Time, error) {
 	tp, err := time.ParseInLocation(format, dateString, DefaultTimeLoc)
 	return tp, err
+}
+
+// format time string
+func timeFormat(t time.Time, format string) string {
+	return t.Format(format)
 }
 
 // get pointer indirect type

@@ -24,13 +24,12 @@ import (
 )
 
 const (
-	formatDate     = "2006-01-02"
-	formatDateTime = "2006-01-02 15:04:05"
+	format_Date     = "2006-01-02"
+	format_DateTime = "2006-01-02 15:04:05"
 )
 
 var (
-	// ErrMissPK missing pk error
-	ErrMissPK = errors.New("missed pk value")
+	ErrMissPK = errors.New("missed pk value") // missing pk error
 )
 
 var (
@@ -45,8 +44,6 @@ var (
 		"gte":         true,
 		"lt":          true,
 		"lte":         true,
-		"eq":          true,
-		"nq":          true,
 		"startswith":  true,
 		"endswith":    true,
 		"istartswith": true,
@@ -113,7 +110,7 @@ func (d *dbBase) collectFieldValue(mi *modelInfo, fi *fieldInfo, ind reflect.Val
 	if fi.pk {
 		_, value, _ = getExistPk(mi, ind)
 	} else {
-		field := ind.FieldByIndex(fi.fieldIndex)
+		field := ind.Field(fi.fieldIndex)
 		if fi.isFielder {
 			f := field.Addr().Interface().(Fielder)
 			value = f.RawValue()
@@ -217,14 +214,14 @@ func (d *dbBase) collectFieldValue(mi *modelInfo, fi *fieldInfo, ind reflect.Val
 						}
 					}
 					if fi.null == false && value == nil {
-						return nil, fmt.Errorf("field `%s` cannot be NULL", fi.fullName)
+						return nil, errors.New(fmt.Sprintf("field `%s` cannot be NULL", fi.fullName))
 					}
 				}
 			}
 		}
 		switch fi.fieldType {
 		case TypeDateField, TypeDateTimeField:
-			if fi.autoNow || fi.autoNowAdd && insert {
+			if fi.auto_now || fi.auto_now_add && insert {
 				if insert {
 					if t, ok := value.(time.Time); ok && !t.IsZero() {
 						break
@@ -283,12 +280,13 @@ func (d *dbBase) InsertStmt(stmt stmtQuerier, mi *modelInfo, ind reflect.Value, 
 		var id int64
 		err := row.Scan(&id)
 		return id, err
+	} else {
+		if res, err := stmt.Exec(values...); err == nil {
+			return res.LastInsertId()
+		} else {
+			return 0, err
+		}
 	}
-	res, err := stmt.Exec(values...)
-	if err == nil {
-		return res.LastInsertId()
-	}
-	return 0, err
 }
 
 // query sql ,read records and persist in dbBaser.
@@ -326,7 +324,7 @@ func (d *dbBase) Read(q dbQuerier, mi *modelInfo, ind reflect.Value, tz *time.Lo
 	query := fmt.Sprintf("SELECT %s%s%s FROM %s%s%s WHERE %s%s%s = ?", Q, sels, Q, Q, mi.table, Q, Q, wheres, Q)
 
 	refs := make([]interface{}, colsNum)
-	for i := range refs {
+	for i, _ := range refs {
 		var ref interface{}
 		refs[i] = &ref
 	}
@@ -339,11 +337,15 @@ func (d *dbBase) Read(q dbQuerier, mi *modelInfo, ind reflect.Value, tz *time.Lo
 			return ErrNoRows
 		}
 		return err
+	} else {
+		elm := reflect.New(mi.addrField.Elem().Type())
+		mind := reflect.Indirect(elm)
+
+		d.setColsValues(mi, &mind, mi.fields.dbcols, refs, tz)
+
+		ind.Set(mind)
 	}
-	elm := reflect.New(mi.addrField.Elem().Type())
-	mind := reflect.Indirect(elm)
-	d.setColsValues(mi, &mind, mi.fields.dbcols, refs, tz)
-	ind.Set(mind)
+
 	return nil
 }
 
@@ -421,7 +423,7 @@ func (d *dbBase) InsertValue(q dbQuerier, mi *modelInfo, isMulti bool, names []s
 	Q := d.ins.TableQuote()
 
 	marks := make([]string, len(names))
-	for i := range marks {
+	for i, _ := range marks {
 		marks[i] = "?"
 	}
 
@@ -440,19 +442,20 @@ func (d *dbBase) InsertValue(q dbQuerier, mi *modelInfo, isMulti bool, names []s
 	d.ins.ReplaceMarks(&query)
 
 	if isMulti || !d.ins.HasReturningID(mi, &query) {
-		res, err := q.Exec(query, values...)
-		if err == nil {
+		if res, err := q.Exec(query, values...); err == nil {
 			if isMulti {
 				return res.RowsAffected()
 			}
 			return res.LastInsertId()
+		} else {
+			return 0, err
 		}
-		return 0, err
+	} else {
+		row := q.QueryRow(query, values...)
+		var id int64
+		err := row.Scan(&id)
+		return id, err
 	}
-	row := q.QueryRow(query, values...)
-	var id int64
-	err := row.Scan(&id)
-	return id, err
 }
 
 // execute update sql dbQuerier with given struct reflect.Value.
@@ -488,11 +491,11 @@ func (d *dbBase) Update(q dbQuerier, mi *modelInfo, ind reflect.Value, tz *time.
 
 	d.ins.ReplaceMarks(&query)
 
-	res, err := q.Exec(query, setValues...)
-	if err == nil {
+	if res, err := q.Exec(query, setValues...); err == nil {
 		return res.RowsAffected()
+	} else {
+		return 0, err
 	}
-	return 0, err
 }
 
 // execute delete sql dbQuerier with given struct reflect.Value.
@@ -508,28 +511,33 @@ func (d *dbBase) Delete(q dbQuerier, mi *modelInfo, ind reflect.Value, tz *time.
 	query := fmt.Sprintf("DELETE FROM %s%s%s WHERE %s%s%s = ?", Q, mi.table, Q, Q, pkName, Q)
 
 	d.ins.ReplaceMarks(&query)
-	res, err := q.Exec(query, pkValue)
-	if err == nil {
+
+	if res, err := q.Exec(query, pkValue); err == nil {
+
 		num, err := res.RowsAffected()
 		if err != nil {
 			return 0, err
 		}
+
 		if num > 0 {
 			if mi.fields.pk.auto {
 				if mi.fields.pk.fieldType&IsPostiveIntegerField > 0 {
-					ind.FieldByIndex(mi.fields.pk.fieldIndex).SetUint(0)
+					ind.Field(mi.fields.pk.fieldIndex).SetUint(0)
 				} else {
-					ind.FieldByIndex(mi.fields.pk.fieldIndex).SetInt(0)
+					ind.Field(mi.fields.pk.fieldIndex).SetInt(0)
 				}
 			}
+
 			err := d.deleteRels(q, mi, []interface{}{pkValue}, tz)
 			if err != nil {
 				return num, err
 			}
 		}
+
 		return num, err
+	} else {
+		return 0, err
 	}
-	return 0, err
 }
 
 // update table-related record by querySet.
@@ -555,11 +563,11 @@ func (d *dbBase) UpdateBatch(q dbQuerier, qs *querySet, mi *modelInfo, cond *Con
 		tables.parseRelated(qs.related, qs.relDepth)
 	}
 
-	where, args := tables.getCondSQL(cond, false, tz)
+	where, args := tables.getCondSql(cond, false, tz)
 
 	values = append(values, args...)
 
-	join := tables.getJoinSQL()
+	join := tables.getJoinSql()
 
 	var query, T string
 
@@ -575,13 +583,13 @@ func (d *dbBase) UpdateBatch(q dbQuerier, qs *querySet, mi *modelInfo, cond *Con
 		col := fmt.Sprintf("%s%s%s%s", T, Q, v, Q)
 		if c, ok := values[i].(colValue); ok {
 			switch c.opt {
-			case ColAdd:
+			case Col_Add:
 				cols = append(cols, col+" = "+col+" + ?")
-			case ColMinus:
+			case Col_Minus:
 				cols = append(cols, col+" = "+col+" - ?")
-			case ColMultiply:
+			case Col_Multiply:
 				cols = append(cols, col+" = "+col+" * ?")
-			case ColExcept:
+			case Col_Except:
 				cols = append(cols, col+" = "+col+" / ?")
 			}
 			values[i] = c.value
@@ -600,11 +608,12 @@ func (d *dbBase) UpdateBatch(q dbQuerier, qs *querySet, mi *modelInfo, cond *Con
 	}
 
 	d.ins.ReplaceMarks(&query)
-	res, err := q.Exec(query, values...)
-	if err == nil {
+
+	if res, err := q.Exec(query, values...); err == nil {
 		return res.RowsAffected()
+	} else {
+		return 0, err
 	}
-	return 0, err
 }
 
 // delete related records.
@@ -613,23 +622,23 @@ func (d *dbBase) deleteRels(q dbQuerier, mi *modelInfo, args []interface{}, tz *
 	for _, fi := range mi.fields.fieldsReverse {
 		fi = fi.reverseFieldInfo
 		switch fi.onDelete {
-		case odCascade:
+		case od_CASCADE:
 			cond := NewCondition().And(fmt.Sprintf("%s__in", fi.name), args...)
 			_, err := d.DeleteBatch(q, nil, fi.mi, cond, tz)
 			if err != nil {
 				return err
 			}
-		case odSetDefault, odSetNULL:
+		case od_SET_DEFAULT, od_SET_NULL:
 			cond := NewCondition().And(fmt.Sprintf("%s__in", fi.name), args...)
 			params := Params{fi.column: nil}
-			if fi.onDelete == odSetDefault {
+			if fi.onDelete == od_SET_DEFAULT {
 				params[fi.column] = fi.initial.String()
 			}
 			_, err := d.UpdateBatch(q, nil, fi.mi, cond, params, tz)
 			if err != nil {
 				return err
 			}
-		case odDoNothing:
+		case od_DO_NOTHING:
 		}
 	}
 	return nil
@@ -650,8 +659,8 @@ func (d *dbBase) DeleteBatch(q dbQuerier, qs *querySet, mi *modelInfo, cond *Con
 
 	Q := d.ins.TableQuote()
 
-	where, args := tables.getCondSQL(cond, false, tz)
-	join := tables.getJoinSQL()
+	where, args := tables.getCondSql(cond, false, tz)
+	join := tables.getJoinSql()
 
 	cols := fmt.Sprintf("T0.%s%s%s", Q, mi.fields.pk.column, Q)
 	query := fmt.Sprintf("SELECT %s FROM %s%s%s T0 %s%s", cols, Q, mi.table, Q, join, where)
@@ -659,14 +668,16 @@ func (d *dbBase) DeleteBatch(q dbQuerier, qs *querySet, mi *modelInfo, cond *Con
 	d.ins.ReplaceMarks(&query)
 
 	var rs *sql.Rows
-	r, err := q.Query(query, args...)
-	if err != nil {
+	if r, err := q.Query(query, args...); err != nil {
 		return 0, err
+	} else {
+		rs = r
 	}
-	rs = r
+
 	defer rs.Close()
 
 	var ref interface{}
+
 	args = make([]interface{}, 0)
 	cnt := 0
 	for rs.Next() {
@@ -682,28 +693,31 @@ func (d *dbBase) DeleteBatch(q dbQuerier, qs *querySet, mi *modelInfo, cond *Con
 	}
 
 	marks := make([]string, len(args))
-	for i := range marks {
+	for i, _ := range marks {
 		marks[i] = "?"
 	}
 	sql := fmt.Sprintf("IN (%s)", strings.Join(marks, ", "))
 	query = fmt.Sprintf("DELETE FROM %s%s%s WHERE %s%s%s %s", Q, mi.table, Q, Q, mi.fields.pk.column, Q, sql)
 
 	d.ins.ReplaceMarks(&query)
-	res, err := q.Exec(query, args...)
-	if err == nil {
+
+	if res, err := q.Exec(query, args...); err == nil {
 		num, err := res.RowsAffected()
 		if err != nil {
 			return 0, err
 		}
+
 		if num > 0 {
 			err := d.deleteRels(q, mi, args, tz)
 			if err != nil {
 				return num, err
 			}
 		}
+
 		return num, nil
+	} else {
+		return 0, err
 	}
-	return 0, err
 }
 
 // read related records.
@@ -785,11 +799,10 @@ func (d *dbBase) ReadBatch(q dbQuerier, qs *querySet, mi *modelInfo, cond *Condi
 	tables := newDbTables(mi, d.ins)
 	tables.parseRelated(qs.related, qs.relDepth)
 
-	where, args := tables.getCondSQL(cond, false, tz)
-	groupBy := tables.getGroupSQL(qs.groups)
-	orderBy := tables.getOrderSQL(qs.orders)
-	limit := tables.getLimitSQL(mi, offset, rlimit)
-	join := tables.getJoinSQL()
+	where, args := tables.getCondSql(cond, false, tz)
+	orderBy := tables.getOrderSql(qs.orders)
+	limit := tables.getLimitSql(mi, offset, rlimit)
+	join := tables.getJoinSql()
 
 	for _, tbl := range tables.tables {
 		if tbl.sel {
@@ -799,23 +812,19 @@ func (d *dbBase) ReadBatch(q dbQuerier, qs *querySet, mi *modelInfo, cond *Condi
 		}
 	}
 
-	sqlSelect := "SELECT"
-	if qs.distinct {
-		sqlSelect += " DISTINCT"
-	}
-	query := fmt.Sprintf("%s %s FROM %s%s%s T0 %s%s%s%s%s", sqlSelect, sels, Q, mi.table, Q, join, where, groupBy, orderBy, limit)
+	query := fmt.Sprintf("SELECT %s FROM %s%s%s T0 %s%s%s%s", sels, Q, mi.table, Q, join, where, orderBy, limit)
 
 	d.ins.ReplaceMarks(&query)
 
 	var rs *sql.Rows
-	r, err := q.Query(query, args...)
-	if err != nil {
+	if r, err := q.Query(query, args...); err != nil {
 		return 0, err
+	} else {
+		rs = r
 	}
-	rs = r
 
 	refs := make([]interface{}, colsNum)
-	for i := range refs {
+	for i, _ := range refs {
 		var ref interface{}
 		refs[i] = &ref
 	}
@@ -859,13 +868,13 @@ func (d *dbBase) ReadBatch(q dbQuerier, qs *querySet, mi *modelInfo, cond *Condi
 							mmi = fi.relModelInfo
 							field := last
 							if last.Kind() != reflect.Invalid {
-								field = reflect.Indirect(last.FieldByIndex(fi.fieldIndex))
+								field = reflect.Indirect(last.Field(fi.fieldIndex))
 								if field.IsValid() {
 									d.setColsValues(mmi, &field, mmi.fields.dbcols, trefs[:len(mmi.fields.dbcols)], tz)
 									for _, fi := range mmi.fields.fieldsReverse {
 										if fi.inModel && fi.reverseFieldInfo.mi == lastm {
 											if fi.reverseFieldInfo != nil {
-												f := field.FieldByIndex(fi.fieldIndex)
+												f := field.Field(fi.fieldIndex)
 												if f.Kind() == reflect.Ptr {
 													f.Set(last.Addr())
 												}
@@ -926,9 +935,9 @@ func (d *dbBase) Count(q dbQuerier, qs *querySet, mi *modelInfo, cond *Condition
 	tables := newDbTables(mi, d.ins)
 	tables.parseRelated(qs.related, qs.relDepth)
 
-	where, args := tables.getCondSQL(cond, false, tz)
-	tables.getOrderSQL(qs.orders)
-	join := tables.getJoinSQL()
+	where, args := tables.getCondSql(cond, false, tz)
+	tables.getOrderSql(qs.orders)
+	join := tables.getJoinSql()
 
 	Q := d.ins.TableQuote()
 
@@ -943,7 +952,7 @@ func (d *dbBase) Count(q dbQuerier, qs *querySet, mi *modelInfo, cond *Condition
 }
 
 // generate sql with replacing operator string placeholders and replaced values.
-func (d *dbBase) GenerateOperatorSQL(mi *modelInfo, fi *fieldInfo, operator string, args []interface{}, tz *time.Location) (string, []interface{}) {
+func (d *dbBase) GenerateOperatorSql(mi *modelInfo, fi *fieldInfo, operator string, args []interface{}, tz *time.Location) (string, []interface{}) {
 	sql := ""
 	params := getFlatParams(fi, args, tz)
 
@@ -955,7 +964,7 @@ func (d *dbBase) GenerateOperatorSQL(mi *modelInfo, fi *fieldInfo, operator stri
 	switch operator {
 	case "in":
 		marks := make([]string, len(params))
-		for i := range marks {
+		for i, _ := range marks {
 			marks[i] = "?"
 		}
 		sql = fmt.Sprintf("IN (%s)", strings.Join(marks, ", "))
@@ -968,7 +977,7 @@ func (d *dbBase) GenerateOperatorSQL(mi *modelInfo, fi *fieldInfo, operator stri
 		if len(params) > 1 {
 			panic(fmt.Errorf("operator `%s` need 1 args not %d", operator, len(params)))
 		}
-		sql = d.ins.OperatorSQL(operator)
+		sql = d.ins.OperatorSql(operator)
 		switch operator {
 		case "exact":
 			if arg == nil {
@@ -1014,7 +1023,7 @@ func (d *dbBase) setColsValues(mi *modelInfo, ind *reflect.Value, cols []string,
 
 		fi := mi.fields.GetByColumn(column)
 
-		field := ind.FieldByIndex(fi.fieldIndex)
+		field := ind.Field(fi.fieldIndex)
 
 		value, err := d.convertValueFromDB(fi, val, tz)
 		if err != nil {
@@ -1096,12 +1105,12 @@ setValue:
 			)
 			if len(s) >= 19 {
 				s = s[:19]
-				t, err = time.ParseInLocation(formatDateTime, s, tz)
+				t, err = time.ParseInLocation(format_DateTime, s, tz)
 			} else {
 				if len(s) > 10 {
 					s = s[:10]
 				}
-				t, err = time.ParseInLocation(formatDate, s, tz)
+				t, err = time.ParseInLocation(format_Date, s, tz)
 			}
 			t = t.In(DefaultTimeLoc)
 
@@ -1350,7 +1359,7 @@ setValue:
 			fieldType = fi.relModelInfo.fields.pk.fieldType
 			mf := reflect.New(fi.relModelInfo.addrField.Elem().Type())
 			field.Set(mf)
-			f := mf.Elem().FieldByIndex(fi.relModelInfo.fields.pk.fieldIndex)
+			f := mf.Elem().Field(fi.relModelInfo.fields.pk.fieldIndex)
 			field = f
 			goto setValue
 		}
@@ -1432,24 +1441,26 @@ func (d *dbBase) ReadValues(q dbQuerier, qs *querySet, mi *modelInfo, cond *Cond
 		}
 	}
 
-	where, args := tables.getCondSQL(cond, false, tz)
-	groupBy := tables.getGroupSQL(qs.groups)
-	orderBy := tables.getOrderSQL(qs.orders)
-	limit := tables.getLimitSQL(mi, qs.offset, qs.limit)
-	join := tables.getJoinSQL()
+	where, args := tables.getCondSql(cond, false, tz)
+	orderBy := tables.getOrderSql(qs.orders)
+	limit := tables.getLimitSql(mi, qs.offset, qs.limit)
+	join := tables.getJoinSql()
 
 	sels := strings.Join(cols, ", ")
 
-	query := fmt.Sprintf("SELECT %s FROM %s%s%s T0 %s%s%s%s%s", sels, Q, mi.table, Q, join, where, groupBy, orderBy, limit)
+	query := fmt.Sprintf("SELECT %s FROM %s%s%s T0 %s%s%s%s", sels, Q, mi.table, Q, join, where, orderBy, limit)
 
 	d.ins.ReplaceMarks(&query)
 
-	rs, err := q.Query(query, args...)
-	if err != nil {
+	var rs *sql.Rows
+	if r, err := q.Query(query, args...); err != nil {
 		return 0, err
+	} else {
+		rs = r
 	}
+
 	refs := make([]interface{}, len(cols))
-	for i := range refs {
+	for i, _ := range refs {
 		var ref interface{}
 		refs[i] = &ref
 	}
@@ -1462,11 +1473,11 @@ func (d *dbBase) ReadValues(q dbQuerier, qs *querySet, mi *modelInfo, cond *Cond
 	)
 	for rs.Next() {
 		if cnt == 0 {
-			cols, err := rs.Columns()
-			if err != nil {
+			if cols, err := rs.Columns(); err != nil {
 				return 0, err
+			} else {
+				columns = cols
 			}
-			columns = cols
 		}
 
 		if err := rs.Scan(refs...); err != nil {
@@ -1630,7 +1641,7 @@ func (d *dbBase) GetColumns(db dbQuerier, table string) (map[string][3]string, e
 }
 
 // not implement.
-func (d *dbBase) OperatorSQL(operator string) string {
+func (d *dbBase) OperatorSql(operator string) string {
 	panic(ErrNotImplement)
 }
 

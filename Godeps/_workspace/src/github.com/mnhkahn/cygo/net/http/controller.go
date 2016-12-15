@@ -12,7 +12,7 @@ import (
 	"strings"
 	"text/template"
 
-	cyurl "cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/url"
+	cyurl "github.com/mnhkahn/cygo/net/url"
 )
 
 var DEFAULT_CONTROLLER *Controller = new(Controller)

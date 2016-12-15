@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	cyurl "cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/url"
+	cyurl "github.com/mnhkahn/cygo/net/url"
 )
 
 type Request struct {

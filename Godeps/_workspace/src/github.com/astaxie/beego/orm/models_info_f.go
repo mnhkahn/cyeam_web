@@ -102,7 +102,7 @@ func newFields() *fields {
 // single field info
 type fieldInfo struct {
 	mi                  *modelInfo
-	fieldIndex          []int
+	fieldIndex          int
 	fieldType           int
 	dbcol               bool
 	inModel             bool
@@ -116,11 +116,10 @@ type fieldInfo struct {
 	null                bool
 	index               bool
 	unique              bool
-	colDefault          bool
 	initial             StrTo
 	size                int
-	autoNow             bool
-	autoNowAdd          bool
+	auto_now            bool
+	auto_now_add        bool
 	rel                 bool
 	reverse             bool
 	reverseField        string
@@ -138,7 +137,7 @@ type fieldInfo struct {
 }
 
 // new field info
-func newFieldInfo(mi *modelInfo, field reflect.Value, sf reflect.StructField, mName string) (fi *fieldInfo, err error) {
+func newFieldInfo(mi *modelInfo, field reflect.Value, sf reflect.StructField) (fi *fieldInfo, err error) {
 	var (
 		tag       string
 		tagValue  string
@@ -223,11 +222,6 @@ checkType:
 				break checkType
 			case "many":
 				fieldType = RelReverseMany
-				if tv := tags["rel_table"]; tv != "" {
-					fi.relTable = tv
-				} else if tv := tags["rel_through"]; tv != "" {
-					fi.relThrough = tv
-				}
 				break checkType
 			default:
 				err = fmt.Errorf("error")
@@ -278,18 +272,13 @@ checkType:
 	fi.column = getColumnName(fieldType, addrField, sf, tags["column"])
 	fi.addrValue = addrField
 	fi.sf = sf
-	fi.fullName = mi.fullName + mName + "." + sf.Name
+	fi.fullName = mi.fullName + "." + sf.Name
 
 	fi.null = attrs["null"]
 	fi.index = attrs["index"]
 	fi.auto = attrs["auto"]
 	fi.pk = attrs["pk"]
 	fi.unique = attrs["unique"]
-
-	// Mark object property if there is attribute "default" in the orm configuration
-	if _, ok := tags["default"]; ok {
-		fi.colDefault = true
-	}
 
 	switch fieldType {
 	case RelManyToMany, RelReverseMany, RelReverseOne:
@@ -314,20 +303,20 @@ checkType:
 
 	if fi.rel && fi.dbcol {
 		switch onDelete {
-		case odCascade, odDoNothing:
-		case odSetDefault:
+		case od_CASCADE, od_DO_NOTHING:
+		case od_SET_DEFAULT:
 			if initial.Exist() == false {
 				err = errors.New("on_delete: set_default need set field a default value")
 				goto end
 			}
-		case odSetNULL:
+		case od_SET_NULL:
 			if fi.null == false {
 				err = errors.New("on_delete: set_null need set field null")
 				goto end
 			}
 		default:
 			if onDelete == "" {
-				onDelete = odCascade
+				onDelete = od_CASCADE
 			} else {
 				err = fmt.Errorf("on_delete value expected choice in `cascade,set_null,set_default,do_nothing`, unknown `%s`", onDelete)
 				goto end
@@ -355,9 +344,9 @@ checkType:
 		fi.unique = false
 	case TypeDateField, TypeDateTimeField:
 		if attrs["auto_now"] {
-			fi.autoNow = true
+			fi.auto_now = true
 		} else if attrs["auto_now_add"] {
-			fi.autoNowAdd = true
+			fi.auto_now_add = true
 		}
 	case TypeFloatField:
 	case TypeDecimalField:

@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"os"
 
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/http"
+	"github.com/mnhkahn/cygo/net/http"
 )
 
 type MainController struct {

@@ -1,104 +1,14 @@
 {
 	"ImportPath": "cyeam",
-	"GoVersion": "go1.5.1",
+	"GoVersion": "go1.6.2",
 	"Packages": [
 		"./..."
 	],
 	"Deps": [
 		{
-			"ImportPath": "github.com/PuerkitoBio/goquery",
-			"Comment": "v0.3.2-80-g417cce8",
-			"Rev": "417cce822c7b9a379df5824be95228d177c5698b"
-		},
-		{
-			"ImportPath": "github.com/adamzy/cedar-go",
-			"Rev": "d348c21f72432c2b6d5f05f68759fde94f64b227"
-		},
-		{
-			"ImportPath": "github.com/andybalholm/cascadia",
-			"Rev": "3ad29d1ad1c4f2023e355603324348cf1f4b2d48"
-		},
-		{
-			"ImportPath": "github.com/astaxie/beego/httplib",
-			"Comment": "v1.6.1-5-g88c5dfa",
-			"Rev": "88c5dfa6ead42e624c2e7d9e04eab6cb2d07412a"
-		},
-		{
-			"ImportPath": "github.com/astaxie/beego/orm",
-			"Comment": "v1.6.1-5-g88c5dfa",
-			"Rev": "88c5dfa6ead42e624c2e7d9e04eab6cb2d07412a"
-		},
-		{
-			"ImportPath": "github.com/boltdb/bolt",
-			"Comment": "v1.2.1-11-gacc803f",
-			"Rev": "acc803f0ced151102ed51bf824f8709ebd6602bc"
-		},
-		{
-			"ImportPath": "github.com/cznic/bufs",
-			"Rev": "3dcccbd7064a1689f9c093a988ea11ac00e21f51"
-		},
-		{
-			"ImportPath": "github.com/cznic/fileutil",
-			"Rev": "1c9c88fbf552b3737c7b97e1f243860359687976"
-		},
-		{
-			"ImportPath": "github.com/cznic/kv",
-			"Rev": "48b826e72e327d4a217b02b6cec3b706a72d740c"
-		},
-		{
-			"ImportPath": "github.com/cznic/lldb",
-			"Comment": "v1.0.1",
-			"Rev": "96fb2603c53c1c5d9f30ea9968cefee9ee1a135c"
-		},
-		{
-			"ImportPath": "github.com/cznic/mathutil",
-			"Rev": "78ad7f262603437f0ecfebc835d80094f89c8f54"
-		},
-		{
-			"ImportPath": "github.com/cznic/sortutil",
-			"Rev": "4c7342852e65c2088c981288f2c5610d10b9f7f4"
-		},
-		{
-			"ImportPath": "github.com/cznic/zappy",
-			"Rev": "4f5e6ef19fd692f1ef9b01206de4f1161a314e9a"
-		},
-		{
-			"ImportPath": "github.com/huichen/murmur",
-			"Rev": "e0489551cf5116e27d7cc69d97a53cdbdd028acf"
-		},
-		{
-			"ImportPath": "github.com/huichen/sego",
-			"Rev": "d06fe1b3abe3877ab593b57e5e43daf6c4c25add"
-		},
-		{
-			"ImportPath": "github.com/huichen/wukong/core",
-			"Comment": "v0.1-77-g8a2c1e5",
-			"Rev": "8a2c1e5de05f99daa82ca92d9e7bb8748178ac3f"
-		},
-		{
-			"ImportPath": "github.com/huichen/wukong/engine",
-			"Comment": "v0.1-77-g8a2c1e5",
-			"Rev": "8a2c1e5de05f99daa82ca92d9e7bb8748178ac3f"
-		},
-		{
-			"ImportPath": "github.com/huichen/wukong/storage",
-			"Comment": "v0.1-77-g8a2c1e5",
-			"Rev": "8a2c1e5de05f99daa82ca92d9e7bb8748178ac3f"
-		},
-		{
-			"ImportPath": "github.com/huichen/wukong/types",
-			"Comment": "v0.1-77-g8a2c1e5",
-			"Rev": "8a2c1e5de05f99daa82ca92d9e7bb8748178ac3f"
-		},
-		{
-			"ImportPath": "github.com/huichen/wukong/utils",
-			"Comment": "v0.1-77-g8a2c1e5",
-			"Rev": "8a2c1e5de05f99daa82ca92d9e7bb8748178ac3f"
-		},
-		{
-			"ImportPath": "github.com/mattn/go-sqlite3",
-			"Comment": "v1.1.0-30-g5510da3",
-			"Rev": "5510da399572b4962c020184bb291120c0a412e2"
+			"ImportPath": "github.com/astaxie/beego",
+			"Comment": "v1.4.2",
+			"Rev": "07c628c7e9f813efc3f7e1785f667e08f2340d53"
 		},
 		{
 			"ImportPath": "github.com/mnhkahn/cygo/net/http",
@@ -111,18 +21,6 @@
 		{
 			"ImportPath": "github.com/mnhkahn/cygo/strings",
 			"Rev": "95cfd4a3c71b8b97674ee714ee6b194379806597"
-		},
-		{
-			"ImportPath": "github.com/mnhkahn/maodou",
-			"Rev": "4d7c226c386a960ab49f89a0e9f53d34b2e99348"
-		},
-		{
-			"ImportPath": "golang.org/x/net/html",
-			"Rev": "ea47fc708ee3e20177f3ca3716217c4ab75942cb"
-		},
-		{
-			"ImportPath": "golang.org/x/sys/unix",
-			"Rev": "b518c298ac9dc94b6ac0757394f50d10c5dfa25a"
 		}
 	]
 }

@@ -46,7 +46,7 @@ func printHelp(errs ...string) {
 	os.Exit(2)
 }
 
-// RunCommand listen for orm command and then run it if command arguments passed.
+// listen for orm command and then run it if command arguments passed.
 func RunCommand() {
 	if len(os.Args) < 2 || os.Args[1] != "orm" {
 		return
@@ -100,7 +100,7 @@ func (d *commandSyncDb) Parse(args []string) {
 func (d *commandSyncDb) Run() error {
 	var drops []string
 	if d.force {
-		drops = getDbDropSQL(d.al)
+		drops = getDbDropSql(d.al)
 	}
 
 	db := d.al.DB
@@ -124,7 +124,7 @@ func (d *commandSyncDb) Run() error {
 		}
 	}
 
-	sqls, indexes := getDbCreateSQL(d.al)
+	sqls, indexes := getDbCreateSql(d.al)
 
 	tables, err := d.al.DbBaser.GetTables(db)
 	if err != nil {
@@ -180,7 +180,7 @@ func (d *commandSyncDb) Run() error {
 						fmt.Printf("create index `%s` for table `%s`\n", idx.Name, idx.Table)
 					}
 
-					query := idx.SQL
+					query := idx.Sql
 					_, err := db.Exec(query)
 					if d.verbose {
 						fmt.Printf("    %s\n", query)
@@ -203,7 +203,7 @@ func (d *commandSyncDb) Run() error {
 
 		queries := []string{sqls[i]}
 		for _, idx := range indexes[mi.table] {
-			queries = append(queries, idx.SQL)
+			queries = append(queries, idx.Sql)
 		}
 
 		for _, query := range queries {
@@ -228,12 +228,12 @@ func (d *commandSyncDb) Run() error {
 }
 
 // database creation commander interface implement.
-type commandSQLAll struct {
+type commandSqlAll struct {
 	al *alias
 }
 
 // parse orm command line arguments.
-func (d *commandSQLAll) Parse(args []string) {
+func (d *commandSqlAll) Parse(args []string) {
 	var name string
 
 	flagSet := flag.NewFlagSet("orm command: sqlall", flag.ExitOnError)
@@ -244,13 +244,13 @@ func (d *commandSQLAll) Parse(args []string) {
 }
 
 // run orm line command.
-func (d *commandSQLAll) Run() error {
-	sqls, indexes := getDbCreateSQL(d.al)
+func (d *commandSqlAll) Run() error {
+	sqls, indexes := getDbCreateSql(d.al)
 	var all []string
 	for i, mi := range modelCache.allOrdered() {
 		queries := []string{sqls[i]}
 		for _, idx := range indexes[mi.table] {
-			queries = append(queries, idx.SQL)
+			queries = append(queries, idx.Sql)
 		}
 		sql := strings.Join(queries, "\n")
 		all = append(all, sql)
@@ -262,10 +262,10 @@ func (d *commandSQLAll) Run() error {
 
 func init() {
 	commands["syncdb"] = new(commandSyncDb)
-	commands["sqlall"] = new(commandSQLAll)
+	commands["sqlall"] = new(commandSqlAll)
 }
 
-// RunSyncdb run syncdb command line.
+// run syncdb command line.
 // name means table's alias name. default is "default".
 // force means run next sql if the current is error.
 // verbose means show all info when running command or not.

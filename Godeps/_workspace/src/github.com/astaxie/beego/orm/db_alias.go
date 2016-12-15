@@ -22,17 +22,15 @@ import (
 	"time"
 )
 
-// DriverType database driver constant int.
+// database driver constant int.
 type DriverType int
 
-// Enum the Database driver
 const (
-	_          DriverType = iota // int enum type
-	DRMySQL                      // mysql
-	DRSqlite                     // sqlite
-	DROracle                     // oracle
-	DRPostgres                   // pgsql
-	DRTiDB                       // TiDB
+	_           DriverType = iota // int enum type
+	DR_MySQL                      // mysql
+	DR_Sqlite                     // sqlite
+	DR_Oracle                     // oracle
+	DR_Postgres                   // pgsql
 )
 
 // database driver string.
@@ -55,18 +53,15 @@ var _ Driver = new(driver)
 var (
 	dataBaseCache = &_dbCache{cache: make(map[string]*alias)}
 	drivers       = map[string]DriverType{
-		"mysql":    DRMySQL,
-		"postgres": DRPostgres,
-		"sqlite3":  DRSqlite,
-		"tidb":     DRTiDB,
-		"oracle":   DROracle,
+		"mysql":    DR_MySQL,
+		"postgres": DR_Postgres,
+		"sqlite3":  DR_Sqlite,
 	}
 	dbBasers = map[DriverType]dbBaser{
-		DRMySQL:    newdbBaseMysql(),
-		DRSqlite:   newdbBaseSqlite(),
-		DROracle:   newdbBaseOracle(),
-		DRPostgres: newdbBasePostgres(),
-		DRTiDB:     newdbBaseTidb(),
+		DR_MySQL:    newdbBaseMysql(),
+		DR_Sqlite:   newdbBaseSqlite(),
+		DR_Oracle:   newdbBaseMysql(),
+		DR_Postgres: newdbBasePostgres(),
 	}
 )
 
@@ -124,7 +119,7 @@ func detectTZ(al *alias) {
 	}
 
 	switch al.Driver {
-	case DRMySQL:
+	case DR_MySQL:
 		row := al.DB.QueryRow("SELECT TIMEDIFF(NOW(), UTC_TIMESTAMP)")
 		var tz string
 		row.Scan(&tz)
@@ -152,10 +147,10 @@ func detectTZ(al *alias) {
 			al.Engine = "INNODB"
 		}
 
-	case DRSqlite, DROracle:
+	case DR_Sqlite:
 		al.TZ = time.UTC
 
-	case DRPostgres:
+	case DR_Postgres:
 		row := al.DB.QueryRow("SELECT current_setting('TIMEZONE')")
 		var tz string
 		row.Scan(&tz)
@@ -193,13 +188,12 @@ func addAliasWthDB(aliasName, driverName string, db *sql.DB) (*alias, error) {
 	return al, nil
 }
 
-// AddAliasWthDB add a aliasName for the drivename
 func AddAliasWthDB(aliasName, driverName string, db *sql.DB) error {
 	_, err := addAliasWthDB(aliasName, driverName, db)
 	return err
 }
 
-// RegisterDataBase Setting the database connect params. Use the database driver self dataSource args.
+// Setting the database connect params. Use the database driver self dataSource args.
 func RegisterDataBase(aliasName, driverName, dataSource string, params ...int) error {
 	var (
 		err error
@@ -242,7 +236,7 @@ end:
 	return err
 }
 
-// RegisterDriver Register a database driver use specify driver name, this can be definition the driver is which database type.
+// Register a database driver use specify driver name, this can be definition the driver is which database type.
 func RegisterDriver(driverName string, typ DriverType) error {
 	if t, ok := drivers[driverName]; ok == false {
 		drivers[driverName] = typ
@@ -254,7 +248,7 @@ func RegisterDriver(driverName string, typ DriverType) error {
 	return nil
 }
 
-// SetDataBaseTZ Change the database default used timezone
+// Change the database default used timezone
 func SetDataBaseTZ(aliasName string, tz *time.Location) error {
 	if al, ok := dataBaseCache.get(aliasName); ok {
 		al.TZ = tz
@@ -264,14 +258,14 @@ func SetDataBaseTZ(aliasName string, tz *time.Location) error {
 	return nil
 }
 
-// SetMaxIdleConns Change the max idle conns for *sql.DB, use specify database alias name
+// Change the max idle conns for *sql.DB, use specify database alias name
 func SetMaxIdleConns(aliasName string, maxIdleConns int) {
 	al := getDbAlias(aliasName)
 	al.MaxIdleConns = maxIdleConns
 	al.DB.SetMaxIdleConns(maxIdleConns)
 }
 
-// SetMaxOpenConns Change the max open conns for *sql.DB, use specify database alias name
+// Change the max open conns for *sql.DB, use specify database alias name
 func SetMaxOpenConns(aliasName string, maxOpenConns int) {
 	al := getDbAlias(aliasName)
 	al.MaxOpenConns = maxOpenConns
@@ -281,7 +275,7 @@ func SetMaxOpenConns(aliasName string, maxOpenConns int) {
 	}
 }
 
-// GetDB Get *sql.DB from registered database by db alias name.
+// Get *sql.DB from registered database by db alias name.
 // Use "default" as alias name if you not set.
 func GetDB(aliasNames ...string) (*sql.DB, error) {
 	var name string
@@ -290,9 +284,9 @@ func GetDB(aliasNames ...string) (*sql.DB, error) {
 	} else {
 		name = "default"
 	}
-	al, ok := dataBaseCache.get(name)
-	if ok {
+	if al, ok := dataBaseCache.get(name); ok {
 		return al.DB, nil
+	} else {
+		return nil, fmt.Errorf("DataBase of alias name `%s` not found\n", name)
 	}
-	return nil, fmt.Errorf("DataBase of alias name `%s` not found\n", name)
 }

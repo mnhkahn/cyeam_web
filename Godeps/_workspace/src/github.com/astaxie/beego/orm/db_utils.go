@@ -24,15 +24,16 @@ import (
 func getDbAlias(name string) *alias {
 	if al, ok := dataBaseCache.get(name); ok {
 		return al
+	} else {
+		panic(fmt.Errorf("unknown DataBase alias name %s", name))
 	}
-	panic(fmt.Errorf("unknown DataBase alias name %s", name))
 }
 
 // get pk column info.
 func getExistPk(mi *modelInfo, ind reflect.Value) (column string, value interface{}, exist bool) {
 	fi := mi.fields.pk
 
-	v := ind.FieldByIndex(fi.fieldIndex)
+	v := ind.Field(fi.fieldIndex)
 	if fi.fieldType&IsPostiveIntegerField > 0 {
 		vu := v.Uint()
 		exist = vu > 0
@@ -79,19 +80,19 @@ outFor:
 					var err error
 					if len(v) >= 19 {
 						s := v[:19]
-						t, err = time.ParseInLocation(formatDateTime, s, DefaultTimeLoc)
+						t, err = time.ParseInLocation(format_DateTime, s, DefaultTimeLoc)
 					} else {
 						s := v
 						if len(v) > 10 {
 							s = v[:10]
 						}
-						t, err = time.ParseInLocation(formatDate, s, tz)
+						t, err = time.ParseInLocation(format_Date, s, tz)
 					}
 					if err == nil {
 						if fi.fieldType == TypeDateField {
-							v = t.In(tz).Format(formatDate)
+							v = t.In(tz).Format(format_Date)
 						} else {
-							v = t.In(tz).Format(formatDateTime)
+							v = t.In(tz).Format(format_DateTime)
 						}
 					}
 				}
@@ -136,9 +137,9 @@ outFor:
 		case reflect.Struct:
 			if v, ok := arg.(time.Time); ok {
 				if fi != nil && fi.fieldType == TypeDateField {
-					arg = v.In(tz).Format(formatDate)
+					arg = v.In(tz).Format(format_Date)
 				} else {
-					arg = v.In(tz).Format(formatDateTime)
+					arg = v.In(tz).Format(format_DateTime)
 				}
 			} else {
 				typ := val.Type()

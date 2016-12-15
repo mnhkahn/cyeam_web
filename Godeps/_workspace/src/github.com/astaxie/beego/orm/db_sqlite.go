@@ -29,8 +29,6 @@ var sqliteOperators = map[string]string{
 	"gte":         ">= ?",
 	"lt":          "< ?",
 	"lte":         "<= ?",
-	"eq":          "= ?",
-	"ne":          "!= ?",
 	"startswith":  "LIKE ? ESCAPE '\\'",
 	"endswith":    "LIKE ? ESCAPE '\\'",
 	"istartswith": "LIKE ? ESCAPE '\\'",
@@ -66,7 +64,7 @@ type dbBaseSqlite struct {
 var _ dbBaser = new(dbBaseSqlite)
 
 // get sqlite operator.
-func (d *dbBaseSqlite) OperatorSQL(operator string) string {
+func (d *dbBaseSqlite) OperatorSql(operator string) string {
 	return sqliteOperators[operator]
 }
 
