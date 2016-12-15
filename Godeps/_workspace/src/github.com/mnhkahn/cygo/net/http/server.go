@@ -95,6 +95,7 @@ func init() {
 
 	Router("/", "OPTIONS", &Controller{}, "Option")
 	Router("/favicon.ico", "GET", &Controller{}, "Favicon")
+	Router("/option", "GET", &Controller{}, "OptionMethod")
 }
 
 func handleConnection(conn net.Conn) {

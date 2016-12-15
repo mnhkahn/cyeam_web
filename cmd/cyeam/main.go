@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cyeam/controllers"
 	"cyeam/models"
 	"cyeam/services"
 	"cyeam/structs"
@@ -58,6 +59,9 @@ func init() {
 	http.Router("/bing", "GET", &MainController{}, "Bing")
 	http.Router("/bincalc", "GET", &MainController{}, "BinCalc")
 	http.Router("/bincalc", "POST", &MainController{}, "BinCalc")
+
+	http.Router("/weixin", "GET", &controllers.WeixinController{}, "Verify")
+	http.Router("/weixin", "POST", &controllers.WeixinController{}, "WeixinMsg")
 }
 
 // const (

@@ -163,3 +163,7 @@ func (this *Controller) ContentType(ext string) string {
 	}
 	return mime.TypeByExtension(ext)
 }
+
+func (this *Controller) OptionMethod() {
+	this.ServeJson(DEFAULT_SERVER.Routes.routes)
+}
