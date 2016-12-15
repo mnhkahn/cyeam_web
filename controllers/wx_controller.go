@@ -2,7 +2,7 @@
  * @Author: lichao115
  * @Date: 2016-12-15 17:22:29
  * @Last Modified by: lichao115
- * @Last Modified time: 2016-12-15 18:20:52
+ * @Last Modified time: 2016-12-15 18:22:37
  */
 package controllers
 
@@ -26,7 +26,7 @@ type WeixinController struct {
 }
 
 const (
-	TOKEN = "wxd4124a11a4c1f625"
+	TOKEN = "cyeam"
 
 	Text     = "text"
 	Location = "location"
