@@ -29,24 +29,28 @@ type Request struct {
 	Location_X, Location_Y float32
 	Scale                  int
 	Label                  string
-	PicUrl                 string
-	MsgId                  int
+	PicUrl                 CDATA
+	MsgId                  int64
 }
 
 type Response struct {
 	XMLName xml.Name `xml:"xml"`
 	msgBase
-	ArticleCount int     `xml:",omitempty"`
-	Articles     []*Item `xml:",omitempty"`
+	ArticleCount int       `xml:",omitempty"`
+	Articles     *Articles `xml:",omitempty"`
 	// FuncFlag     int     `xml:",omitempty"`
+}
+
+type Articles struct {
+	Items []*Item
 }
 
 type Item struct {
 	XMLName     xml.Name `xml:"item"`
-	Title       string
-	Description string
-	PicUrl      string
-	Url         string
+	Title       CDATA
+	Description CDATA
+	PicUrl      CDATA
+	Url         CDATA
 }
 
 func (resp Response) Encode() (data []byte, err error) {

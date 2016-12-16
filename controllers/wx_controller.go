@@ -147,12 +147,13 @@ func handleImage(req *models.Request, resp *models.Response) *models.Response {
 	resp.Content.Data = "Ascii"
 	resp.ArticleCount = 1
 	a := models.Item{}
-	a.Title = "我的图片的ASCII码"
+	a.Title.Data = "我的图片的ASCII码"
 	a.PicUrl = req.PicUrl
-	a.Description = "点击『查看原文』来查看详细说明"
-	a.Url = "http://cyeam.com/ascii?url=" + strings.Trim(req.PicUrl, "http://")
+	a.Description.Data = "点击『查看原文』来查看详细说明"
+	a.Url.Data = "http://cyeam.com/ascii?url=" + strings.Trim(req.PicUrl.Data, "http://")
 	// resp.FuncFlag = 1
-	resp.Articles = append(resp.Articles, &a)
+	resp.Articles = new(models.Articles)
+	resp.Articles.Items = append(resp.Articles.Items, &a)
 
 	return resp
 }
@@ -170,12 +171,13 @@ func handleText(req *models.Request, resp *models.Response) *models.Response {
 			resp.ArticleCount = 1
 
 			a := models.Item{}
-			a.Title = doodle.Title
-			a.PicUrl = doodle.Doodle
-			a.Description = "点击『查看原文』来查看详细说明"
-			a.Url = "http://cyeam.com/"
+			a.Title.Data = doodle.Title
+			a.PicUrl.Data = doodle.Doodle
+			a.Description.Data = "点击『查看原文』来查看详细说明"
+			a.Url.Data = "http://cyeam.com/"
 			// resp.FuncFlag = 1
-			resp.Articles = append(resp.Articles, &a)
+			resp.Articles = new(models.Articles)
+			resp.Articles.Items = append(resp.Articles.Items, &a)
 		} else {
 			resp.Content.Data = ""
 		}
@@ -186,12 +188,13 @@ func handleText(req *models.Request, resp *models.Response) *models.Response {
 		resp.ArticleCount = 1
 
 		a := models.Item{}
-		a.Title = "bing"
-		a.PicUrl = bing
-		a.Description = "点击『查看原文』来查看详细说明"
-		a.Url = "http://cyeam.com/"
+		a.Title.Data = "bing"
+		a.PicUrl.Data = bing
+		a.Description.Data = "点击『查看原文』来查看详细说明"
+		a.Url.Data = "http://cyeam.com/"
 		// resp.FuncFlag = 1
-		resp.Articles = append(resp.Articles, &a)
+		resp.Articles = new(models.Articles)
+		resp.Articles.Items = append(resp.Articles.Items, &a)
 	}
 	return resp
 }
