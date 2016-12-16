@@ -119,7 +119,7 @@ func dealwith(req *models.Request, r *http.Request) (resp *models.Response, err 
 	resp.ToUserName = req.FromUserName
 	resp.FromUserName = req.ToUserName
 
-	log.Println("REQ", req)
+	log.Println("REQ", req.FromUserName.Data, req.ToUserName.Data, req.MsgType.Data, req.CreateTime, req.MsgId)
 
 	switch req.MsgType.Data {
 	case Text:
