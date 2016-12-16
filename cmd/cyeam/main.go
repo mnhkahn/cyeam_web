@@ -3,6 +3,7 @@ package main
 import (
 	"cyeam/controllers"
 	"cyeam/models"
+	"cyeam/search"
 	"cyeam/services"
 	"cyeam/structs"
 	"fmt"
@@ -20,10 +21,10 @@ func (this *MainController) Get() {
 	this.ServeView("index.html")
 }
 
-// func (this *MainController) Search() {
-// t := this.GetString("t")
-// this.ServeJson(search.Search(t))
-// }
+func (this *MainController) Search() {
+	t := this.GetString("t")
+	this.ServeJson(search.Search(t))
+}
 
 func (this *MainController) Bing() {
 	this.Ctx.Resp.StatusCode = http.StatusFound
@@ -52,8 +53,12 @@ func main() {
 }
 
 func init() {
+	if err := search.InitSwiftype(); err != nil {
+		panic(err)
+	}
+
 	http.Router("/", "GET", &MainController{}, "Get")
-	// http.Router("/s", "GET", &MainController{}, "Search")
+	http.Router("/s", "GET", &MainController{}, "Search")
 	http.Router("/bing", "GET", &MainController{}, "Bing")
 	http.Router("/bincalc", "GET", &MainController{}, "BinCalc")
 	http.Router("/bincalc", "POST", &MainController{}, "BinCalc")

@@ -2,11 +2,12 @@
  * @Author: lichao115
  * @Date: 2016-12-15 17:22:29
  * @Last Modified by: lichao115
- * @Last Modified time: 2016-12-15 18:22:37
+ * @Last Modified time: 2016-12-16 14:22:21
  */
 package controllers
 
 import (
+	"bytes"
 	"crypto/sha1"
 	"encoding/xml"
 	"fmt"
@@ -17,6 +18,7 @@ import (
 	"time"
 
 	"cyeam/models"
+	"cyeam/search"
 
 	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/http"
 )
@@ -161,7 +163,6 @@ func handleImage(req *models.Request, resp *models.Response) *models.Response {
 func handleText(req *models.Request, resp *models.Response) *models.Response {
 	resp.MsgType.Data = Text
 
-	resp.Content = req.Content
 	if req.Content.Data == "doodle" {
 		doodle := models.GetDoodle()
 
@@ -195,6 +196,17 @@ func handleText(req *models.Request, resp *models.Response) *models.Response {
 		// resp.FuncFlag = 1
 		resp.Articles = new(models.Articles)
 		resp.Articles.Items = append(resp.Articles.Items, &a)
+	} else {
+		se := search.Search(req.Content.Data)
+		buf := bytes.NewBuffer(nil)
+
+		buf.WriteString(fmt.Sprintf("搜索: %s 耗时：%dms", req.Content, se.Summary.Duration))
+
+		for i, doc := range se.Docs {
+			buf.WriteString(fmt.Sprintf("%d. 《%s》 %s\n", i+1, doc.Title, doc.Link))
+		}
+
+		resp.Content.Data = buf.String()
 	}
 	return resp
 }
