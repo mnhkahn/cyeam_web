@@ -52,8 +52,6 @@ func main() {
 }
 
 func init() {
-	// search.Index()
-
 	http.Router("/", "GET", &MainController{}, "Get")
 	// http.Router("/s", "GET", &MainController{}, "Search")
 	http.Router("/bing", "GET", &MainController{}, "Bing")
@@ -62,4 +60,10 @@ func init() {
 
 	http.Router("/weixin", "GET", &controllers.WeixinController{}, "Verify")
 	http.Router("/weixin", "POST", &controllers.WeixinController{}, "WeixinMsg")
+
+	http.Router("/ascii", "GET", &controllers.ToolController{}, "Ascii")
+
+	// http.Router("/robots.txt", "GET", &controllers.MainController{}, "Robots")
+	// http.Router("/sitemap.xml", "GET", &controllers.MainController{}, "Sitemap")
+	// http.Router("/feed/", "GET", &controllers.MainController{}, "Feed")
 }
