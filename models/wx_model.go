@@ -46,7 +46,6 @@ type Item struct {
 }
 
 func (resp Response) Encode() (data []byte, err error) {
-	resp.CreateTime = time.Second
 	data, err = xml.Marshal(resp)
 	return
 }

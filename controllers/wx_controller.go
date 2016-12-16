@@ -73,7 +73,7 @@ func (this *WeixinController) WeixinMsg() {
 		this.Ctx.Resp.StatusCode = http.StatusNotFound
 		return
 	}
-	log.Println(this.Ctx.Req.Body, "FFFFFFFFFFFFF")
+	log.Println(this.Ctx.Req.Body)
 
 	var wreq *models.Request
 	var err error
@@ -129,7 +129,7 @@ func dealwith(req *models.Request, r *http.Request) (resp *models.Response, err 
 	default:
 		resp = handleText(req, resp)
 	}
-
+	log.Println(int64(resp.CreateTime), "AAAA")
 	return resp, nil
 }
 
