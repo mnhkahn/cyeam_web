@@ -151,7 +151,7 @@ func handleImage(req *models.Request, resp *models.Response) *models.Response {
 	a.PicUrl = req.PicUrl
 	a.Description = "点击『查看原文』来查看详细说明"
 	a.Url = "http://cyeam.com/ascii?url=" + strings.Trim(req.PicUrl, "http://")
-	resp.FuncFlag = 1
+	// resp.FuncFlag = 1
 	resp.Articles = append(resp.Articles, &a)
 
 	return resp
@@ -174,7 +174,7 @@ func handleText(req *models.Request, resp *models.Response) *models.Response {
 			a.PicUrl = doodle.Doodle
 			a.Description = "点击『查看原文』来查看详细说明"
 			a.Url = "http://cyeam.com/"
-			resp.FuncFlag = 1
+			// resp.FuncFlag = 1
 			resp.Articles = append(resp.Articles, &a)
 		} else {
 			resp.Content.Data = ""
@@ -190,7 +190,7 @@ func handleText(req *models.Request, resp *models.Response) *models.Response {
 		a.PicUrl = bing
 		a.Description = "点击『查看原文』来查看详细说明"
 		a.Url = "http://cyeam.com/"
-		resp.FuncFlag = 1
+		// resp.FuncFlag = 1
 		resp.Articles = append(resp.Articles, &a)
 	}
 	return resp

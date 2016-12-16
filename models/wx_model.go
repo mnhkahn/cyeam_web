@@ -37,8 +37,8 @@ type Response struct {
 	XMLName xml.Name `xml:"xml"`
 	msgBase
 	ArticleCount int     `xml:",omitempty"`
-	Articles     []*Item `xml:"Articles>item,omitempty"`
-	FuncFlag     int     `xml:",omitempty"`
+	Articles     []*Item `xml:",omitempty"`
+	// FuncFlag     int     `xml:",omitempty"`
 }
 
 type Item struct {
@@ -50,7 +50,7 @@ type Item struct {
 }
 
 func (resp Response) Encode() (data []byte, err error) {
-	// data, err = xml.MarshalIndent(resp, "", "")
-	data = []byte("<xml><ToUserName><![CDATA[ovQatjr9KDDjbLIE5Cwp5ZNnQDts]]></ToUserName><FromUserName><![CDATA[gh_aa23c6563b3d]]></FromUserName><CreateTime>1481859430</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[123]]></Content></xml>")
+	data, err = xml.MarshalIndent(resp, "", "")
+	// data = []byte("<xml><ToUserName><![CDATA[ovQatjr9KDDjbLIE5Cwp5ZNnQDts]]></ToUserName><FromUserName><![CDATA[gh_aa23c6563b3d]]></FromUserName><CreateTime>1481859430</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[123]]></Content></xml>")
 	return
 }
