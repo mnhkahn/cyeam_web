@@ -12,11 +12,15 @@ import (
 )
 
 type msgBase struct {
-	ToUserName   string
-	FromUserName string
+	ToUserName   CDATA
+	FromUserName CDATA
 	CreateTime   time.Duration
-	MsgType      string
-	Content      string
+	MsgType      CDATA
+	Content      CDATA
+}
+
+type CDATA struct {
+	Data string `xml:",cdata"`
 }
 
 type Request struct {

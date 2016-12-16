@@ -111,7 +111,6 @@ func DecodeRequest(data []byte) (req *models.Request, err error) {
 func NewResponse() (resp *models.Response) {
 	resp = &models.Response{}
 	resp.CreateTime = time.Duration(time.Now().Unix())
-	log.Println(resp.CreateTime, time.Now(), time.Now().Unix(), "AAAA")
 	return
 }
 
@@ -119,7 +118,7 @@ func dealwith(req *models.Request, r *http.Request) (resp *models.Response, err 
 	resp = NewResponse()
 	resp.ToUserName = req.FromUserName
 	resp.FromUserName = req.ToUserName
-	switch req.MsgType {
+	switch req.MsgType.Data {
 	case Text:
 		resp = handleText(req, resp)
 	case Image:
@@ -129,20 +128,20 @@ func dealwith(req *models.Request, r *http.Request) (resp *models.Response, err 
 	default:
 		resp = handleText(req, resp)
 	}
-	log.Println(int64(resp.CreateTime), "AAAA")
+
 	return resp, nil
 }
 
 func handleLocation(req *models.Request, resp *models.Response) *models.Response {
-	resp.MsgType = Text
+	resp.MsgType.Data = Text
 	w := models.NewWeather(fmt.Sprintf("%v", req.Location_X), fmt.Sprintf("%v", req.Location_Y))
-	resp.Content = fmt.Sprintf("%s，位置：%s，温度：%d，天气：%s", w.Summary, req.Label, w.Temp, w.Skycon)
+	resp.Content.Data = fmt.Sprintf("%s，位置：%s，温度：%d，天气：%s", w.Summary, req.Label, w.Temp, w.Skycon)
 	return resp
 }
 
 func handleImage(req *models.Request, resp *models.Response) *models.Response {
-	resp.MsgType = News
-	resp.Content = "Ascii"
+	resp.MsgType.Data = News
+	resp.Content.Data = "Ascii"
 	resp.ArticleCount = 1
 	a := models.Item{}
 	a.Title = "我的图片的ASCII码"
@@ -156,15 +155,15 @@ func handleImage(req *models.Request, resp *models.Response) *models.Response {
 }
 
 func handleText(req *models.Request, resp *models.Response) *models.Response {
-	resp.MsgType = Text
+	resp.MsgType.Data = Text
 
 	resp.Content = req.Content
-	if req.Content == "doodle" {
+	if req.Content.Data == "doodle" {
 		doodle := models.GetDoodle()
 
 		if doodle.Doodle != "" {
-			resp.MsgType = News
-			resp.Content = "doodle"
+			resp.MsgType.Data = News
+			resp.Content.Data = "doodle"
 			resp.ArticleCount = 1
 
 			a := models.Item{}
@@ -175,12 +174,12 @@ func handleText(req *models.Request, resp *models.Response) *models.Response {
 			resp.FuncFlag = 1
 			resp.Articles = append(resp.Articles, &a)
 		} else {
-			resp.Content = ""
+			resp.Content.Data = ""
 		}
-	} else if req.Content == "bing" {
+	} else if req.Content.Data == "bing" {
 		bing := models.GetBing()
-		resp.MsgType = News
-		resp.Content = "bing"
+		resp.MsgType.Data = News
+		resp.Content.Data = "bing"
 		resp.ArticleCount = 1
 
 		a := models.Item{}
