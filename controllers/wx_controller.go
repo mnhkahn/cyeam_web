@@ -2,7 +2,7 @@
  * @Author: lichao115
  * @Date: 2016-12-15 17:22:29
  * @Last Modified by: lichao115
- * @Last Modified time: 2016-12-16 14:22:21
+ * @Last Modified time: 2016-12-16 14:26:07
  */
 package controllers
 
@@ -200,7 +200,7 @@ func handleText(req *models.Request, resp *models.Response) *models.Response {
 		se := search.Search(req.Content.Data)
 		buf := bytes.NewBuffer(nil)
 
-		buf.WriteString(fmt.Sprintf("搜索: %s 耗时：%dms", req.Content, se.Summary.Duration))
+		buf.WriteString(fmt.Sprintf("搜索: %s 耗时：%dms\n", req.Content.Data, se.Summary.Duration))
 
 		for i, doc := range se.Docs {
 			buf.WriteString(fmt.Sprintf("%d. 《%s》 %s\n", i+1, doc.Title, doc.Link))
