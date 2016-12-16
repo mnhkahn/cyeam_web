@@ -63,7 +63,7 @@ func init() {
 
 	http.Router("/ascii", "GET", &controllers.ToolController{}, "Ascii")
 
-	// http.Router("/robots.txt", "GET", &controllers.MainController{}, "Robots")
-	// http.Router("/sitemap.xml", "GET", &controllers.MainController{}, "Sitemap")
-	// http.Router("/feed/", "GET", &controllers.MainController{}, "Feed")
+	http.Router("/robots.txt", "GET", &controllers.ToolController{}, "Robots")
+	http.Router("/sitemap.xml", "GET", &controllers.ToolController{}, "Sitemap")
+	http.Router("/feed/", "GET", &controllers.ToolController{}, "Feed")
 }
