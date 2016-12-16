@@ -2,7 +2,7 @@
  * @Author: lichao115
  * @Date: 2016-12-15 17:22:29
  * @Last Modified by: lichao115
- * @Last Modified time: 2016-12-16 14:26:07
+ * @Last Modified time: 2016-12-16 15:02:54
  */
 package controllers
 
@@ -37,6 +37,8 @@ const (
 	Event    = "event"
 	Music    = "music"
 	News     = "news"
+
+	HELP = "文本框里面回复内容，可以搜索以往历史文章。\n发送图片，可以生成一张ASCII编码的图片。\n发送地址，可以查看当前地址天气。"
 )
 
 func (this *WeixinController) Verify() {
@@ -198,15 +200,19 @@ func handleText(req *models.Request, resp *models.Response) *models.Response {
 		resp.Articles.Items = append(resp.Articles.Items, &a)
 	} else {
 		se := search.Search(req.Content.Data)
-		buf := bytes.NewBuffer(nil)
+		if len(se.Docs) > 0 {
+			buf := bytes.NewBuffer(nil)
 
-		buf.WriteString(fmt.Sprintf("搜索: %s 耗时：%dms\n", req.Content.Data, se.Summary.Duration))
+			buf.WriteString(fmt.Sprintf("搜索: %s 耗时：%dms\n", req.Content.Data, se.Summary.Duration))
 
-		for i, doc := range se.Docs {
-			buf.WriteString(fmt.Sprintf("%d. 《%s》 %s\n", i+1, doc.Title, doc.Link))
+			for i, doc := range se.Docs {
+				buf.WriteString(fmt.Sprintf("%d. 《%s》 %s\n", i+1, doc.Title, doc.Link))
+			}
+
+			resp.Content.Data = buf.String()
+		} else {
+			resp.Content.Data = HELP
 		}
-
-		resp.Content.Data = buf.String()
 	}
 	return resp
 }
