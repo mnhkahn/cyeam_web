@@ -111,6 +111,7 @@ func DecodeRequest(data []byte) (req *models.Request, err error) {
 func NewResponse() (resp *models.Response) {
 	resp = &models.Response{}
 	resp.CreateTime = time.Duration(time.Now().Unix())
+	log.Println(resp.CreateTime, time.Now(), time.Now().Unix(), "AAAA")
 	return
 }
 
