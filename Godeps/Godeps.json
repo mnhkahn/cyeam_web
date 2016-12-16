@@ -2,13 +2,17 @@
 	"ImportPath": "cyeam",
 	"GoVersion": "go1.6.2",
 	"Packages": [
-		"./..."
+		"./controllers"
 	],
 	"Deps": [
 		{
 			"ImportPath": "github.com/astaxie/beego",
 			"Comment": "v1.4.2",
 			"Rev": "07c628c7e9f813efc3f7e1785f667e08f2340d53"
+		},
+		{
+			"ImportPath": "github.com/mnhkahn/asciiimg",
+			"Rev": "034b38919410f5e827a58d01aff617cd661c721a"
 		},
 		{
 			"ImportPath": "github.com/mnhkahn/cygo/net/http",
