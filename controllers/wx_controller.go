@@ -118,6 +118,9 @@ func dealwith(req *models.Request, r *http.Request) (resp *models.Response, err 
 	resp = NewResponse()
 	resp.ToUserName = req.FromUserName
 	resp.FromUserName = req.ToUserName
+
+	log.Println("REQ", req)
+
 	switch req.MsgType.Data {
 	case Text:
 		resp = handleText(req, resp)
