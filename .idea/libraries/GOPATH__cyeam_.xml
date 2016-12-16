@@ -1,0 +1,41 @@
+<component name="libraryTable">
+  <library name="GOPATH &lt;cyeam&gt;">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../gojson" />
+      <root url="file://$PROJECT_DIR$/../gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../dbs" />
+      <root url="file://$PROJECT_DIR$/../ffjson" />
+      <root url="file://$PROJECT_DIR$/../9fans.net" />
+      <root url="file://$PROJECT_DIR$/../hello" />
+      <root url="file://$PROJECT_DIR$/../testproxy" />
+      <root url="file://$PROJECT_DIR$/../sourcegraph.com" />
+      <root url="file://$PROJECT_DIR$/../plist.jd.com" />
+      <root url="file://$PROJECT_DIR$/../honnef.co" />
+      <root url="file://$PROJECT_DIR$/../abc" />
+      <root url="file://$PROJECT_DIR$/../github.com" />
+      <root url="file://$PROJECT_DIR$/../golang.org" />
+      <root url="file://$PROJECT_DIR$/../pool" />
+      <root url="file://$PROJECT_DIR$/../cyeam.bak" />
+    </CLASSES>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../gojson" />
+      <root url="file://$PROJECT_DIR$/../gopkg.in" />
+      <root url="file://$PROJECT_DIR$/../dbs" />
+      <root url="file://$PROJECT_DIR$/../ffjson" />
+      <root url="file://$PROJECT_DIR$/../9fans.net" />
+      <root url="file://$PROJECT_DIR$/../hello" />
+      <root url="file://$PROJECT_DIR$/../testproxy" />
+      <root url="file://$PROJECT_DIR$/../sourcegraph.com" />
+      <root url="file://$PROJECT_DIR$/../plist.jd.com" />
+      <root url="file://$PROJECT_DIR$/../honnef.co" />
+      <root url="file://$PROJECT_DIR$/../abc" />
+      <root url="file://$PROJECT_DIR$/../github.com" />
+      <root url="file://$PROJECT_DIR$/../golang.org" />
+      <root url="file://$PROJECT_DIR$/../pool" />
+      <root url="file://$PROJECT_DIR$/../cyeam.bak" />
+    </SOURCES>
+    <excluded>
+      <root url="file://$PROJECT_DIR$" />
+    </excluded>
+  </library>
+</component>

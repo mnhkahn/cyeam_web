@@ -79,17 +79,20 @@ func (this *WeixinController) WeixinMsg() {
 	var err error
 	if wreq, err = DecodeRequest([]byte(this.Ctx.Req.Body)); err != nil {
 		this.Ctx.Resp.StatusCode = http.StatusNotFound
+		log.Println(err)
 		return
 	}
 
 	wresp, err := dealwith(wreq, this.Ctx.Req)
 	if err != nil {
 		this.Ctx.Resp.StatusCode = http.StatusNotFound
+		log.Println(err)
 		return
 	}
 	data, err := wresp.Encode()
 	if err != nil {
 		this.Ctx.Resp.StatusCode = http.StatusNotFound
+		log.Println(err)
 		return
 	}
 	this.ServeRaw(data)

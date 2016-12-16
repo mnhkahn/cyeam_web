@@ -12,15 +12,15 @@
 		},
 		{
 			"ImportPath": "github.com/mnhkahn/cygo/net/http",
-			"Rev": "95cfd4a3c71b8b97674ee714ee6b194379806597"
+			"Rev": "bc013d803b8bd0ec595f810d82076bbcd2341cf9"
 		},
 		{
 			"ImportPath": "github.com/mnhkahn/cygo/net/url",
-			"Rev": "95cfd4a3c71b8b97674ee714ee6b194379806597"
+			"Rev": "bc013d803b8bd0ec595f810d82076bbcd2341cf9"
 		},
 		{
 			"ImportPath": "github.com/mnhkahn/cygo/strings",
-			"Rev": "95cfd4a3c71b8b97674ee714ee6b194379806597"
+			"Rev": "bc013d803b8bd0ec595f810d82076bbcd2341cf9"
 		}
 	]
 }
