@@ -26,6 +26,11 @@ func (this *MainController) Search() {
 	this.ServeJson(search.Search(t))
 }
 
+func (this *MainController) SearchView() {
+	t := this.GetString("t")
+	this.ServeView("search.html", search.Search(t))
+}
+
 func (this *MainController) Bing() {
 	this.Ctx.Resp.StatusCode = http.StatusFound
 	this.Ctx.Resp.Headers.Add(http.HTTP_HEAD_LOCATION, models.GetBing())
@@ -59,6 +64,7 @@ func init() {
 
 	http.Router("/", "GET", &MainController{}, "Get")
 	http.Router("/s", "GET", &MainController{}, "Search")
+	http.Router("/t", "GET", &MainController{}, "SearchView")
 	http.Router("/bing", "GET", &MainController{}, "Bing")
 	http.Router("/bincalc", "GET", &MainController{}, "BinCalc")
 	http.Router("/bincalc", "POST", &MainController{}, "BinCalc")
