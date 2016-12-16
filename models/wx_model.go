@@ -51,6 +51,6 @@ type Item struct {
 
 func (resp Response) Encode() (data []byte, err error) {
 	// data, err = xml.MarshalIndent(resp, "", "")
-	data = []byte("<xml><ToUserName><![CDATA[ovQatjr9KDDjbLIE5Cwp5ZNnQDts]]></ToUserName><FromUserName><![CDATA[gh_aa23c6563b3d]]></FromUserName><CreateTime>1481859230</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[123]]></Content><Articles></Articles><FuncFlag>0</FuncFlag></xml>")
+	data = []byte("<xml><ToUserName><![CDATA[ovQatjr9KDDjbLIE5Cwp5ZNnQDts]]></ToUserName><FromUserName><![CDATA[gh_aa23c6563b3d]]></FromUserName><CreateTime>1481859430</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[123]]></Content></xml>")
 	return
 }
