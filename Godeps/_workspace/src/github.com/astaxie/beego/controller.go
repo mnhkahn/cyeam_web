@@ -28,8 +28,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/astaxie/beego/context"
-	"github.com/astaxie/beego/session"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/context"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/session"
 )
 
 //commonly used mime-types

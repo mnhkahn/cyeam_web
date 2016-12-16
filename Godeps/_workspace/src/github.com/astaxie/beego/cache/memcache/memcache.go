@@ -36,7 +36,7 @@ import (
 
 	"github.com/bradfitz/gomemcache/memcache"
 
-	"github.com/astaxie/beego/cache"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/cache"
 )
 
 // Memcache adapter.

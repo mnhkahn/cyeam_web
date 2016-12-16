@@ -36,7 +36,7 @@ import (
 
 	"github.com/garyburd/redigo/redis"
 
-	"github.com/astaxie/beego/cache"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/cache"
 )
 
 var (

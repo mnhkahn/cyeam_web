@@ -12,8 +12,8 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/httplib"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/httplib"
 )
 
 func GetDoodle() CyeamDoodle {

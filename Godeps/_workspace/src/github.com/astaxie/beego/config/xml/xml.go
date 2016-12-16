@@ -41,7 +41,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/astaxie/beego/config"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/config"
 	"github.com/beego/x2j"
 )
 

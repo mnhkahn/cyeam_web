@@ -11,8 +11,8 @@
 package main
 
 import (
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/example/beeapi/controllers"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/example/beeapi/controllers"
 )
 
 //		Objects

@@ -4,7 +4,7 @@ import (
 	"net/url"
 	"strings"
 
-	cystr "github.com/mnhkahn/cygo/strings"
+	cystr "cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/strings"
 )
 
 type URL struct {

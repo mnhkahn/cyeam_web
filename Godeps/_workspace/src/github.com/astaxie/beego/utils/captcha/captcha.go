@@ -64,10 +64,10 @@ import (
 	"path"
 	"strings"
 
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/cache"
-	"github.com/astaxie/beego/context"
-	"github.com/astaxie/beego/utils"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/cache"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/context"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/utils"
 )
 
 var (

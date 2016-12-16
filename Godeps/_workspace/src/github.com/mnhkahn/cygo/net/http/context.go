@@ -1,7 +1,7 @@
 package http
 
 import (
-	cyurl "github.com/mnhkahn/cygo/net/url"
+	cyurl "cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/url"
 )
 
 type Context struct {

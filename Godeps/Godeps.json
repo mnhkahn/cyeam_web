@@ -2,7 +2,7 @@
 	"ImportPath": "cyeam",
 	"GoVersion": "go1.6.2",
 	"Packages": [
-		"./controllers"
+		"./..."
 	],
 	"Deps": [
 		{

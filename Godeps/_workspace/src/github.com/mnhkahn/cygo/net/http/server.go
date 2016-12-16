@@ -11,7 +11,7 @@ import (
 	"reflect"
 	"time"
 
-	cyurl "github.com/mnhkahn/cygo/net/url"
+	cyurl "cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/url"
 )
 
 var ErrLog *log.Logger

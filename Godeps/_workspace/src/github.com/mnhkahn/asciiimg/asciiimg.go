@@ -8,7 +8,7 @@ import (
 	"io"
 	"math"
 
-	"github.com/mnhkahn/asciiimg/gray"
+	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/asciiimg/gray"
 )
 
 type AsciiImg struct {

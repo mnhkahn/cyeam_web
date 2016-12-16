@@ -9,7 +9,7 @@ package models
 import (
 	"fmt"
 
-	"github.com/astaxie/beego/httplib"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/httplib"
 )
 
 type Weather struct {

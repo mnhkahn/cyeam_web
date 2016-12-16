@@ -26,7 +26,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/astaxie/beego/utils"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/utils"
 )
 
 var globalRouterTemplate = `package routers

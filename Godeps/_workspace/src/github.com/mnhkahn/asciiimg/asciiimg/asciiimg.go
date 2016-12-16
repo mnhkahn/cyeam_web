@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/mnhkahn/asciiimg"
+	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/asciiimg"
 )
 
 var srcImg = flag.String("s", "", "Source image directory.")

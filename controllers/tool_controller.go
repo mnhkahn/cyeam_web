@@ -9,8 +9,8 @@ package controllers
 import (
 	gohttp "net/http"
 
-	"github.com/mnhkahn/asciiimg"
-	"github.com/mnhkahn/cygo/net/http"
+	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/asciiimg"
+	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/http"
 )
 
 type ToolController struct {

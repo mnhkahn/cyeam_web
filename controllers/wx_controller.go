@@ -18,7 +18,7 @@ import (
 
 	"cyeam/models"
 
-	"github.com/mnhkahn/cygo/net/http"
+	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/http"
 )
 
 type WeixinController struct {

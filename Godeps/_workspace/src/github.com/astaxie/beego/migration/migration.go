@@ -33,8 +33,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/orm"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego"
+	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/orm"
 )
 
 // const the data format for the bee generate migration datatype
