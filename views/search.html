@@ -1,82 +1,175 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:wb="https://open.weibo.com/wb">
-    
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="Bryce">
-        <title>
-            Cyeam
-        </title>
-        <link rel="shortcut icon" href="/static/c32.ico" />
-        <link href="/static/bootstrap.css" rel="stylesheet" />
-        <link href="/static/landing-page.css" rel="stylesheet" />
-    </head>
-    
-    <body>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">
-                            Toggle navigation
-                        </span>
-                        <span class="icon-bar">
-                        </span>
-                        <span class="icon-bar">
-                        </span>
-                        <span class="icon-bar">
-                        </span>
-                    </button>
-                    <a class="navbar-brand" href="/" style="padding:0px">
-                        <img src="/static/bryce.jpg" style="width:50px">
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="http://blog.cyeam.com">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="//www.digitalocean.com/?refcode=b3076e9613a4">
-                                <img src="/static/do.png" width="32" border="0" alt="DigitalOcean">
-                        </li>
-                    </ul>
-                </div>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>搜索{{.Summary.Q}}</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/blog-home.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Cyeam</a>
             </div>
-        </nav>
-        <a name="home">
-        </a>
-        <div class="intro-header" id="intro-header" style="background: url('/bing') no-repeat center center; padding-top: 0px; padding-bottom: 0px">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="//blog.cyeam.com">Blog</a>
+                    </li>
+                    <li>
+                        <a href="//github.com/mnhkahn">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-            <div class="container" id="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                       
-<hr class="intro-divider">
- <h2>h2. Bootstrap heading</h2>
+    <!-- Page Content -->
+    <div class="container">
 
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+
+                <h1 class="page-header">
+                    搜索{{.Summary.Q}}
+                    <small>找到约 {{.Summary.NumDocs}} 条结果 （用时 {{.Summary.Duration}} ms)</small>
+                </h1>
+
+                {{range .Docs}} 
+                <!-- First Blog Post -->
+                <h2>
+                    <a href="{{.Link}}">{{.Title}}</a>
+                </h2>
+                <p>{{.Des}}</p>
+                <a class="btn btn-primary" href="{{.Link}}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+                <hr>
+                {{end}}                
+
+                <!-- Pager --><!--
+                <ul class="pager">
+                    <li class="previous">
+                        <a href="#">&larr; Older</a>
+                    </li>
+                    <li class="next">
+                        <a href="#">Newer &rarr;</a>
+                    </li>
+                </ul>
+-->
+            </div>
+
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Blog Search Well -->
+                <div class="well">
+                    <h4>Blog Search</h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="t" id="t" placeholder="{{.Summary.Q}}" value="{{.Summary.Q}}">
+                        <span class="input-group-btn">
+                            <button id="searchBtn" class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                        </span>
                     </div>
+                    <!-- /.input-group -->
                 </div>
-                <div class="container">
+
+                <!-- Blog Categories Well -->
+                <div class="well">
+                    <h4>Blog Categories</h4>
                     <div class="row">
-                        <div class="col-lg-12">
-                            <p class="copyright text-muted small">
-                                Copyright &copy; Cyeam 2015. All Rights Reserved
-                            </p>
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled">
+                                <li><a href="http://blog.cyeam.com/categories.html#Golang-ref">Golang</a>
+                                </li>
+                                <li><a href="http://blog.cyeam.com/tags.html#Computer Science-ref">计算机基础</a>
+                                </li>
+                                <li><a href="http://blog.cyeam.com/categories.html#Network-ref">计算机网络</a>
+                                </li>
+                            </ul>
                         </div>
+                        <!-- /.col-lg-6 -->
                     </div>
+                    <!-- /.row -->
+                </div>
+
+                <!-- Side Widget Well -->
+                <div class="well">
+                    <h4>欢迎关注我的微信公共号</h4>
+                    <img src="http://cyeam.qiniudn.com/qrcode_for_gh_aa23c6563b3d_258.jpg">
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Powerd by <a src="https://startbootstrap.com/template-overviews/blog-home/">Start Bootstrap</a>. Copyright &copy; Cyeam 2017. All Rights Reserved</p>
                     <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000474528'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1000474528%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
                 </div>
+                <!-- /.col-lg-12 -->
             </div>
-        </div>
-        <script src="/static/jquery-1.10.2.js">
-        </script>
-        <script src="/static/bootstrap.js">
-        </script>
-    </body>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="/static/jquery-1.10.2.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/bootstrap.js"></script>
+
+    <script type="text/javascript">
+    var b = $("#searchBtn")
+    b.click(function(){
+        console.debug($("#t").val())
+        window.location = "/t?t="+$("#t").val();
+    });
+    </script>
+</body>
 
 </html>

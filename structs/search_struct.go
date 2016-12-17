@@ -12,8 +12,9 @@ func NewSearchResult() *SearchResult {
 }
 
 type Summary struct {
-	NumDocs  int   `json:"num"`
-	Duration int64 `json:"d"`
+	Q        string `json:"q"`
+	NumDocs  int    `json:"num"`
+	Duration int64  `json:"d"`
 }
 
 type Doc struct {

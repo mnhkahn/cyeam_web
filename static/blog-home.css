@@ -1,0 +1,23 @@
+/*!
+ * Start Bootstrap - Blog Home (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+footer {
+    margin: 50px 0;
+}
+
+em {
+    color: #dd4b39;
+    font-weight:bold;
+}
+
+@font-face{
+    font-family:'Glyphicons Halflings';
+    src:url(/static/glyphicons-halflings-regular.eot);
+    src:url(/static/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'),url(/static/glyphicons-halflings-regular.woff2) format('woff2'),url(/static/glyphicons-halflings-regular.woff) format('woff'),url(/static/glyphicons-halflings-regular.ttf) format('truetype'),url(/static/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')}

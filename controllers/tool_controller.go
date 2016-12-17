@@ -1,8 +1,8 @@
 /*
  * @Author: lichao115
  * @Date: 2016-12-16 12:03:54
- * @Last Modified by: lichao115
- * @Last Modified time: 2016-12-16 12:19:28
+ * @Last Modified by: mnhkahn <lichao@cyeam.com>
+ * @Last Modified time: 2016-12-17 17:00:27
  */
 package controllers
 
@@ -36,9 +36,9 @@ func (this *ToolController) Ascii() {
 	this.ServeRaw([]byte(ai.DoByCol(38)))
 }
 
-// func (this *ToolController) Resume() {
-// 	this.ServeView("resume.html")
-// }
+func (this *ToolController) Resume() {
+	this.ServeView("resume.html")
+}
 
 func (this *ToolController) Robots() {
 	this.Ctx.Resp.Headers[http.HTTP_HEAD_CONTENTTYPE] = nil

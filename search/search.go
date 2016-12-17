@@ -1,8 +1,8 @@
 /*
  * @Author: lichao115
  * @Date: 2016-12-16 12:53:05
- * @Last Modified by: lichao115
- * @Last Modified time: 2016-12-16 14:22:35
+ * @Last Modified by: mnhkahn <lichao@cyeam.com>
+ * @Last Modified time: 2016-12-17 18:51:54
  */
 package search
 
@@ -44,17 +44,21 @@ func Search(q string) *structs.SearchResult {
 			doc := new(structs.Doc)
 			doc.Title = page.Title
 			doc.Link = page.URL
-			doc.Des = page.Highlight.Body
+			if len(page.Highlight.Body) != 0 {
+				doc.Des = page.Highlight.Body
+			} else {
+				doc.Des = string([]rune(page.Body)[0:300])
+			}
 			doc.Figure = page.Image
 			se.Docs = append(se.Docs, doc)
 		}
 	}
 
-	se.Summary.NumDocs = res.RecordCount
+	se.Summary.Q = q
+	se.Summary.NumDocs = res.Info.Page.TotalResultCount
 
 	end := time.Now()
 	se.Summary.Duration = int64(end.Sub(start) / time.Millisecond)
-	// fmt.Println(res, "AAAAAAa")
 
 	return se
 }
