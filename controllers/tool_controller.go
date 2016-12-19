@@ -54,3 +54,7 @@ func (this *ToolController) Feed() {
 	this.Ctx.Resp.StatusCode = http.StatusFound
 	this.Ctx.Resp.Headers.Add(http.HTTP_HEAD_LOCATION, "http://blog.cyeam.com/rss.xml")
 }
+
+func (this *ToolController) SSLVerify() {
+	this.ServeView("fileauth.htm")
+}
