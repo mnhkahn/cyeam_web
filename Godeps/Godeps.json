@@ -27,8 +27,9 @@
 			"Rev": "bc013d803b8bd0ec595f810d82076bbcd2341cf9"
 		},
 		{
-			"ImportPath": "github.com/mnhkahn/swiftype",
-			"Rev": "34f4a3527f582761d707d4cec66905fa04d6d5a0"
+			"ImportPath": "gopkg.in/mnhkahn/swiftype.v1",
+			"Comment": "v1.0",
+			"Rev": "cfe65c4a31ade7db60aa661b29080a7ffbc94972"
 		}
 	]
 }

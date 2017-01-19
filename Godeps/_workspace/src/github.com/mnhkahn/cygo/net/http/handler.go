@@ -1,9 +1,6 @@
 package http
 
-import (
-	"log"
-	"reflect"
-)
+import "reflect"
 
 type Handler interface {
 	ServeHTTP(ctx *Context)
@@ -16,14 +13,6 @@ type Handle struct {
 }
 
 func (this *Handle) ServeHTTP(ctx *Context) {
-	defer PanicRecover(ctx)
 	this.ctrl.Init(ctx)
 	this.fn.Call(nil)
-}
-
-func PanicRecover(ctx *Context) {
-	if err := recover(); err != nil {
-		log.Println(err)
-		ctx.Resp.StatusCode = StatusNotFound
-	}
 }

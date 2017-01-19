@@ -8,11 +8,10 @@ package search
 
 import (
 	"cyeam/structs"
-	"encoding/json"
 	"log"
 	"time"
 
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/swiftype"
+	"cyeam/Godeps/_workspace/src/gopkg.in/mnhkahn/swiftype.v1"
 )
 
 var (
@@ -32,11 +31,10 @@ func Search(q string) *structs.SearchResult {
 
 	se := structs.NewSearchResult()
 
-	res := new(structs.SwiftypeResult)
-	data := SWIFTYPE.Search(SWIFTYPE_ENGINE, q)
-	err := json.Unmarshal(data, res)
+	res, err := SWIFTYPE.Search(SWIFTYPE_ENGINE, q)
 	if err != nil {
 		log.Println(err)
+		return se
 	}
 
 	if res != nil {

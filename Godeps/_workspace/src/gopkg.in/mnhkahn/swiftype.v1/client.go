@@ -1,6 +1,7 @@
 package swiftype
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -14,16 +15,6 @@ const (
 	DEFAULT_API_HOST      = "api.swiftype.com"
 	DEFAULT_API_BASE_PATH = "/api/v1/"
 )
-
-type JsonObject map[string]interface{}
-
-type JsonArray []JsonObject
-
-type SwiftypeSearchResults struct {
-	Records JsonObject `json:"records"`
-	Info    JsonObject `json:"info"`
-	Errors  JsonObject `json:"errors"`
-}
 
 type Client struct {
 	username string
@@ -41,15 +32,8 @@ func NewClientWithApiKey(api_key string, host string) *Client {
 	return &Client{api_key: api_key, host: host, httpc: &http.Client{}}
 }
 
-func (c *Client) decode(resp *http.Response) []byte {
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Println("Error:")
-		fmt.Println(err)
-		panic(err)
-	}
-
-	return b
+func (c *Client) decode(resp *http.Response) ([]byte, error) {
+	return ioutil.ReadAll(resp.Body)
 }
 
 func (c *Client) newRequest(method, url string, body io.Reader) (req *http.Request, err error) {
@@ -68,72 +52,55 @@ func (c *Client) newRequest(method, url string, body io.Reader) (req *http.Reque
 	return
 }
 
-// func (c *Client) executeRequest(req *http.Request) (res JsonObject, err error) {
-
-// 	resp, err := c.httpc.Do(req)
-
-// 	if err != nil {
-// 		return
-// 	}
-
-// 	return
-
-// }
-
-func (c *Client) get(path string, params url.Values) []byte {
-
+func (c *Client) get(path string, params url.Values) ([]byte, error) {
 	params.Add("auth_token", c.api_key)
 
 	url := fmt.Sprintf("https://%s%s.json?%s", c.host, path, params.Encode())
 
-	fmt.Println(url, "BBBB")
-
 	resp, err := c.httpc.Get(url)
 
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	return c.decode(resp)
 }
 
-func (c *Client) delete(path string, params url.Values) JsonArray {
-	return nil
+// func (c *Client) delete(path string, params url.Values) JsonArray {
+// 	return nil
+// }
+
+// func (c *Client) put(path string, params url.Values) JsonArray {
+// 	return nil
+// }
+
+// func (c *Client) post(path string, params url.Values) JsonArray {
+// 	return nil
+// }
+
+func (c *Client) Engines() ([]byte, error) {
+	return c.get(DEFAULT_API_BASE_PATH+"engines", url.Values{})
 }
 
-func (c *Client) put(path string, params url.Values) JsonArray {
-	return nil
-}
-
-func (c *Client) post(path string, params url.Values) JsonArray {
-	return nil
-}
-
-func (c *Client) Engines() []byte {
-
-	results := c.get(DEFAULT_API_BASE_PATH+"engines", url.Values{})
-
-	return results
-}
-
-func (c *Client) Engine(engine string) interface{} {
-
+func (c *Client) Engine(engine string) ([]byte, error) {
 	params := url.Values{}
 	params.Set("name", engine)
 
-	results := c.get(DEFAULT_API_BASE_PATH+"engines", params)
-
-	return results
+	return c.get(DEFAULT_API_BASE_PATH+"engines", params)
 }
 
-func (c *Client) Search(engine string, query string) []byte {
-
+func (c *Client) Search(engine string, query string) (*SwiftypeResult, error) {
 	params := url.Values{}
 	params.Set("q", query)
 
 	path := fmt.Sprintf("%sengines/%s/search", DEFAULT_API_BASE_PATH, engine)
 
-	results := c.get(path, params)
+	data, err := c.get(path, params)
+	if err != nil {
+		return nil, err
+	}
 
-	return results
+	res := new(SwiftypeResult)
+	err = json.Unmarshal(data, res)
+	return res, err
 }
