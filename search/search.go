@@ -11,7 +11,7 @@ import (
 	"log"
 	"time"
 
-	"cyeam/Godeps/_workspace/src/gopkg.in/mnhkahn/swiftype.v1"
+	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/swiftype"
 )
 
 var (

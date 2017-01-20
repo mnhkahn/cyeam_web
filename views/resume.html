@@ -1,358 +1,166 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>李超 - 简历</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<style type="text/css">
-/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
-/* Author: Nicolas Hery - http://nicolashery.com */
-/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
-/* Source: https://github.com/nicolahery/markdownpad-github */
 
-/* RESET
-=============================================================================*/
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
+    <title>{{.Profile.Name}} - Resume</title>
 
-/* BODY
-=============================================================================*/
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 
-body {
-  font-family: Helvetica, arial, freesans, clean, sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #333;
-  background-color: #fff;
-  padding: 20px;
-  max-width: 960px;
-  margin: 0 auto;
-}
+    <link rel="shortcut icon" href="http://cyeam.qiniudn.com/c32.ico" />
 
-body>*:first-child {
-  margin-top: 0 !important;
-}
+    <!-- Custom CSS -->
+    <link href="http://cyeam.qiniudn.com/blog-home.css" rel="stylesheet">
 
-body>*:last-child {
-  margin-bottom: 0 !important;
-}
-
-/* BLOCKS
-=============================================================================*/
-
-p, blockquote, ul, ol, dl, table, pre {
-  margin: 15px 0;
-}
-
-/* HEADERS
-=============================================================================*/
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 20px 0 10px;
-  padding: 0;
-  font-weight: bold;
-  -webkit-font-smoothing: antialiased;
-}
-
-h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
-  font-size: inherit;
-}
-
-h1 {
-  font-size: 28px;
-  color: #000;
-}
-
-h2 {
-  font-size: 24px;
-  border-bottom: 1px solid #ccc;
-  color: #000;
-}
-
-h3 {
-  font-size: 18px;
-}
-
-h4 {
-  font-size: 16px;
-}
-
-h5 {
-  font-size: 14px;
-}
-
-h6 {
-  color: #777;
-  font-size: 14px;
-}
-
-body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
-  margin-top: 0;
-  padding-top: 0;
-}
-
-a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
-  margin-top: 0;
-  padding-top: 0;
-}
-
-h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
-  margin-top: 10px;
-}
-
-/* LINKS
-=============================================================================*/
-
-a {
-  color: #4183C4;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* LISTS
-=============================================================================*/
-
-ul, ol {
-  padding-left: 30px;
-}
-
-ul li > :first-child, 
-ol li > :first-child, 
-ul li ul:first-of-type, 
-ol li ol:first-of-type, 
-ul li ol:first-of-type, 
-ol li ul:first-of-type {
-  margin-top: 0px;
-}
-
-ul ul, ul ol, ol ol, ol ul {
-  margin-bottom: 0;
-}
-
-dl {
-  padding: 0;
-}
-
-dl dt {
-  font-size: 14px;
-  font-weight: bold;
-  font-style: italic;
-  padding: 0;
-  margin: 15px 0 5px;
-}
-
-dl dt:first-child {
-  padding: 0;
-}
-
-dl dt>:first-child {
-  margin-top: 0px;
-}
-
-dl dt>:last-child {
-  margin-bottom: 0px;
-}
-
-dl dd {
-  margin: 0 0 15px;
-  padding: 0 15px;
-}
-
-dl dd>:first-child {
-  margin-top: 0px;
-}
-
-dl dd>:last-child {
-  margin-bottom: 0px;
-}
-
-/* CODE
-=============================================================================*/
-
-pre, code, tt {
-  font-size: 12px;
-  font-family: Consolas, "Liberation Mono", Courier, monospace;
-}
-
-code, tt {
-  margin: 0 0px;
-  padding: 0px 0px;
-  white-space: nowrap;
-  border: 1px solid #eaeaea;
-  background-color: #f8f8f8;
-  border-radius: 3px;
-}
-
-pre>code {
-  margin: 0;
-  padding: 0;
-  white-space: pre;
-  border: none;
-  background: transparent;
-}
-
-pre {
-  background-color: #f8f8f8;
-  border: 1px solid #ccc;
-  font-size: 13px;
-  line-height: 19px;
-  overflow: auto;
-  padding: 6px 10px;
-  border-radius: 3px;
-}
-
-pre code, pre tt {
-  background-color: transparent;
-  border: none;
-}
-
-kbd {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background-color: #DDDDDD;
-    background-image: linear-gradient(#F1F1F1, #DDDDDD);
-    background-repeat: repeat-x;
-    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
-    border-image: none;
-    border-radius: 2px 2px 2px 2px;
-    border-style: solid;
-    border-width: 1px;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    line-height: 10px;
-    padding: 1px 4px;
-}
-
-/* QUOTES
-=============================================================================*/
-
-blockquote {
-  border-left: 4px solid #DDD;
-  padding: 0 15px;
-  color: #777;
-}
-
-blockquote>:first-child {
-  margin-top: 0px;
-}
-
-blockquote>:last-child {
-  margin-bottom: 0px;
-}
-
-/* HORIZONTAL RULES
-=============================================================================*/
-
-hr {
-  clear: both;
-  margin: 15px 0;
-  height: 0px;
-  overflow: hidden;
-  border: none;
-  background: transparent;
-  border-bottom: 4px solid #ddd;
-  padding: 0;
-}
-
-/* TABLES
-=============================================================================*/
-
-table th {
-  font-weight: bold;
-}
-
-table th, table td {
-  border: 1px solid #ccc;
-  padding: 6px 13px;
-}
-
-table tr {
-  border-top: 1px solid #ccc;
-  background-color: #fff;
-}
-
-table tr:nth-child(2n) {
-  background-color: #f8f8f8;
-}
-
-/* IMAGES
-=============================================================================*/
-
-img {
-  max-width: 100%
-}
-</style>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .label-gold {
+            background-color: #FFCC01;
+        }
+        
+        .label-silver {
+            background-color: #B4B8BC;
+        }
+        
+        .label-bronze {
+            background-color: #D1A684;
+        }
+    </style>
 </head>
-<body>
-<h1>联系方式</h1>
-<ul>
-<li>手机：15652997385</li>
-<li>Email：<a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#58;&#108;&#105;&#x63;&#x68;&#x61;&#x6f;&#x40;&#x63;&#x79;&#x65;&#x61;&#x6d;&#x2e;&#99;&#x6f;&#x6d;">&#x6c;&#105;&#99;&#x68;&#97;&#111;&#x40;&#99;&#121;&#101;&#x61;&#109;&#x2e;&#99;&#111;&#x6d;</a></li>
-<li>QQ/微信号：360924857</li>
-</ul>
-<hr />
-<h1>个人信息</h1>
-<ul>
-<li>李超/男/1988 </li>
-<li>硕士/北京理工大学/软件学院/软件工程/工程硕士 </li>
-<li>本科/重庆大学/软件学院/软件工程(数字媒体方向)/工学学士</li>
-<li>Blog: <a href="http://blog.cyeam.com">http://blog.cyeam.com</a></li>
-<li>Github: https://github.com/mnhkahn</li>
-<li>微博：<a href="http://weibo.com/527666939">@Superman1316</a></li>
-<li>期望职位：Golang开发工程师</li>
-<li>期望城市：北京</li>
-</ul>
-<hr />
-<h1>工作经历</h1>
-<h2>折800 （2013年12月至今）</h2>
-<h3>折800客户端服务端项目</h3>
-<p>从2014年年初开始负责折800客户端后台数据服务项目。为客户端提供分类、商品列表、品牌列表等接口数据。此项目支持着每天300万UV和超过1亿PV的访问量。商品列表排序和筛选基于<code>Solr</code>开发，默认商品列表通过<code>Thrift</code>与大数据对接。商品详情通过<code>beego</code>的<code>cache</code>缓存到内存里面。</p>
-<h3>客户端运营项目</h3>
-<p>从2014年7月份开始参与此项目研发。参与了首页模块配置、0元抽奖、虚拟试衣间等业务开发。</p>
-<h3>其他项目</h3>
-<p>服务治理平台对接、oem合作、特卖商城优惠券、特卖商城购物车、积分墙（下载应用加积分）、短信服务等。其中服务治理是内部的治理平台，基于<code>zookeeper</code>开发，为无线平台基于Golang封装了治理模块。</p>
-<hr />
-<h1>开源项目和作品</h1>
-<h2>开源项目</h2>
-<ul>
-<li><a href="https://github.com/mnhkahn/maodou">maodou</a> : 用<code>Golang</code>实现的网络爬虫，实现方式参考了<a href="https://github.com/binux/pyspider">pyspider</a>。示例地址：<a href="https://www.cyeam.com/haixiuzu">豆瓣害羞组</a>。</li>
-<li><a href="https://github.com/mnhkahn/short_url">short_url</a> : 基于<code>Golang</code>的短网址服务。短网址压缩参考<a href="https://github.com/mozillazg/ShortURL">ShortURL</a>实现。</li>
-</ul>
-<h2>其他贡献</h2>
-<ul>
-<li><a href="https://github.com/mnhkahn/beego">beego</a> : 修复了读取配置文件<code>beego.AppConfig.Strings</code>的bug。</li>
-<li><a href="https://github.com/franela/goreq">goreq</a> : 增加了Debug方法，能够打印出HTTP请求的详细信息。</li>
-</ul>
-<h2>技术文章</h2>
-<ul>
-<li><a href="http://blog.cyeam.com/golang/2015/07/03/gogc">《Golang的垃圾回收》</a></li>
-<li><a href="http://blog.cyeam.com/network/2015/07/02/goget">《Golang实现多线程并发下载》</a></li>
-<li><a href="http://blog.cyeam.com/golang/2015/04/20/bee">《bee源码分析》</a></li>
-<li><a href="http://blog.cyeam.com/network/2015/02/03/dns">《DNS协议Golang实现》</a></li>
-<li><a href="http://blog.cyeam.com/beego/2014/11/12/beego_config">《beego/config包源码分析》</a></li>
-</ul>
-<hr />
-<h1>技能清单</h1>
-<p>以下均为我熟练使用的技能：</p>
-<ul>
-<li>接口开发：Golang</li>
-<li>Web框架：beego</li>
-<li>搜索引擎：Solr</li>
-<li>数据库相关：MySQL/Redis/Couchbase</li>
-<li>版本管理：Git</li>
-<li>Linux：nginx、supervisor</li>
-</ul>
-<h1>致谢</h1>
-<p>感谢您花时间阅读我的简历，期待能有机会和您共事。</p>
 
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255947364'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255947364%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">{{.Profile.Name}} 的简历</a>
+            </div>
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+                <h1>联系方式</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li><span class="glyphicon glyphicon-envelope"></span><a href="{{.Profile.Email}}"> {{.Profile.Email}}</a></li>
+                            <li><img src="http://cyeam.qiniudn.com/3wOU-7F.ico" class="glyphicon" /> {{.Weixin}}</li>
+                            <li><span class="glyphicon glyphicon-map-marker"></span> {{.Profile.Location}}</li>
+                            <li><span class="glyphicon glyphicon-briefcase"></span> {{.Profile.Company}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{.Profile.AvatarURL}}" class="img-responsive" alt="靓照" style="max-width: 80px;">
+                    </div>
+                </div>
+
+                <hr />
+                <h1>个人信息</h1>
+                <ul>
+                    <li>Blog: <a href="{{.Profile.Blog}}">{{.Profile.Blog}}</a></li>
+                    <li>Github: <a href="{{.Profile.HTMLURL}}">{{.Profile.HTMLURL}}</a></li>
+                    <li>开发者头条：<a href="//toutiao.io/subjects/{{.TouTiao.ID}}">{{.TouTiao.Name}}</a></li>
+                </ul>
+                <hr />
+
+                <h1>开源项目和作品</h1>
+                <h2>开源项目</h2>
+                <ul>
+                    {{range .Repos.Items}}
+                    <li><a href="{{.HTMLURL}}">{{.FullName}}</a> : 用<code>{{.Language}}</code>实现，{{.Description}}。</li>
+                    {{end}}
+                </ul>
+                <h2>技术文章</h2>
+                <ul>
+                    {{range .HotArticles}}
+                    <li><a href="{{.Url}}">{{.Title}}</a></li>
+                    {{end}}
+                </ul>
+                <hr />
+
+                <h1>技能清单</h1>
+                <h2>StackOverflow 等级：</h2>
+                {{range .StackOverflowProfile.Items}}
+                <li>
+                    REPUTATION <span class="label label-primary">{{.Reputation}}</span>
+                </li>
+                <li>
+                    <span class="label label-gold">{{.BadgeCounts.Gold}}</span> <span class="label label-silver">{{.BadgeCounts.Silver}}</span> <span class="label label-bronze">{{.BadgeCounts.Bronze}}</span>
+                </li>
+                {{end}}
+
+                <h2>以下均为我熟练使用的技能：</h2>
+                <ul>
+                    {{range .StackOverflowTags.Items}}
+                    <li>{{.Name}} <span class="badge">{{.Count}}</span></li> {{end}}
+                </ul>
+
+                <h2>在StackOverflow上面的热门回答：</h2>
+                <ul>
+                    {{range .Answers}}
+                    <li><a href="//stackoverflow.com/questions/{{.QID}}/how-to-convert-an-int-value-to-string-in-go/{{.AID}}#{{.AID}}">{{.Title}}</a></li>
+                    {{end}}
+                </ul>
+                <hr />
+
+                <h1>致谢</h1>
+                <p>感谢您花时间阅读我的简历，期待能有机会和您共事。</p>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Powerd by <a src="https://github.com/mnhkahn/resume">Resume</a> and <a src="https://startbootstrap.com/template-overviews/blog-home/">Start Bootstrap</a>. Copyright &copy; Cyeam 2017. All Rights Reserved</p>
+                    <script type="text/javascript">
+                        var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                        document.write(unescape("%3Cspan id='cnzz_stat_icon_1255947364'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255947364%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+                    </script>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://cyeam.qiniudn.com/bootstrap.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
 </body>
+
 </html>
-<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

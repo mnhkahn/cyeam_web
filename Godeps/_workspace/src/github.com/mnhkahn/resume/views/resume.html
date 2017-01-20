@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{.Profile.Name}} - Resume</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+    <link rel="shortcut icon" href="http://cyeam.qiniudn.com/c32.ico" />
+
+    <!-- Custom CSS -->
+    <link href="http://cyeam.qiniudn.com/blog-home.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .label-gold {
+            background-color: #FFCC01;
+        }
+        
+        .label-silver {
+            background-color: #B4B8BC;
+        }
+        
+        .label-bronze {
+            background-color: #D1A684;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">{{.Profile.Name}} 的简历</a>
+            </div>
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+                <h1>联系方式</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li><span class="glyphicon glyphicon-envelope"></span><a href="{{.Profile.Email}}"> {{.Profile.Email}}</a></li>
+                            <li><img src="http://cyeam.qiniudn.com/3wOU-7F.ico" class="glyphicon" /> {{.Weixin}}</li>
+                            <li><span class="glyphicon glyphicon-map-marker"></span> {{.Profile.Location}}</li>
+                            <li><span class="glyphicon glyphicon-briefcase"></span> {{.Profile.Company}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{.Profile.AvatarURL}}" class="img-responsive" alt="靓照" style="max-width: 80px;">
+                    </div>
+                </div>
+
+                <hr />
+                <h1>个人信息</h1>
+                <ul>
+                    <li>Blog: <a href="{{.Profile.Blog}}">{{.Profile.Blog}}</a></li>
+                    <li>Github: <a href="{{.Profile.HTMLURL}}">{{.Profile.HTMLURL}}</a></li>
+                    <li>开发者头条：<a href="//toutiao.io/subjects/{{.TouTiao.ID}}">{{.TouTiao.Name}}</a></li>
+                </ul>
+                <hr />
+
+                <h1>开源项目和作品</h1>
+                <h2>开源项目</h2>
+                <ul>
+                    {{range .Repos.Items}}
+                    <li><a href="{{.HTMLURL}}">{{.FullName}}</a> : 用<code>{{.Language}}</code>实现，{{.Description}}。</li>
+                    {{end}}
+                </ul>
+                <h2>技术文章</h2>
+                <ul>
+                    {{range .HotArticles}}
+                    <li><a href="{{.Url}}">{{.Title}}</a></li>
+                    {{end}}
+                </ul>
+                <hr />
+
+                <h1>技能清单</h1>
+                <h2>StackOverflow 等级：</h2>
+                {{range .StackOverflowProfile.Items}}
+                <li>
+                    REPUTATION <span class="label label-primary">{{.Reputation}}</span>
+                </li>
+                <li>
+                    <span class="label label-gold">{{.BadgeCounts.Gold}}</span> <span class="label label-silver">{{.BadgeCounts.Silver}}</span> <span class="label label-bronze">{{.BadgeCounts.Bronze}}</span>
+                </li>
+                {{end}}
+
+                <h2>以下均为我熟练使用的技能：</h2>
+                <ul>
+                    {{range .StackOverflowTags.Items}}
+                    <li>{{.Name}} <span class="badge">{{.Count}}</span></li> {{end}}
+                </ul>
+
+                <h2>在StackOverflow上面的热门回答：</h2>
+                <ul>
+                    {{range .Answers}}
+                    <li><a href="//stackoverflow.com/questions/{{.QID}}/how-to-convert-an-int-value-to-string-in-go/{{.AID}}#{{.AID}}">{{.Title}}</a></li>
+                    {{end}}
+                </ul>
+                <hr />
+
+                <h1>致谢</h1>
+                <p>感谢您花时间阅读我的简历，期待能有机会和您共事。</p>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Powerd by <a src="https://github.com/mnhkahn/resume">Resume</a> and <a src="https://startbootstrap.com/template-overviews/blog-home/">Start Bootstrap</a>. Copyright &copy; Cyeam 2017. All Rights Reserved</p>
+                    <script type="text/javascript">
+                        var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                        document.write(unescape("%3Cspan id='cnzz_stat_icon_1255947364'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255947364%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+                    </script>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="http://cyeam.qiniudn.com/bootstrap.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+</body>
+
+</html>

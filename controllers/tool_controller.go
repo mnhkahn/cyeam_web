@@ -9,6 +9,9 @@ package controllers
 import (
 	gohttp "net/http"
 
+	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/resume"
+	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/resume/structs"
+
 	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/asciiimg"
 	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/http"
 )
@@ -37,7 +40,25 @@ func (this *ToolController) Ascii() {
 }
 
 func (this *ToolController) Resume() {
-	this.ServeView("resume.html")
+	params := new(structs.Params)
+	params.TouTiao = this.GetString("toutiao")
+	params.TouTiaoLimit = this.GetInt("toutiaocnt")
+
+	params.Output = this.GetString("o")
+	params.GitHub = this.GetString("github")
+	params.RepoLimit = this.GetInt("githubcnt")
+
+	params.Weixin = this.GetString("weixin")
+
+	params.StackOverflow = this.GetString("stackoverflow")
+
+	body, err := resume.Resume(params)
+	if err != nil {
+		this.ServeRaw([]byte(err.Error()))
+		return
+	}
+
+	this.ServeRaw(body)
 }
 
 func (this *ToolController) Robots() {

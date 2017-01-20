@@ -6,9 +6,22 @@
 	],
 	"Deps": [
 		{
+			"ImportPath": "github.com/PuerkitoBio/goquery",
+			"Comment": "v0.3.2-80-g417cce8",
+			"Rev": "417cce822c7b9a379df5824be95228d177c5698b"
+		},
+		{
+			"ImportPath": "github.com/andybalholm/cascadia",
+			"Rev": "3ad29d1ad1c4f2023e355603324348cf1f4b2d48"
+		},
+		{
 			"ImportPath": "github.com/astaxie/beego",
 			"Comment": "v1.4.2",
 			"Rev": "07c628c7e9f813efc3f7e1785f667e08f2340d53"
+		},
+		{
+			"ImportPath": "github.com/franela/goreq",
+			"Rev": "72c51a544272e007ab3da4f7d9ac959b7af7af03"
 		},
 		{
 			"ImportPath": "github.com/mnhkahn/asciiimg",
@@ -27,9 +40,17 @@
 			"Rev": "bc013d803b8bd0ec595f810d82076bbcd2341cf9"
 		},
 		{
-			"ImportPath": "gopkg.in/mnhkahn/swiftype.v1",
-			"Comment": "v1.0",
-			"Rev": "cfe65c4a31ade7db60aa661b29080a7ffbc94972"
+			"ImportPath": "github.com/mnhkahn/resume",
+			"Rev": "ecf42ba6d1501637c4776d8b032f8ab19e90df93"
+		},
+		{
+			"ImportPath": "github.com/mnhkahn/swiftype",
+			"Comment": "v1.1",
+			"Rev": "0362c72479ea5b12f4885b6afe376b55f1a094a4"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html",
+			"Rev": "ea47fc708ee3e20177f3ca3716217c4ab75942cb"
 		}
 	]
 }
