@@ -108,14 +108,16 @@
 
                 <h1>技能清单</h1>
                 <h2>StackOverflow 等级：</h2>
-                {{range .StackOverflowProfile.Items}}
-                <li>
-                    REPUTATION <span class="label label-primary">{{.Reputation}}</span>
-                </li>
-                <li>
-                    <span class="label label-gold">{{.BadgeCounts.Gold}}</span> <span class="label label-silver">{{.BadgeCounts.Silver}}</span> <span class="label label-bronze">{{.BadgeCounts.Bronze}}</span>
-                </li>
-                {{end}}
+                <ul>
+                    {{range .StackOverflowProfile.Items}}
+                    <li>
+                        REPUTATION <span class="label label-primary">{{.Reputation}}</span>
+                    </li>
+                    <li>
+                        <span class="label label-gold">{{.BadgeCounts.Gold}}</span> <span class="label label-silver">{{.BadgeCounts.Silver}}</span> <span class="label label-bronze">{{.BadgeCounts.Bronze}}</span>
+                    </li>
+                    {{end}}
+                </ul>
 
                 <h2>以下均为我熟练使用的技能：</h2>
                 <ul>
