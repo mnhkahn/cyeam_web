@@ -12,14 +12,12 @@ import (
 	"regexp"
 	"time"
 
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego"
 	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/httplib"
 )
 
 func GetDoodle() CyeamDoodle {
 	req := httplib.Get("http://www.google.com/doodles/doodles.xml")
 	req.SetTimeout(time.Duration(5)*time.Second, time.Duration(5)*time.Second)
-	req.Debug(beego.AppConfig.String("runmode") == "dev")
 	contents, err := req.Bytes()
 
 	if err != nil {

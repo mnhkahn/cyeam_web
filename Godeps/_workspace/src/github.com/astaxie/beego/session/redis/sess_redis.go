@@ -38,7 +38,7 @@ import (
 	"strings"
 	"sync"
 
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/session"
+	"github.com/astaxie/beego/session"
 
 	"github.com/garyburd/redigo/redis"
 )

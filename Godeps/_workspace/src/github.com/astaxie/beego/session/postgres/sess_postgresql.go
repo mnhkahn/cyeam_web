@@ -56,7 +56,7 @@ import (
 	"sync"
 	"time"
 
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/session"
+	"github.com/astaxie/beego/session"
 
 	_ "github.com/lib/pq"
 )

@@ -22,8 +22,8 @@ import (
 	"text/template"
 	"time"
 
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/toolbox"
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/utils"
+	"github.com/astaxie/beego/toolbox"
+	"github.com/astaxie/beego/utils"
 )
 
 // BeeAdminApp is the default adminApp used by admin module.

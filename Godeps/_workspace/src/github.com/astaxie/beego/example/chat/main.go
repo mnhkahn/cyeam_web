@@ -6,8 +6,8 @@
 package main
 
 import (
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego"
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/example/chat/controllers"
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/example/chat/controllers"
 )
 
 func main() {

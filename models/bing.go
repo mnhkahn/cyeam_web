@@ -9,7 +9,7 @@ import (
 func GetBing() string {
 	v := Bing{}
 	req := httplib.Get("http://www.bing.com/HPImageArchive.aspx?format=json&idx=0&n=1")
-	err := req.ToXml(&v)
+	err := req.ToXML(&v)
 	if len(v.Images) > 0 && err == nil {
 		return bingURL + v.Images[0].Url
 	}

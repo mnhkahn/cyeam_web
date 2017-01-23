@@ -42,7 +42,7 @@ import (
 	"sync"
 	"time"
 
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/config"
+	"github.com/astaxie/beego/config"
 	"github.com/beego/goyaml2"
 )
 

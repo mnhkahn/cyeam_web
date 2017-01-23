@@ -15,8 +15,8 @@
 package testing
 
 import (
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/config"
 	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/httplib"
+	"github.com/astaxie/beego/config"
 )
 
 var port = ""

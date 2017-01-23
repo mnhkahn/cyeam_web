@@ -29,7 +29,7 @@ import (
 	"strconv"
 	"time"
 
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/utils"
+	"github.com/astaxie/beego/utils"
 )
 
 func init() {

@@ -15,7 +15,7 @@
 package pagination
 
 import (
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/context"
+	"github.com/astaxie/beego/context"
 )
 
 // Instantiates a Paginator and assigns it to context.Input.Data["paginator"].

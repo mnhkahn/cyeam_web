@@ -94,7 +94,8 @@
                 <h2>开源项目</h2>
                 <ul>
                     {{range .Repos.Items}}
-                    <li><a href="{{.HTMLURL}}">{{.FullName}}</a> : 用<code>{{.Language}}</code>实现，{{.Description}}。</li>
+                    <li><a href="{{.HTMLURL}}">{{.FullName}}</a> : 用<code>{{.Language}}</code>实现，{{.Description}}。 {{if .Homepage}} <a href="{{.Homepage}}">详细介绍</a>。 {{end}}
+                    </li>
                     {{end}}
                 </ul>
                 <h2>技术文章</h2>

@@ -41,7 +41,7 @@ func NewWeather(latitude, longitude string) *Weather {
 	w := new(Weather)
 
 	req := httplib.Get(fmt.Sprintf(CAIYUNAPP_WEATHER_URL, longitude, latitude, CAIYUNAPP_TOKEN))
-	req.ToJson(w)
+	req.ToJSON(w)
 
 	return w
 }

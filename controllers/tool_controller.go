@@ -8,6 +8,7 @@ package controllers
 
 import (
 	gohttp "net/http"
+	"strings"
 
 	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/resume"
 	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/resume/structs"
@@ -39,18 +40,34 @@ func (this *ToolController) Ascii() {
 	this.ServeRaw([]byte(ai.DoByCol(38)))
 }
 
+var (
+	DEFAULT_RESUME_PARAMS = &structs.Params{
+		TouTiao:       "148931",
+		TouTiaoLimit:  10,
+		GitHub:        "mnhkahn",
+		RepoLimit:     10,
+		Weixin:        "360924857",
+		StackOverflow: "1924657",
+	}
+)
+
 func (this *ToolController) Resume() {
-	params := new(structs.Params)
-	params.TouTiao = this.GetString("toutiao")
-	params.TouTiaoLimit = this.GetInt("toutiaocnt")
+	var params *structs.Params
+	if strings.Index(this.Ctx.Req.Url.RawPath, "?") == -1 {
+		params = DEFAULT_RESUME_PARAMS
+	} else {
+		params = new(structs.Params)
+		params.TouTiao = this.GetString("toutiao")
+		params.TouTiaoLimit = this.GetInt("toutiaocnt")
 
-	params.Output = this.GetString("o")
-	params.GitHub = this.GetString("github")
-	params.RepoLimit = this.GetInt("githubcnt")
+		params.Output = this.GetString("o")
+		params.GitHub = this.GetString("github")
+		params.RepoLimit = this.GetInt("githubcnt")
 
-	params.Weixin = this.GetString("weixin")
+		params.Weixin = this.GetString("weixin")
 
-	params.StackOverflow = this.GetString("stackoverflow")
+		params.StackOverflow = this.GetString("stackoverflow")
+	}
 
 	body, err := resume.Resume(params)
 	if err != nil {

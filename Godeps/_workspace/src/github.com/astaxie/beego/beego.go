@@ -33,8 +33,8 @@ import (
 	"strconv"
 	"strings"
 
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/middleware"
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/session"
+	"github.com/astaxie/beego/middleware"
+	"github.com/astaxie/beego/session"
 )
 
 // beego web framework version.

@@ -15,9 +15,9 @@
 			"Rev": "3ad29d1ad1c4f2023e355603324348cf1f4b2d48"
 		},
 		{
-			"ImportPath": "github.com/astaxie/beego",
-			"Comment": "v1.4.2",
-			"Rev": "07c628c7e9f813efc3f7e1785f667e08f2340d53"
+			"ImportPath": "github.com/astaxie/beego/httplib",
+			"Comment": "v1.7.1-2-gb635af5",
+			"Rev": "b635af5a8cd798ae9ede1adb6f9472fa87361168"
 		},
 		{
 			"ImportPath": "github.com/franela/goreq",
@@ -41,7 +41,7 @@
 		},
 		{
 			"ImportPath": "github.com/mnhkahn/resume",
-			"Rev": "ecf42ba6d1501637c4776d8b032f8ab19e90df93"
+			"Rev": "ecad84b2d94b843e080e1b94e7df4951c416f82a"
 		},
 		{
 			"ImportPath": "github.com/mnhkahn/swiftype",

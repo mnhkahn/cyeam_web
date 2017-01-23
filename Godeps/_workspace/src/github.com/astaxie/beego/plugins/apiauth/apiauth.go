@@ -64,8 +64,8 @@ import (
 	"sort"
 	"time"
 
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego"
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/context"
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/context"
 )
 
 type AppIdToAppSecret func(string) string

@@ -22,10 +22,10 @@ import (
 	"runtime"
 	"strings"
 
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/config"
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/logs"
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/session"
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/utils"
+	"github.com/astaxie/beego/config"
+	"github.com/astaxie/beego/logs"
+	"github.com/astaxie/beego/session"
+	"github.com/astaxie/beego/utils"
 )
 
 var (
