@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	cache "github.com/patrickmn/go-cache"
+	cache "cyeam/Godeps/_workspace/src/github.com/patrickmn/go-cache"
 
 	"cyeam/structs"
 

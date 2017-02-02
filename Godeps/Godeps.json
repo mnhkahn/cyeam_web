@@ -1,6 +1,7 @@
 {
 	"ImportPath": "cyeam",
-	"GoVersion": "go1.6.2",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v79",
 	"Packages": [
 		"./..."
 	],
@@ -28,6 +29,11 @@
 			"Rev": "034b38919410f5e827a58d01aff617cd661c721a"
 		},
 		{
+			"ImportPath": "github.com/mnhkahn/asciiimg/gray",
+			"Comment": "v1.0",
+			"Rev": "034b38919410f5e827a58d01aff617cd661c721a"
+		},
+		{
 			"ImportPath": "github.com/mnhkahn/cygo/net/http",
 			"Rev": "bc013d803b8bd0ec595f810d82076bbcd2341cf9"
 		},
@@ -41,7 +47,28 @@
 		},
 		{
 			"ImportPath": "github.com/mnhkahn/resume",
-			"Rev": "ecad84b2d94b843e080e1b94e7df4951c416f82a"
+			"Comment": "v1.0",
+			"Rev": "335e96510a3e676842ec319135e689a8220c0921"
+		},
+		{
+			"ImportPath": "github.com/mnhkahn/resume/github",
+			"Comment": "v1.0",
+			"Rev": "335e96510a3e676842ec319135e689a8220c0921"
+		},
+		{
+			"ImportPath": "github.com/mnhkahn/resume/stackoverflow",
+			"Comment": "v1.0",
+			"Rev": "335e96510a3e676842ec319135e689a8220c0921"
+		},
+		{
+			"ImportPath": "github.com/mnhkahn/resume/structs",
+			"Comment": "v1.0",
+			"Rev": "335e96510a3e676842ec319135e689a8220c0921"
+		},
+		{
+			"ImportPath": "github.com/mnhkahn/resume/toutiao",
+			"Comment": "v1.0",
+			"Rev": "335e96510a3e676842ec319135e689a8220c0921"
 		},
 		{
 			"ImportPath": "github.com/mnhkahn/swiftype",
@@ -49,8 +76,17 @@
 			"Rev": "0362c72479ea5b12f4885b6afe376b55f1a094a4"
 		},
 		{
+			"ImportPath": "github.com/patrickmn/go-cache",
+			"Comment": "v2.0.0-4-ge7a9def",
+			"Rev": "e7a9def80f35fe1b170b7b8b68871d59dea117e1"
+		},
+		{
 			"ImportPath": "golang.org/x/net/html",
-			"Rev": "ea47fc708ee3e20177f3ca3716217c4ab75942cb"
+			"Rev": "007e530097ad7f954752df63046b4036f98ba6a6"
+		},
+		{
+			"ImportPath": "golang.org/x/net/html/atom",
+			"Rev": "007e530097ad7f954752df63046b4036f98ba6a6"
 		}
 	]
 }

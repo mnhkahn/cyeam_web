@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/mnhkahn/cygo/net/url"
+	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/url"
 
 	"io/ioutil"
 
