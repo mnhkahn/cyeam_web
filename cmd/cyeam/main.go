@@ -41,6 +41,7 @@ func init() {
 	http.Router("/sitemap.xml", "GET", &controllers.ToolController{}, "Sitemap")
 	http.Router("/feed/", "GET", &controllers.ToolController{}, "Feed")
 	http.Router("/resume", "GET", &controllers.ToolController{}, "Resume")
+	http.Router("/mail", "GET", &controllers.ToolController{}, "Mail")
 
 	http.Router("/.well-known/pki-validation/fileauth.htm", "GET", &controllers.ToolController{}, "SSLVerify")
 }

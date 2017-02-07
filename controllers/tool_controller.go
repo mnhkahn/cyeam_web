@@ -96,3 +96,7 @@ func (this *ToolController) Feed() {
 func (this *ToolController) SSLVerify() {
 	this.ServeView("fileauth.htm")
 }
+
+func (this *ToolController) Mail() {
+	this.ServeView("mail.html")
+}
