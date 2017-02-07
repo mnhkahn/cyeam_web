@@ -21,6 +21,10 @@ type MainController struct {
 }
 
 func (this *MainController) Get() {
+	if this.Ctx.Req.Host == "mail.cyeam.com" {
+		this.ServeView("mail.html")
+		return
+	}
 	this.ServeView("index.html")
 }
 
