@@ -84,8 +84,7 @@ func (this *ToolController) Robots() {
 }
 
 func (this *ToolController) Sitemap() {
-	this.Ctx.Resp.StatusCode = http.StatusFound
-	this.Ctx.Resp.Headers.Add(http.HTTP_HEAD_LOCATION, "http://blog.cyeam.com/sitemap.xml")
+	this.ServeView("sitemap.xml")
 }
 
 func (this *ToolController) Feed() {
