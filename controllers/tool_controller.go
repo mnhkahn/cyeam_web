@@ -97,6 +97,10 @@ func (this *ToolController) SSLVerify() {
 	this.ServeView("fileauth.htm")
 }
 
+func (this *ToolController) GoogleVerify() {
+	this.ServeView("google97ec3a9b69e1f4db.html")
+}
+
 func (this *ToolController) Mail() {
 	this.ServeView("mail.html")
 }
