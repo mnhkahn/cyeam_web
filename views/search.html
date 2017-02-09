@@ -70,7 +70,7 @@
                     <small>找到约 {{.Summary.NumDocs}} 条结果 （用时 {{.Summary.Duration}} ms)</small>
                 </h1>
 
-                {{range .Docs}} 
+                {{range .Docs}}
                 <!-- First Blog Post -->
                 <h2>
                     <a href="{{.Link}}">{{.Title}}</a>
@@ -78,10 +78,10 @@
                 <p>{{.Des}}</p>
                 <a class="btn btn-primary" href="{{.Link}}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
-                <hr>
-                {{end}}                
+                <hr> {{end}}
 
-                <!-- Pager --><!--
+                <!-- Pager -->
+                <!--
                 <ul class="pager">
                     <li class="previous">
                         <a href="#">&larr; Older</a>
@@ -147,7 +147,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <p>Powerd by <a src="https://startbootstrap.com/template-overviews/blog-home/">Start Bootstrap</a>. Copyright &copy; Cyeam 2017. All Rights Reserved</p>
-                    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000474528'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1000474528%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+                    <script type="text/javascript">
+                        var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                        document.write(unescape("%3Cspan id='cnzz_stat_icon_1000474528'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1000474528%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+                    </script>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -164,11 +167,25 @@
     <script src="/static/bootstrap.js"></script>
 
     <script type="text/javascript">
-    var b = $("#searchBtn")
-    b.click(function(){
-        console.debug($("#t").val())
-        window.location = "/t?t="+$("#t").val();
-    });
+        var b = $("#searchBtn")
+        b.click(function() {
+            console.debug($("#t").val())
+            window.location = "/t?t=" + $("#t").val();
+        });
+    </script>
+    <script type="text/javascript">
+        var vglnk = {
+            key: 'd7bd23b4bd9475aa00c5c2cd40af63c2'
+        };
+
+        (function(d, t) {
+            var s = d.createElement(t);
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = '//cdn.viglink.com/api/vglnk.js';
+            var r = d.getElementsByTagName(t)[0];
+            r.parentNode.insertBefore(s, r);
+        }(document, 'script'));
     </script>
 </body>
 
