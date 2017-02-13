@@ -34,6 +34,7 @@ func init() {
 
 	http.Router("/ascii", "GET", &controllers.ToolController{}, "Ascii")
 
+	http.Router("/douban/movie", "GET", &controllers.MainController{}, "DoubanMovie")
 	http.Router("/rarbg", "GET", &controllers.MainController{}, "Rarbg")
 	http.Router("/rarbg/torrents", "GET", &controllers.MainController{}, "Torrents")
 

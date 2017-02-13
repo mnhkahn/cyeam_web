@@ -140,6 +140,10 @@ func DoubanName(engName string) (string, string, string, string, float64) {
 	return name, originName, figure, format, rate
 }
 
+func Douban(name string) *structs.DoubanResult {
+	return douban(name)
+}
+
 // http://api.douban.com/v2/movie/search?q=Vikings
 func douban(name string) *structs.DoubanResult {
 	// name = "Doctor Strange"

@@ -136,3 +136,8 @@ func (this *MainController) Torrents() {
 	this.Ctx.Resp.StatusCode = http.StatusFound
 	this.Ctx.Resp.Headers.Add(http.HTTP_HEAD_LOCATION, res)
 }
+
+func (this *MainController) DoubanMovie() {
+	name := this.GetString("s")
+	this.ServeJson(models.Douban(name))
+}
