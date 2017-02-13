@@ -97,14 +97,14 @@ func (this *Controller) ServeJson(j interface{}) {
 
 	callback := this.GetString("callback")
 	if len(callback) != 0 {
-		this.Ctx.Resp.Headers.Add(HTTP_HEAD_CONTENTTYPE, "application/javascript; charset=utf-8")
+		this.Ctx.Resp.Headers.Add(HTTP_HEAD_CONTENTTYPE, "application/javascript")
 		callback_content := bytes.NewBufferString(" " + template.JSEscapeString(callback))
 		callback_content.WriteString("(")
 		callback_content.Write(v)
 		callback_content.WriteString(");\r\n")
 		this.Ctx.Resp.Body = callback_content.String()
 	} else {
-		this.Ctx.Resp.Headers.Add(HTTP_HEAD_CONTENTTYPE, "application/json; charset=utf-8")
+		this.Ctx.Resp.Headers.Add(HTTP_HEAD_CONTENTTYPE, "application/json")
 		this.Ctx.Resp.Body = string(v)
 	}
 }
