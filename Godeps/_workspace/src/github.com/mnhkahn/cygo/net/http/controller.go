@@ -107,7 +107,7 @@ func (this *Controller) ServeJson(j interface{}) {
 		this.Ctx.Resp.Headers.Add(HTTP_HEAD_CONTENTTYPE, "application/json; charset=utf-8")
 		this.Ctx.Resp.Body = string(v)
 	}
-	println("BBBBBBBB", len(this.Ctx.Resp.Body))
+	// println("BBBBBBBB", len(this.Ctx.Resp.Body))
 }
 
 func (this *Controller) ServeView(params ...interface{}) {
