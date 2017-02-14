@@ -1,21 +1,18 @@
 package models
 
 import (
+	"cyeam/structs"
 	"fmt"
 	"io"
 	"log"
 	"net/url"
+	"strconv"
 	"strings"
 	"time"
 
-	cache "cyeam/Godeps/_workspace/src/github.com/patrickmn/go-cache"
-
-	"cyeam/structs"
-
-	"strconv"
-
 	"cyeam/Godeps/_workspace/src/github.com/PuerkitoBio/goquery"
 	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/httplib"
+	cache "cyeam/Godeps/_workspace/src/github.com/patrickmn/go-cache"
 	"cyeam/Godeps/_workspace/src/golang.org/x/net/html"
 )
 
@@ -154,7 +151,7 @@ func douban(name string) *structs.DoubanResult {
 	}
 
 	res := new(structs.DoubanResult)
-	log.Println(name, DoubanCache.ItemCount())
+	// log.Println(name, DoubanCache.ItemCount())
 
 	u := "http://api.douban.com/v2/movie/search?q=" + name
 	req := httplib.Get(u).Debug(true)

@@ -1,5 +1,7 @@
 package http
 
+import "encoding/json"
+
 type Header map[string][]string
 
 func NewHeader() Header {
@@ -17,6 +19,14 @@ func (this Header) Get(k string) string {
 		return this[k][0]
 	}
 	return ""
+}
+
+func (this Header) String() string {
+	res, err := json.Marshal(this)
+	if err != nil {
+		return err.Error()
+	}
+	return string(res)
 }
 
 const (

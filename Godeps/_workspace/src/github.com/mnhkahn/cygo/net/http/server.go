@@ -156,7 +156,7 @@ func handleConnection(conn net.Conn) {
 			ctx.Resp.StatusCode = StatusNotFound
 		}
 	}
-
+	println("CCCCCCC", len(ctx.Resp.Body), ctx.Resp.StatusCode, ctx.Resp.Headers.String())
 	if ctx.Resp.StatusCode == StatusNotFound {
 		ctx.Resp.Body = DEFAULT_ERROR_PAGE
 	}
