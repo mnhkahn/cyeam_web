@@ -65,95 +65,49 @@
                             Cyeam
                         </h1>
 
-                        <hr>
+                        <hr class="intro-divider">
                         <!-- exmail.qq.com -->
-                        <style>
-                            .bizmail_loginpanel {
-                                font-size: 12px;
-                                width: 300px;
-                                height: auto;
-                                border: 1px solid #cccccc;
-                                background: #ffffff;
-                                color: #000000;
-                                text-align: left;
-                                margin-left: auto;
-                                margin-right: auto;
-                            }
-                            
-                            .bizmail_LoginBox {
-                                padding: 10px 15px;
-                            }
-                            
-                            .bizmail_loginpanel h3 {
-                                padding-bottom: 5px;
-                                margin: 0 0 5px 0;
-                                border-bottom: 1px solid #cccccc;
-                                font-size: 14px;
-                            }
-                            
-                            .bizmail_loginpanel form {
-                                margin: 0;
-                                padding: 0;
-                            }
-                            
-                            .bizmail_loginpanel input.text {
-                                font-size: 12px;
-                                width: 100px;
-                                height: 20px;
-                                margin: 0 2px;
-                                border: 1px solid #C3C3C3;
-                                border-color: #7C7C7C #C3C3C3 #C3C3C3 #9A9A9A;
-                            }
-                            
-                            .bizmail_loginpanel .bizmail_column {
-                                height: 28px;
-                            }
-                            
-                            .bizmail_loginpanel .bizmail_column label {
-                                display: block;
-                                float: left;
-                                width: 30px;
-                                height: 24px;
-                                line-height: 24px;
-                                font-size: 12px;
-                            }
-                            
-                            .bizmail_loginpanel .bizmail_column .bizmail_inputArea {
-                                float: left;
-                                width: 240px;
-                            }
-                            
-                            .bizmail_loginpanel .bizmail_column span {
-                                font-size: 12px;
-                                word-wrap: break-word;
-                                margin-left: 2px;
-                                line-height: 200%;
-                            }
-                            
-                            .bizmail_loginpanel .bizmail_SubmitArea {
-                                /*margin-left: 30px;*/
-                                padding-top: 10px;
-                                clear: both;
-                            }
-                            
-                            .bizmail_loginpanel .bizmail_SubmitArea a {
-                                font-size: 12px;
-                                margin-left: 5px;
-                            }
-                            
-                            .bizmail_loginpanel select {
-                                width: 110px;
-                                height: 20px;
-                                margin: 0 2px;
-                            }
-                        </style>
-                        <script type="text/javascript" src="http://exmail.qq.com/zh_CN/htmledition/js_biz/outerlogin.js" charset="gb18030"></script>
                         <script type="text/javascript">
-                            writeLoginPanel({
-                                domainlist: "cyeam.com",
-                                mode: "vertical"
-                            });
+                            function checkInput() {
+                                var b = document.form1.uin,
+                                    a = document.form1.pwd;
+
+                                console.debug(b.value == 0, a.value == 0)
+                                if (0 == b.value.length) {
+                                    b.focus();
+                                    return false;
+                                }
+                                if (0 == a.value.length) {
+                                    a.focus();
+                                    return false;
+                                }
+                                console.debug(b.value, a.value);
+                                document.form1.submit();
+                                setTimeout(" document.form1.pwd.value = '' ", 500);
+                                return false;
+                            }
                         </script>
+                        <form class="col-md-4 col-md-offset-4" role="form" name="form1" action="https://exmail.qq.com/cgi-bin/login" target="_blank" method="post" onsubmit="return checkInput()">
+                            <div class="form-inline form-group">
+                                <input type="hidden" name="firstlogin" value="false">
+                                <input type="hidden" name="errtemplate" value="dm_loginpage">
+                                <input type="hidden" name="aliastype" value="other">
+                                <input type="hidden" name="dmtype" value="bizmail">
+                                <input type="hidden" name="p" value="">
+                                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                                <div class="input-group">
+                                    <input name="uin" type="text" class="form-control" placeholder="Email">
+                                    <div class="input-group-addon">@cyeam</div>
+                                    <input type="hidden" name="domain" value="cyeam.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input name="pwd" type="password" class="form-control" placeholder="Password">
+                            </div>
+                            <input type="submit" class="btn btn-default">
+                            <!--<input type="submit" class="" name="" value="登录" />&nbsp;-->
+                            <a href="https://exmail.qq.com/cgi-bin/readtemplate?check=false&t=bizmail_orz" target="_blank">忘记密码？</a>
+                        </form>
                         <!-- exmail.qq.com -->
 
                     </div>
