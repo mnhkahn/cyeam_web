@@ -103,3 +103,7 @@ func (this *ToolController) GoogleVerify() {
 func (this *ToolController) Mail() {
 	this.ServeView("mail.html")
 }
+
+func (this *ToolController) Toutiao() {
+	this.ServeView("toutiao.html")
+}
