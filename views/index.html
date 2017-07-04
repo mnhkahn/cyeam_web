@@ -63,83 +63,136 @@
                                 Categories
                             </a>
                     </li>
+                    <li>
+                        <a href="//github.com/mnhkahn">
+                                Github
+                            </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <a name="home">
-    </a>
-    <div class="intro-header" id="intro-header" style="background: url('/bing') no-repeat center center; padding-top: 0px; padding-bottom: 0px">
-        <div class="container" id="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-message">
+
+    <a name="about"></a>
+    <div class="intro-header" id="intro-header">
+        <div class="container " id="container ">
+            <div class="row ">
+                <div class="col-lg-12 ">
+                    <div class="intro-message ">
                         <h1>
                             Cyeam
                         </h1>
 
-                        <hr class="intro-divider">
+                        <hr class="intro-divider ">
                         <form class="form-inline" role="form" action="/t" method="GET">
-                            <div class="form-group">
-                                <label for="inputPassword2" class="sr-only">Password</label>
+                            <div class="input-group">
                                 <input type="text" class="form-control" name="t" id="t" placeholder="">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">Go!</button>
+                                </span>
+                                </input>
                             </div>
-                            <button type="submit" class="btn btn-default">Search</button>
+                            <!-- /input-group -->
                         </form>
 
-                        <hr class="intro-divider">
-                        <ul class="list-inline intro-social-buttons">
+                        <hr class="intro-divider ">
+                        <ul class="list-inline intro-social-buttons ">
                             <li>
-                                <a href="/resume" class="btn btn-default btn-lg">
-                                    <i class="fa fa-twitter fa-fw">
-                                        </i>
-                                    <span class="network-name">
-                                            Resume
-                                        </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="//github.com/mnhkahn" class="btn btn-default btn-lg">
-                                    <i class="fa fa-github fa-fw">
-                                        </i>
-                                    <span class="network-name">
-                                            Github
-                                        </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="btn btn-default btn-lg" data-email="%6c%69%63%68%61%6f%30%34%30%37%40%67%6d%61%69%6c%2e%63%6f%6d" href="/cdn-cgi/l/email-protection#1975707a717876597a607c7874377a7674">
-                                    <i class="fa fa-github fa-fw">
-                                        </i>
-                                    <span class="network-name">
-                                            Email
-                                        </span>
-                                </a>
+                                <img src="http://cyeam.qiniudn.com/701183632764232630.jpg" title="二维码" height="350px">
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p class="copyright text-muted small">
-                            Copyright &copy; Cyeam 2017. All Rights Reserved
-                        </p>
-                    </div>
-                </div>
-                <script type="text/javascript">
-                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1000474528'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1000474528%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-                </script>
-            </div>
         </div>
     </div>
-    <script src="/static/jquery-1.10.2.js">
+
+    <a name="services"></a>
+    {{range $i, $v := .Docs}} {{ if eq $i 1}}
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading"><a href="{{.Link}}">{{.Title}}</a></h2>
+                    <p class="lead">{{.Des}}
+                    </p>
+                </div>
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <a href="{{.Link}}"><img class="img-responsive" src="{{.Figure}}" alt=""></a>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
+    {{else}}
+    <div class="content-section-a">
+        <!--<div class="content-section-a">-->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading"><a href="{{.Link}}">{{.Title}}</a></h2>
+                    <p class="lead">{{.Des}}</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <a href="{{.Link}}"><img class="img-responsive" src="{{.Figure}}" alt=""></a>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+    {{ end }} {{end}}
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#about">About</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#services">Services</a>
+                        </li>
+                    </ul>
+                    <div class="row ">
+                        <div class="col-lg-12 ">
+                            <p class="copyright text-muted small ">
+                                Copyright &copy; Cyeam 2017. All Rights Reserved
+                                <script type="text/javascript ">
+                                    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1000474528'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1000474528%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+                                </script>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/jquery-1.10.2.js ">
     </script>
-    <script src="/static/bootstrap.js">
+    <script src="/static/bootstrap.js ">
     </script>
-    <script type="text/javascript">
+    <script type="text/javascript ">
         var vglnk = {
             key: 'd7bd23b4bd9475aa00c5c2cd40af63c2'
         };

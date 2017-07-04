@@ -6,14 +6,14 @@ import (
 	"cyeam/services"
 	"cyeam/structs"
 	"fmt"
+	"io/ioutil"
 	"log"
 
 	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/url"
 
-	"io/ioutil"
-
 	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/httplib"
 	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/http"
+	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/swiftype"
 )
 
 type MainController struct {
@@ -25,7 +25,7 @@ func (this *MainController) Get() {
 		this.ServeView("mail.html")
 		return
 	}
-	this.ServeView("index.html")
+	this.ServeView("index.html", search.Search(swiftype.NewSearchParamLimit("*", 1, 3)))
 }
 
 func (this *MainController) Search() {
@@ -34,7 +34,7 @@ func (this *MainController) Search() {
 		this.ServeJson(new(structs.SearchResult))
 		return
 	}
-	this.ServeJson(search.Search(t))
+	this.ServeJson(search.Search(swiftype.NewSearchParam(t)))
 }
 
 func (this *MainController) SearchView() {
@@ -45,7 +45,7 @@ func (this *MainController) SearchView() {
 		this.Ctx.Resp.Headers.Add(http.HTTP_HEAD_LOCATION, "/")
 		return
 	}
-	this.ServeView("search.html", search.Search(t))
+	this.ServeView("search.html", search.Search(swiftype.NewSearchParam(t)))
 }
 
 func (this *MainController) Bing() {

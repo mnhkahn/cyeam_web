@@ -21,6 +21,7 @@ import (
 	"cyeam/search"
 
 	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/http"
+	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/swiftype"
 )
 
 type WeixinController struct {
@@ -199,7 +200,7 @@ func handleText(req *models.Request, resp *models.Response) *models.Response {
 		resp.Articles = new(models.Articles)
 		resp.Articles.Items = append(resp.Articles.Items, &a)
 	} else {
-		se := search.Search(req.Content.Data)
+		se := search.Search(swiftype.NewSearchParam(req.Content.Data))
 		if len(se.Docs) > 0 {
 			buf := bytes.NewBuffer(nil)
 
