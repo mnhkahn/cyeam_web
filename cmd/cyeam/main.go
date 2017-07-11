@@ -44,6 +44,7 @@ func init() {
 	http.Router("/resume", "GET", &controllers.ToolController{}, "Resume")
 	http.Router("/mail", "GET", &controllers.ToolController{}, "Mail")
 	http.Router("/geek", "GET", &controllers.ToolController{}, "Toutiao")
+	http.Router("/jos_guid.txt", "GET", &controllers.MainController{}, "JDVerify")
 
 	http.Router("/.well-known/pki-validation/fileauth.htm", "GET", &controllers.ToolController{}, "SSLVerify")
 	http.Router("/google97ec3a9b69e1f4db.html", "GET", &controllers.ToolController{}, "GoogleVerify")

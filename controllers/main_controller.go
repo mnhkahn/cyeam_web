@@ -65,6 +65,10 @@ func (this *MainController) BinCalc() {
 	this.ServeView("calc.html", castruct)
 }
 
+func (this *MainController) JDVerify() {
+	this.ServeFile("jos_guid.txt")
+}
+
 const (
 	RARBG_HOST        = "https://rarbg.to/torrents.php"
 	RARGB_TORRENT_URL = "https://rarbg.to/torrent/%s"
