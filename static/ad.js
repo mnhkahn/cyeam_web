@@ -1,2 +1,2 @@
-var jd_union_pid = "914134580";
-var jd_union_euid = "";
+var jd_union_pid="926770348";
+var jd_union_euid="";
