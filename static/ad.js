@@ -5,11 +5,11 @@ var isWindowPhone = /IEMobile/i.test(ua);
 var isIOS = /iPhone|iPad|iPod/i.test(ua);
 isMobile = isAndroid || isBlackBerry || isWindowPhone || isIOS;
 
-var jd_union_pid = "926796553";
+var jd_union_pid = "944515180";
 var jd_union_euid = "";
 
 if (isMobile) {
     // 小米手环2抢券9块9
-    var jd_union_pid = "926767564";
+    var jd_union_pid = "944528180";
     var jd_union_euid = "";
 }
