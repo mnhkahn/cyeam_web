@@ -162,7 +162,8 @@ func douban(name string) *structs.DoubanResult {
 		return res
 	}
 
-	DoubanCache.SetDefault(name, res)
+	DoubanCache.Set(name, res, 7*24*time.Hour)
+	// DoubanCache.SetDefault(name, res)
 
 	return res
 }
