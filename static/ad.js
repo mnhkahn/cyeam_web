@@ -5,7 +5,7 @@ var isWindowPhone = /IEMobile/i.test(ua);
 var isIOS = /iPhone|iPad|iPod/i.test(ua);
 isMobile = isAndroid || isBlackBerry || isWindowPhone || isIOS;
 
-var jd_union_pid = "944515180";
+var jd_union_pid = "948016030";
 var jd_union_euid = "";
 
 if (isMobile) {
