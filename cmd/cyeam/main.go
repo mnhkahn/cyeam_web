@@ -32,6 +32,7 @@ func init() {
 	http.Router("/weixin", "GET", &controllers.WeixinController{}, "Verify")
 	http.Router("/weixin", "POST", &controllers.WeixinController{}, "WeixinMsg")
 
+	http.Router("/toolbox","GET",&controllers.ToolController{},"ToolBox")
 	http.Router("/ascii", "GET", &controllers.ToolController{}, "Ascii")
 
 	http.Router("/douban/movie", "GET", &controllers.MainController{}, "DoubanMovie")
@@ -48,4 +49,5 @@ func init() {
 
 	http.Router("/.well-known/pki-validation/fileauth.htm", "GET", &controllers.ToolController{}, "SSLVerify")
 	http.Router("/google97ec3a9b69e1f4db.html", "GET", &controllers.ToolController{}, "GoogleVerify")
+
 }

@@ -15,10 +15,16 @@ import (
 
 	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/asciiimg"
 	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/http"
+	"log"
 )
 
 type ToolController struct {
 	http.Controller
+}
+
+func (this *ToolController) ToolBox()  {
+	log.Println("AAAAA")
+	this.ServeView("toolbox.html")
 }
 
 func (this *ToolController) Ascii() {
