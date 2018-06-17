@@ -34,7 +34,9 @@ func (this *MainController) Search() {
 		this.ServeJson(new(structs.SearchResult))
 		return
 	}
-	this.ServeJson(search.Search(swiftype.NewSearchParam(t)))
+	page := this.GetInt("page")
+	size := this.GetInt("ps")
+	this.ServeJson(search.Search(swiftype.NewSearchParamLimit(t, page, size)))
 }
 
 func (this *MainController) SearchView() {
