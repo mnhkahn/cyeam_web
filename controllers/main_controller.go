@@ -35,7 +35,13 @@ func (this *MainController) Search() {
 		return
 	}
 	page := this.GetInt("page")
+	if page <= 0 || page >= 100 {
+		page = 1
+	}
 	size := this.GetInt("ps")
+	if size <= 0 || size >= 100 {
+		size = 20
+	}
 	this.ServeJson(search.Search(swiftype.NewSearchParamLimit(t, page, size)))
 }
 
