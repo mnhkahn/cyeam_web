@@ -34,8 +34,8 @@
   version = "1.0.0"
 
 [[constraint]]
-  branch = "feature_http"
   name = "github.com/mnhkahn/gogogo"
+  version = "1.0.0"
 
 [[constraint]]
   name = "github.com/mnhkahn/resume"

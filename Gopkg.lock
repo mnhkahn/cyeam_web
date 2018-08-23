@@ -41,7 +41,6 @@
   version = "v1.0"
 
 [[projects]]
-  branch = "feature_http"
   name = "github.com/mnhkahn/gogogo"
   packages = [
     "app",
@@ -50,6 +49,7 @@
     "util"
   ]
   revision = "c3fcecd69d2a0994e5f57a092814b1d3692e6bdb"
+  version = "1.0.0"
 
 [[projects]]
   name = "github.com/mnhkahn/resume"
@@ -106,6 +106,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "df01f663ff55a3e1c3274334f72b6806ca477f2dcb229789936dd121717e7729"
+  inputs-digest = "a2b754694f61ecc593617ef93223890366dac9fbee1599c7ee451ce1bf5d12ef"
   solver-name = "gps-cdcl"
   solver-version = 1
