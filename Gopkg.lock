@@ -48,8 +48,8 @@
     "panicer",
     "util"
   ]
-  revision = "c3fcecd69d2a0994e5f57a092814b1d3692e6bdb"
-  version = "1.0.0"
+  revision = "24434f0c5d8764f489bb69db4b7dc71c9594167f"
+  version = "1.0.1"
 
 [[projects]]
   name = "github.com/mnhkahn/resume"
@@ -66,8 +66,8 @@
 [[projects]]
   name = "github.com/mnhkahn/swiftype"
   packages = ["."]
-  revision = "0362c72479ea5b12f4885b6afe376b55f1a094a4"
-  version = "v1.1"
+  revision = "e184d01a986c30db07360c24b7c8c670d7d9ea92"
+  version = "v1.2"
 
 [[projects]]
   name = "github.com/patrickmn/go-cache"
