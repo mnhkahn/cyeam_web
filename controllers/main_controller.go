@@ -5,151 +5,78 @@ import (
 	"cyeam/search"
 	"cyeam/services"
 	"cyeam/structs"
-	"fmt"
-	"io/ioutil"
-	"log"
+	"net/http"
 
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/url"
-
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/httplib"
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/http"
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/swiftype"
+	"github.com/mnhkahn/gogogo/app"
+	"github.com/mnhkahn/gogogo/logger"
+	"github.com/mnhkahn/swiftype"
 )
 
-type MainController struct {
-	http.Controller
-}
-
-func (this *MainController) Get() {
-	if this.Ctx.Req.Host == "mail.cyeam.com" {
-		this.ServeView("mail.html")
-		return
+func Get(c *app.Context) error {
+	if c.Request.Host == "mail.cyeam.com" {
+		c.HTML([]string{"mail.html"}, nil)
+		return nil
 	}
-	this.ServeView("index.html", search.Search(swiftype.NewSearchParamLimit("*", 1, 3)))
+	c.HTML([]string{"./views/index.html"}, search.Search(swiftype.NewSearchParamLimit("*", 1, 3)))
+	return nil
 }
 
-func (this *MainController) Search() {
-	t := this.GetString("t")
+func Search(c *app.Context) error {
+	t := c.GetString("t")
 	if len(t) == 0 {
-		this.ServeJson(new(structs.SearchResult))
-		return
+		c.JSON(new(structs.SearchResult))
+		return nil
 	}
-	page := this.GetInt("page")
+	page, _ := c.GetInt("page")
 	if page <= 0 || page >= 100 {
 		page = 1
 	}
-	size := this.GetInt("ps")
+	size, _ := c.GetInt("ps")
 	if size <= 0 || size >= 100 {
 		size = 20
 	}
-	this.ServeJson(search.Search(swiftype.NewSearchParamLimit(t, page, size)))
+	c.JSON(search.Search(swiftype.NewSearchParamLimit(t, page, size)))
+	return nil
 }
 
-func (this *MainController) SearchView() {
-	t := this.GetString("t")
+func SearchView(c *app.Context) error {
+	t := c.GetString("t")
 	if len(t) == 0 {
 		// 302
-		this.Ctx.Resp.StatusCode = http.StatusFound
-		this.Ctx.Resp.Headers.Add(http.HTTP_HEAD_LOCATION, "/")
-		return
+		http.Redirect(c.ResponseWriter, c.Request, "/", http.StatusFound)
+		return nil
 	}
-	this.ServeView("search.html", search.Search(swiftype.NewSearchParam(t)))
+
+	c.HTML([]string{"./views/search.html"}, search.Search(swiftype.NewSearchParam(t)))
+	return nil
 }
 
-func (this *MainController) Bing() {
-	this.Ctx.Resp.StatusCode = http.StatusFound
-	this.Ctx.Resp.Headers.Add(http.HTTP_HEAD_LOCATION, models.GetBing())
+func Bing(c *app.Context) error {
+	http.Redirect(c.ResponseWriter, c.Request, models.GetBing(), http.StatusFound)
+	return nil
 }
 
-func (this *MainController) BinCalc() {
+func BinCalc(c *app.Context) error {
 	castruct := new(structs.CalcStruct)
-	err := this.ParseForms(castruct)
+	err := c.Request.ParseForm()
 	if err != nil {
-		this.Ctx.Resp.Body = err.Error()
-		return
+		return err
 	}
-	castruct.Dec = services.BinToDex(castruct.Bin)
-	fmt.Println(castruct.Bin, castruct.Dec, "--------------------")
-	this.ServeView("calc.html", castruct)
+	castruct.Dec = services.BinToDex(c.Request.FormValue("bin"))
+	c.HTML([]string{"./views/calc.html"}, castruct)
+
+	logger.Info("bincalc", castruct.Bin, castruct.Dec)
+
+	return nil
 }
 
-func (this *MainController) JDVerify() {
-	this.ServeFile("jos_guid.txt")
+func JDVerify(c *app.Context) error {
+	c.HTML([]string{"./static/jos_guid.txt"}, nil)
+	return nil
 }
 
-const (
-	RARBG_HOST        = "https://rarbg.to/torrents.php"
-	RARGB_TORRENT_URL = "https://rarbg.to/torrent/%s"
-)
-
-var (
-	DEFAULT_RARBG_QUERY = url.ParseQuery("category=14;17;42;44;45;46;47;48&order=seeders&by=DESC")
-)
-
-func (this *MainController) Rarbg() {
-	if len(this.Ctx.Req.Url.Query()) == 0 {
-		this.Ctx.Resp.StatusCode = http.StatusFound
-		this.Ctx.Resp.Headers.Add(http.HTTP_HEAD_LOCATION, "/rarbg?category=14;17;42;44;45;46;47;48&order=seeders&by=DESC")
-		return
-	}
-
-	query := this.Ctx.Req.Url.Query()
-	for k, v := range DEFAULT_RARBG_QUERY {
-		for _, vv := range v {
-			query.Add(k, vv)
-		}
-	}
-
-	u := RARBG_HOST + "?" + query.String()
-	log.Println(u)
-
-	req := httplib.Get(u)
-	for k, v := range this.Ctx.Req.Headers {
-		for _, vv := range v {
-			req = req.Header(k, vv)
-		}
-	}
-	resp, err := req.DoRequest()
-	a, _ := ioutil.ReadAll(resp.Body)
-	log.Println(string(a))
-	// body, err := os.Open("rarbgtest.html") // For read access.
-	if err != nil {
-		this.ServeRaw([]byte(err.Error()))
-		return
-	}
-	// res, err := models.Rarbg(body)
-	res, err := models.Rarbg(resp.Body)
-	if err != nil {
-		this.ServeRaw([]byte(err.Error()))
-		return
-	}
-
-	this.ServeView("rarbg.html", res)
-}
-
-func (this *MainController) Torrents() {
-	id := this.GetString("id")
-	u := fmt.Sprintf(RARGB_TORRENT_URL, id)
-
-	req := httplib.Get(u)
-	resp, err := req.DoRequest()
-	// body, err := os.Open("rarbgtor.html") // For read access.
-	if err != nil {
-		this.ServeRaw([]byte(err.Error()))
-		return
-	}
-	// res, err := models.RarbgTorrent(body)
-	res, err := models.RarbgTorrent(resp.Body)
-	if err != nil {
-		this.ServeRaw([]byte(err.Error()))
-		return
-	}
-
-	this.Ctx.Resp.StatusCode = http.StatusFound
-	this.Ctx.Resp.Headers.Add(http.HTTP_HEAD_LOCATION, res)
-}
-
-func (this *MainController) DoubanMovie() {
-	name := this.GetString("s")
-	this.ServeJson(models.Douban(name))
+func DoubanMovie(c *app.Context) error {
+	name := c.GetString("s")
+	c.JSON(models.Douban(name))
+	return nil
 }

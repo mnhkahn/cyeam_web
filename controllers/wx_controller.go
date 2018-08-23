@@ -1,9 +1,3 @@
-/*
- * @Author: lichao115
- * @Date: 2016-12-15 17:22:29
- * @Last Modified by: lichao115
- * @Last Modified time: 2016-12-16 15:02:54
- */
 package controllers
 
 import (
@@ -20,13 +14,14 @@ import (
 	"cyeam/models"
 	"cyeam/search"
 
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/http"
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/swiftype"
-)
+	"io/ioutil"
 
-type WeixinController struct {
-	http.Controller
-}
+	"net/http"
+
+	"github.com/mnhkahn/gogogo/app"
+	"github.com/mnhkahn/gogogo/logger"
+	"github.com/mnhkahn/swiftype"
+)
 
 const (
 	TOKEN = "cyeam"
@@ -42,23 +37,52 @@ const (
 	HELP = "文本框里面回复内容，可以搜索以往历史文章。\n发送图片，可以生成一张ASCII编码的图片。\n发送地址，可以查看当前地址天气。"
 )
 
-func (this *WeixinController) Verify() {
-	signature := this.GetString("signature")
-	timestamp := this.GetString("timestamp")
-	nonce := this.GetString("nonce")
-	echostr := this.GetString("echostr")
+func Weixin(c *app.Context) error {
+	if c.Request.Method == "GET" { // verify
+		signature := c.GetString("signature")
+		timestamp := c.GetString("timestamp")
+		nonce := c.GetString("nonce")
+		echostr := c.GetString("echostr")
 
-	dict := []string{timestamp, nonce, echostr}
-	sort.Strings(dict)
+		dict := []string{timestamp, nonce, echostr}
+		sort.Strings(dict)
 
-	h := sha1.New()
-	io.WriteString(h, strings.Join(dict, ""))
+		h := sha1.New()
+		io.WriteString(h, strings.Join(dict, ""))
 
-	if Signature(timestamp, nonce) == signature {
-		this.ServeRaw([]byte(echostr))
-	} else {
-		this.ServeRaw([]byte(""))
+		if Signature(timestamp, nonce) == signature {
+			c.WriteBytes([]byte(echostr))
+		} else {
+			c.WriteBytes([]byte(""))
+		}
+		return nil
+	} else { // msg
+		body, err := ioutil.ReadAll(c.Request.Body)
+		if err != nil {
+			return err
+		}
+
+		logger.Info(string(body))
+
+		var wreq *models.Request
+		if wreq, err = DecodeRequest(body); err != nil {
+			return err
+		}
+
+		wresp, err := dealwith(wreq, c.Request)
+		if err != nil {
+			return err
+		}
+		data, err := wresp.Encode()
+		if err != nil {
+			return err
+		}
+
+		c.WriteBytes(data)
+		return nil
 	}
+
+	return nil
 }
 
 func Signature(timestamp, nonce string) string {
@@ -71,37 +95,6 @@ func Signature(timestamp, nonce string) string {
 	h := sha1.New()
 	h.Write([]byte(str))
 	return fmt.Sprintf("%x", h.Sum(nil))
-}
-
-func (this *WeixinController) WeixinMsg() {
-	if this.Ctx.Req.Body == "" {
-		this.Ctx.Resp.StatusCode = http.StatusNotFound
-		return
-	}
-	log.Println(this.Ctx.Req.Body)
-
-	var wreq *models.Request
-	var err error
-	if wreq, err = DecodeRequest([]byte(this.Ctx.Req.Body)); err != nil {
-		this.Ctx.Resp.StatusCode = http.StatusNotFound
-		log.Println(err)
-		return
-	}
-
-	wresp, err := dealwith(wreq, this.Ctx.Req)
-	if err != nil {
-		this.Ctx.Resp.StatusCode = http.StatusNotFound
-		log.Println(err)
-		return
-	}
-	data, err := wresp.Encode()
-	if err != nil {
-		this.Ctx.Resp.StatusCode = http.StatusNotFound
-		log.Println(err)
-		return
-	}
-	this.ServeRaw(data)
-	return
 }
 
 func DecodeRequest(data []byte) (req *models.Request, err error) {

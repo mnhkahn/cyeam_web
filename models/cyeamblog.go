@@ -3,8 +3,8 @@ package models
 import (
 	"log"
 
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/httplib"
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/swiftype"
+	"github.com/astaxie/beego/httplib"
+	"github.com/mnhkahn/swiftype"
 )
 
 func GetCyeamBlog(sp *swiftype.SearchParam) *CyeamBlog {

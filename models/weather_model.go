@@ -1,15 +1,9 @@
-/*
- * @Author: lichao115
- * @Date: 2016-12-15 17:28:16
- * @Last Modified by: lichao115
- * @Last Modified time: 2016-12-15 17:51:24
- */
 package models
 
 import (
 	"fmt"
 
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/httplib"
+	"github.com/astaxie/beego/httplib"
 )
 
 type Weather struct {

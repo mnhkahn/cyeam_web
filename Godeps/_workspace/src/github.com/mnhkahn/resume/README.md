@@ -1,2 +1,0 @@
-# resume
-A resume generator

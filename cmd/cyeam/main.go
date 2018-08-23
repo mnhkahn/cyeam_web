@@ -3,9 +3,13 @@ package main
 import (
 	"cyeam/controllers"
 	"cyeam/search"
+	"net/http"
 	"os"
 
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/http"
+	"net"
+
+	"github.com/mnhkahn/gogogo/app"
+	"github.com/mnhkahn/gogogo/logger"
 )
 
 func main() {
@@ -14,7 +18,13 @@ func main() {
 	if port == "" {
 		port = "5000"
 	}
-	http.Serve(":" + port)
+
+	l, err := net.Listen("tcp", ":"+port)
+	if err != nil {
+		logger.Errorf("Listen: %v", err)
+		return
+	}
+	app.Serve(l)
 }
 
 func init() {
@@ -22,32 +32,25 @@ func init() {
 		panic(err)
 	}
 
-	http.Router("/", "GET", &controllers.MainController{}, "Get")
-	http.Router("/s", "GET", &controllers.MainController{}, "Search")
-	http.Router("/t", "GET", &controllers.MainController{}, "SearchView")
-	http.Router("/bing", "GET", &controllers.MainController{}, "Bing")
-	http.Router("/bincalc", "GET", &controllers.MainController{}, "BinCalc")
-	http.Router("/bincalc", "POST", &controllers.MainController{}, "BinCalc")
+	app.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
-	http.Router("/weixin", "GET", &controllers.WeixinController{}, "Verify")
-	http.Router("/weixin", "POST", &controllers.WeixinController{}, "WeixinMsg")
+	app.Handle("/", &app.Got{controllers.Get})
+	app.Handle("/bing", &app.Got{controllers.Bing})
+	app.Handle("/s", &app.Got{controllers.Search})
+	app.Handle("/t", &app.Got{controllers.SearchView})
+	app.Handle("/bincalc", &app.Got{controllers.BinCalc})
+	app.Handle("/weixin", &app.Got{controllers.Weixin})
+	app.Handle("/jos_guid.txt", &app.Got{controllers.JDVerify})
+	app.Handle("/douban/movie", &app.Got{controllers.DoubanMovie})
 
-	http.Router("/toolbox","GET",&controllers.ToolController{},"ToolBox")
-	http.Router("/ascii", "GET", &controllers.ToolController{}, "Ascii")
+	app.Handle("/toolbox", &app.Got{controllers.ToolBox})
+	app.Handle("/ascii", &app.Got{controllers.Ascii})
+	app.Handle("/robots.txt", &app.Got{controllers.Robots})
+	app.Handle("/sitemap.xml", &app.Got{controllers.Sitemap})
+	app.Handle("/feed/", &app.Got{controllers.Feed})
+	app.Handle("/resume", &app.Got{controllers.Resume})
+	app.Handle("/geek", &app.Got{controllers.Toutiao})
 
-	http.Router("/douban/movie", "GET", &controllers.MainController{}, "DoubanMovie")
-	http.Router("/rarbg", "GET", &controllers.MainController{}, "Rarbg")
-	http.Router("/rarbg/torrents", "GET", &controllers.MainController{}, "Torrents")
-
-	http.Router("/robots.txt", "GET", &controllers.ToolController{}, "Robots")
-	http.Router("/sitemap.xml", "GET", &controllers.ToolController{}, "Sitemap")
-	http.Router("/feed/", "GET", &controllers.ToolController{}, "Feed")
-	http.Router("/resume", "GET", &controllers.ToolController{}, "Resume")
-	http.Router("/mail", "GET", &controllers.ToolController{}, "Mail")
-	http.Router("/geek", "GET", &controllers.ToolController{}, "Toutiao")
-	http.Router("/jos_guid.txt", "GET", &controllers.MainController{}, "JDVerify")
-
-	http.Router("/.well-known/pki-validation/fileauth.htm", "GET", &controllers.ToolController{}, "SSLVerify")
-	http.Router("/google97ec3a9b69e1f4db.html", "GET", &controllers.ToolController{}, "GoogleVerify")
-
+	app.Handle("/.well-known/pki-validation/fileauth.htm", &app.Got{controllers.SSLVerify})
+	app.Handle("/google97ec3a9b69e1f4db.html", &app.Got{controllers.GoogleVerify})
 }

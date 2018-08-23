@@ -1,9 +1,3 @@
-/*
- * @Author: lichao115
- * @Date: 2016-12-16 12:53:05
- * @Last Modified by: mnhkahn <lichao@cyeam.com>
- * @Last Modified time: 2016-12-17 18:51:54
- */
 package search
 
 import (
@@ -12,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/swiftype"
+	"github.com/mnhkahn/swiftype"
 )
 
 var (

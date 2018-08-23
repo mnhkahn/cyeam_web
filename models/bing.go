@@ -3,7 +3,7 @@ package models
 import (
 	"encoding/xml"
 
-	"cyeam/Godeps/_workspace/src/github.com/astaxie/beego/httplib"
+	"github.com/astaxie/beego/httplib"
 )
 
 func GetBing() string {
@@ -13,6 +13,7 @@ func GetBing() string {
 	if len(v.Images) > 0 && err == nil {
 		return bingURL + v.Images[0].Url
 	}
+
 	return "http://cyeam.qiniudn.com/zhonghuan.jpg"
 }
 

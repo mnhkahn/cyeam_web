@@ -1,49 +1,37 @@
-/*
- * @Author: lichao115
- * @Date: 2016-12-16 12:03:54
- * @Last Modified by: mnhkahn <lichao@cyeam.com>
- * @Last Modified time: 2016-12-17 17:00:27
- */
 package controllers
 
 import (
-	gohttp "net/http"
+	"net/http"
 	"strings"
 
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/resume"
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/resume/structs"
+	"github.com/mnhkahn/resume"
+	"github.com/mnhkahn/resume/structs"
 
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/asciiimg"
-	"cyeam/Godeps/_workspace/src/github.com/mnhkahn/cygo/net/http"
-	"log"
+	"github.com/mnhkahn/asciiimg"
+	"github.com/mnhkahn/gogogo/app"
 )
 
-type ToolController struct {
-	http.Controller
+func ToolBox(c *app.Context) error {
+	c.HTML([]string{"./views/toolbox.html"}, nil)
+	return nil
 }
 
-func (this *ToolController) ToolBox()  {
-	log.Println("AAAAA")
-	this.ServeView("toolbox.html")
-}
+func Ascii(c *app.Context) error {
+	url := c.GetString("url")
 
-func (this *ToolController) Ascii() {
-	url := this.GetString("url")
-
-	res, err := gohttp.Get("http://" + url)
+	res, err := http.Get("http://" + url)
 	if err != nil {
-		this.ServeRaw([]byte(err.Error()))
-		return
+		return err
 	}
 
 	ai, err := asciiimg.NewAsciiImg(res.Body)
 	if err != nil {
-		this.ServeRaw([]byte(err.Error()))
-		return
+		return err
 	}
 	defer res.Body.Close()
 
-	this.ServeRaw([]byte(ai.DoByCol(38)))
+	c.WriteBytes([]byte(ai.DoByCol(38)))
+	return nil
 }
 
 var (
@@ -57,59 +45,59 @@ var (
 	}
 )
 
-func (this *ToolController) Resume() {
+func Resume(c *app.Context) error {
 	var params *structs.Params
-	if strings.Index(this.Ctx.Req.Url.RawPath, "?") == -1 {
+	if strings.Index(c.Request.URL.RawPath, "?") == -1 {
 		params = DEFAULT_RESUME_PARAMS
 	} else {
 		params = new(structs.Params)
-		params.TouTiao = this.GetString("toutiao")
-		params.TouTiaoLimit = this.GetInt("toutiaocnt")
+		params.TouTiao = c.GetString("toutiao")
+		params.TouTiaoLimit, _ = c.GetInt("toutiaocnt")
 
-		params.Output = this.GetString("o")
-		params.GitHub = this.GetString("github")
-		params.RepoLimit = this.GetInt("githubcnt")
+		params.Output = c.GetString("o")
+		params.GitHub = c.GetString("github")
+		params.RepoLimit, _ = c.GetInt("githubcnt")
 
-		params.Weixin = this.GetString("weixin")
+		params.Weixin = c.GetString("weixin")
 
-		params.StackOverflow = this.GetString("stackoverflow")
+		params.StackOverflow = c.GetString("stackoverflow")
 	}
 
 	body, err := resume.Resume(params)
 	if err != nil {
-		this.ServeRaw([]byte(err.Error()))
-		return
+		return err
 	}
 
-	this.ServeRaw(body)
+	c.WriteBytes(body)
+	return nil
 }
 
-func (this *ToolController) Robots() {
-	this.Ctx.Resp.Headers[http.HTTP_HEAD_CONTENTTYPE] = nil
-	this.ServeFile("robots.txt")
+func Robots(c *app.Context) error {
+	c.HTML([]string{"./views/robots.txt"}, nil)
+	return nil
 }
 
-func (this *ToolController) Sitemap() {
-	this.ServeView("sitemap.xml")
+func Sitemap(c *app.Context) error {
+	c.HTML([]string{"./static/sitemap.xml"}, nil)
+	return nil
 }
 
-func (this *ToolController) Feed() {
-	this.Ctx.Resp.StatusCode = http.StatusFound
-	this.Ctx.Resp.Headers.Add(http.HTTP_HEAD_LOCATION, "http://blog.cyeam.com/rss.xml")
+func Feed(c *app.Context) error {
+	http.Redirect(c.ResponseWriter, c.Request, "http://blog.cyeam.com/rss.xml", http.StatusFound)
+	return nil
 }
 
-func (this *ToolController) SSLVerify() {
-	this.ServeView("fileauth.htm")
+func SSLVerify(c *app.Context) error {
+	c.HTML([]string{"./static/fileauth.htm"}, nil)
+	return nil
 }
 
-func (this *ToolController) GoogleVerify() {
-	this.ServeView("google97ec3a9b69e1f4db.html")
+func GoogleVerify(c *app.Context) error {
+	c.HTML([]string{"./static/google97ec3a9b69e1f4db.html"}, nil)
+	return nil
 }
 
-func (this *ToolController) Mail() {
-	this.ServeView("mail.html")
-}
-
-func (this *ToolController) Toutiao() {
-	this.ServeView("toutiao.html")
+func Toutiao(c *app.Context) error {
+	c.HTML([]string{"./views/toutiao.html"}, nil)
+	return nil
 }
