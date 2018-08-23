@@ -12,12 +12,12 @@ import (
 	"github.com/mnhkahn/swiftype"
 )
 
-func Get(c *app.Context) error {
+func Index(c *app.Context) error {
 	if c.Request.Host == "mail.cyeam.com" {
 		c.HTML([]string{"mail.html"}, nil)
 		return nil
 	}
-	c.HTML([]string{"./views/index.html"}, search.Search(swiftype.NewSearchParamLimit("*", 1, 3)))
+	c.HTML([]string{"./views/index.html", "./views/head.html", "./views/tail.html"}, search.Search(swiftype.NewSearchParamLimit("*", 1, 3)))
 	return nil
 }
 
@@ -47,7 +47,7 @@ func SearchView(c *app.Context) error {
 		return nil
 	}
 
-	c.HTML([]string{"./views/search.html"}, search.Search(swiftype.NewSearchParam(t)))
+	c.HTML([]string{"./views/search.html", "./views/head.html", "./views/tail.html"}, search.Search(swiftype.NewSearchParam(t)))
 	return nil
 }
 
@@ -63,7 +63,7 @@ func BinCalc(c *app.Context) error {
 		return err
 	}
 	castruct.Dec = services.BinToDex(c.Request.FormValue("bin"))
-	c.HTML([]string{"./views/calc.html"}, castruct)
+	c.HTML([]string{"./views/calc.html", "./views/head.html", "./views/tail.html"}, castruct)
 
 	logger.Info("bincalc", castruct.Bin, castruct.Dec)
 

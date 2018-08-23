@@ -34,7 +34,7 @@ func init() {
 
 	app.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
-	app.Handle("/", &app.Got{controllers.Get})
+	app.Handle("/", &app.Got{controllers.Index})
 	app.Handle("/bing", &app.Got{controllers.Bing})
 	app.Handle("/s", &app.Got{controllers.Search})
 	app.Handle("/t", &app.Got{controllers.SearchView})

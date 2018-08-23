@@ -12,7 +12,7 @@ import (
 )
 
 func ToolBox(c *app.Context) error {
-	c.HTML([]string{"./views/toolbox.html"}, nil)
+	c.HTML([]string{"./views/toolbox.html", "./views/head.html", "./views/tail.html"}, nil)
 	return nil
 }
 
@@ -98,6 +98,6 @@ func GoogleVerify(c *app.Context) error {
 }
 
 func Toutiao(c *app.Context) error {
-	c.HTML([]string{"./views/toutiao.html"}, nil)
+	c.HTML([]string{"./views/toutiao.html", "./views/head.html", "./views/tail.html"}, nil)
 	return nil
 }

@@ -9,98 +9,49 @@
     <title>
         二进制十进制转换
     </title>
-    <link rel="shortcut icon" href="/static/c32.ico" />
-    <link href="/static/bootstrap.css" rel="stylesheet" />
-    <link href="/static/landing-page.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/static/c32.ico"/>
+    <link href="/static/bootstrap.css" rel="stylesheet"/>
+    <link href="/static/landing-page.css" rel="stylesheet"/>
 </head>
 
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">
-                            Toggle navigation
-                        </span>
-                        <span class="icon-bar">
-                        </span>
-                        <span class="icon-bar">
-                        </span>
-                        <span class="icon-bar">
-                        </span>
-                    </button>
-                <a class="navbar-brand" href="/" style="padding:0px">
-                    <img src="/static/bryce.jpg" style="width:50px">
-                </a>
+{{template "HEAD"}}
+<a name="home">
+</a>
+<div class="intro-header" id="intro-header" style="padding-top: 0px; padding-bottom: 0px; color: #333">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <form method="POST" action="/bincalc">
+                    <fieldset>
+                        <legend>二进制转十进制</legend>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">二进制</label>
+                            <input type="text" placeholder="110.01001010001111010111000010100011110101110000101001"
+                                   class="form-control" value="{{.Bin}}" name="bin_input"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">十进制</label>
+                            <input type="text" placeholder="这里填写十进制数字." class="form-control" value="{{.Dec}}"
+                                   name="dec_input"/>
+                        </div>
+                        <button type="submit" class="btn">转换</button>
+                    </fieldset>
+                </form>
             </div>
-            <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="/geek">
-                                Geek
-                            </a>
-                    </li>
-                    <li>
-                        <a href="http://blog.cyeam.com">
-                                Blog
-                            </a>
-                    </li>
-                    <li>
-                        <a href="//mail.cyeam.com">
-                                Mail
-                            </a>
-                    </li>
-                    <li>
-                        <a href="//blog.cyeam.com/categories">
-                                Categories
-                            </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <a name="home">
-    </a>
-    <div class="intro-header" id="intro-header" style="text-muted padding-top: 0px; padding-bottom: 0px; color: #333">
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span12">
-                    <form method="POST" action="/bincalc">
-                        <fieldset>
-                            <legend>二进制转十进制</legend>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">二进制</label>
-                                <input type="text" placeholder="110.01001010001111010111000010100011110101110000101001" class="form-control" value="{{.Bin}}" name="bin_input" />
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">十进制</label>
-                                <input type="text" placeholder="这里填写十进制数字." class="form-control" value="{{.Dec}}" name="dec_input" />
-                            </div>
-                            <button type="submit" class="btn">转换</button>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <p class="copyright text-muted small">
-                        Copyright &copy; Cyeam 2015. All Rights Reserved
-                    </p>
-                </div>
-            </div>
-            <script type="text/javascript">
-                var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-                document.write(unescape("%3Cspan id='cnzz_stat_icon_1000474528'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1000474528%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-            </script>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            {{template "TAIL"}}
+        </div>
     </div>
-    <script src="/static/jquery-1.10.2.js">
-    </script>
-    <script src="/static/bootstrap.js">
-    </script>
+</div>
+</div>
+<script src="/static/jquery-1.10.2.js">
+</script>
+<script src="/static/bootstrap.js">
+</script>
 </body>
 
 </html>
