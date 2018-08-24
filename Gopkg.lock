@@ -48,8 +48,8 @@
     "panicer",
     "util"
   ]
-  revision = "24434f0c5d8764f489bb69db4b7dc71c9594167f"
-  version = "1.0.1"
+  revision = "1f4ee3c201caf9e3a12c9484bbe3750110dae761"
+  version = "1.0.2"
 
 [[projects]]
   name = "github.com/mnhkahn/resume"
