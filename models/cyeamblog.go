@@ -3,14 +3,14 @@ package models
 import (
 	"log"
 
-	"github.com/astaxie/beego/httplib"
+	"github.com/mnhkahn/gogogo/util"
+
 	"github.com/mnhkahn/swiftype"
 )
 
 func GetCyeamBlog(sp *swiftype.SearchParam) *CyeamBlog {
 	v := new(CyeamBlog)
-	req := httplib.Get(cyeamBlogURL)
-	err := req.ToXML(v)
+	err := util.HttpXml("GET", cyeamBlogURL, "", nil, v)
 	if err != nil {
 		log.Println(err)
 	}

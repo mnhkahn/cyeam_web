@@ -3,13 +3,12 @@ package models
 import (
 	"encoding/xml"
 
-	"github.com/astaxie/beego/httplib"
+	"github.com/mnhkahn/gogogo/util"
 )
 
 func GetBing() string {
 	v := Bing{}
-	req := httplib.Get("http://www.bing.com/HPImageArchive.aspx?format=json&idx=0&n=1")
-	err := req.ToXML(&v)
+	err := util.HttpXml("GET", "http://www.bing.com/HPImageArchive.aspx?format=json&idx=0&n=1", "", nil, &v)
 	if len(v.Images) > 0 && err == nil {
 		return bingURL + v.Images[0].Url
 	}

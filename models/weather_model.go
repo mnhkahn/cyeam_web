@@ -3,7 +3,8 @@ package models
 import (
 	"fmt"
 
-	"github.com/astaxie/beego/httplib"
+	"github.com/mnhkahn/gogogo/logger"
+	"github.com/mnhkahn/gogogo/util"
 )
 
 type Weather struct {
@@ -34,8 +35,10 @@ const (
 func NewWeather(latitude, longitude string) *Weather {
 	w := new(Weather)
 
-	req := httplib.Get(fmt.Sprintf(CAIYUNAPP_WEATHER_URL, longitude, latitude, CAIYUNAPP_TOKEN))
-	req.ToJSON(w)
+	err := util.HttpJson("GET", fmt.Sprintf(CAIYUNAPP_WEATHER_URL, longitude, latitude, CAIYUNAPP_TOKEN), "", nil, w)
+	if err != nil {
+		logger.Warn(err)
+	}
 
 	return w
 }

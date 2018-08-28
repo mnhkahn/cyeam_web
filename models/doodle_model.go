@@ -1,28 +1,18 @@
 package models
 
 import (
-	"encoding/xml"
-	"fmt"
 	"regexp"
-	"time"
 
-	"github.com/astaxie/beego/httplib"
+	"github.com/mnhkahn/gogogo/logger"
+	"github.com/mnhkahn/gogogo/util"
 )
 
 func GetDoodle() CyeamDoodle {
-	req := httplib.Get("http://www.google.com/doodles/doodles.xml")
-	req.SetTimeout(time.Duration(5)*time.Second, time.Duration(5)*time.Second)
-	contents, err := req.Bytes()
-
-	if err != nil {
-		fmt.Println(err)
-	}
-	return ParseDoodle(contents)
-}
-
-func ParseDoodle(contents []byte) CyeamDoodle {
 	v := Rss{}
-	xml.Unmarshal(contents, &v)
+	err := util.HttpXml("GET", "http://www.google.com/doodles/doodles.xml", "", nil, &v)
+	if err != nil {
+		logger.Warn(err)
+	}
 
 	re_img := regexp.MustCompile("<img.*src=(.*?)[^>]*?>")
 	img := re_img.FindAllString(v.Channel.Items[0].Description, -1)
