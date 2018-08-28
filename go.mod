@@ -1,3 +1,4 @@
+// +heroku goVersion go1.11
 module cyeam
 
 require (
