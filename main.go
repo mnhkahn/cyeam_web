@@ -3,6 +3,7 @@ package main
 import (
 	"cyeam/controllers"
 	"cyeam/search"
+	"log"
 	"net/http"
 	"os"
 
@@ -28,9 +29,9 @@ func main() {
 }
 
 func init() {
-	if err := search.InitSwiftype(); err != nil {
-		panic(err)
-	}
+	go search.InitMaodou()
+
+	logger.StdLogger = logger.NewLogger(log.LstdFlags|log.Lshortfile, 100, 50, 1)
 
 	app.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 

@@ -20,7 +20,6 @@ import (
 
 	"github.com/mnhkahn/gogogo/app"
 	"github.com/mnhkahn/gogogo/logger"
-	"github.com/mnhkahn/swiftype"
 )
 
 const (
@@ -193,7 +192,7 @@ func handleText(req *models.Request, resp *models.Response) *models.Response {
 		resp.Articles = new(models.Articles)
 		resp.Articles.Items = append(resp.Articles.Items, &a)
 	} else {
-		se := search.Search(swiftype.NewSearchParam(req.Content.Data))
+		se := search.Peanut(req.Content.Data, 1, 10)
 		if len(se.Docs) > 0 {
 			buf := bytes.NewBuffer(nil)
 

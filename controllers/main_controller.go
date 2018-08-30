@@ -9,7 +9,6 @@ import (
 
 	"github.com/mnhkahn/gogogo/app"
 	"github.com/mnhkahn/gogogo/logger"
-	"github.com/mnhkahn/swiftype"
 )
 
 func Index(c *app.Context) error {
@@ -17,7 +16,7 @@ func Index(c *app.Context) error {
 		c.HTML([]string{"mail.html"}, nil)
 		return nil
 	}
-	c.HTML([]string{"./views/index.html", "./views/head.html", "./views/tail.html"}, search.Search(swiftype.NewSearchParamLimit("*", 1, 3)))
+	c.HTML([]string{"./views/index.html", "./views/head.html", "./views/tail.html"}, search.Peanut("*", 1, 3))
 	return nil
 }
 
@@ -35,7 +34,7 @@ func Search(c *app.Context) error {
 	if size <= 0 || size >= 100 {
 		size = 20
 	}
-	c.JSON(search.Search(swiftype.NewSearchParamLimit(t, page, size)))
+	c.JSON(search.Peanut(t, page, size))
 	return nil
 }
 
@@ -47,7 +46,7 @@ func SearchView(c *app.Context) error {
 		return nil
 	}
 
-	c.HTML([]string{"./views/search.html", "./views/head.html", "./views/tail.html"}, search.Search(swiftype.NewSearchParam(t)))
+	c.HTML([]string{"./views/search.html", "./views/head.html", "./views/tail.html"}, search.Peanut(t, 1, 10))
 	return nil
 }
 
