@@ -73,6 +73,8 @@ github.com/mnhkahn/maodou v1.0.0 h1:dVnrCxbnprciJbcVCtflgcv4seup/erdijXV3U1hXrY=
 github.com/mnhkahn/maodou v1.0.0/go.mod h1:BOGQbOSb8fFcKEv4VvUirH5MBq2J64JkJCAJwEtpssw=
 github.com/mnhkahn/maodou v1.0.1 h1:Zv5wRy8Zq29Fh4cFRkWReC0vB5kww9v2QtyXVEGpGpU=
 github.com/mnhkahn/maodou v1.0.1/go.mod h1:kdhW/WUspfl0eBUQJujPdO1GHaZolleNB1MtMXlBBbI=
+github.com/mnhkahn/maodou v1.0.2 h1:5aPVbHYz87GSXqP2gM/djJCm8UsD8mim+Z4spDGRd8w=
+github.com/mnhkahn/maodou v1.0.2/go.mod h1:vYI/TbX1cHjjNF03XoF1ynCK6qZZHGusOSj5jkHw50U=
 github.com/mnhkahn/peanut v0.0.0-20180828055434-ec108b6c00a8 h1:c+s8E7JbEkhN/mTkSS7cGqAr0TiJXUpEWz5M1r0OmtY=
 github.com/mnhkahn/peanut v0.0.0-20180830083133-65024057eb16 h1:7J0NLhJUJGOp1XQHsR5L52S0spql7euYiI6Hhmvk1ac=
 github.com/mnhkahn/peanut v0.0.0-20180830083133-65024057eb16/go.mod h1:z/P9SGuhOq6nOGkrGXYZR7UDUPHUSpAFTSmfA+tVKoA=
@@ -80,6 +82,8 @@ github.com/mnhkahn/peanut v0.0.0-20180830083834-4b0ce468b4f3 h1:MsxWo97ApFYCFczG
 github.com/mnhkahn/peanut v0.0.0-20180830083834-4b0ce468b4f3/go.mod h1:z/P9SGuhOq6nOGkrGXYZR7UDUPHUSpAFTSmfA+tVKoA=
 github.com/mnhkahn/peanut v1.0.0 h1:FYUKpjDq34qVRUYMU3xJrBEvWyDC761dZo17hmqOER8=
 github.com/mnhkahn/peanut v1.0.0/go.mod h1:z/P9SGuhOq6nOGkrGXYZR7UDUPHUSpAFTSmfA+tVKoA=
+github.com/mnhkahn/peanut v1.0.1 h1:qRNT4lRsWPqxi26in00YYE27r3f9cwSDDW/JK+F/JxY=
+github.com/mnhkahn/peanut v1.0.1/go.mod h1:z/P9SGuhOq6nOGkrGXYZR7UDUPHUSpAFTSmfA+tVKoA=
 github.com/mnhkahn/resume v0.0.0-20170123025305-335e96510a3e h1:Hps+dNIHtkMQFfGhNgpsui55b1YrLnrYM4/PWa3H02w=
 github.com/mnhkahn/resume v0.0.0-20170123025305-335e96510a3e/go.mod h1:a7TbNWSBjJl5VPY4QzVM3vIMEPlxRpESbYp5cIRH3Hw=
 github.com/mnhkahn/resume v1.0.0 h1:udAj0YHkqkB0oqoYoslAjrOe9g9hu8dKr7IweCQKmsQ=
