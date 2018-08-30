@@ -83,6 +83,7 @@ func (this *CyeamBlogCrawler) Index(resp *maodou.Response) {
 }
 
 func (this *CyeamBlogCrawler) Detail(resp *maodou.Response) {
+	var err error
 	res := new(models.Result)
 	u, _ := url.Parse(resp.Url)
 	res.Id = u.Path
@@ -107,6 +108,11 @@ func (this *CyeamBlogCrawler) Detail(resp *maodou.Response) {
 	res.Tags = strings.Join(tags, " ")
 	_category := resp.Doc("#content > div.row-fluid.post-full > div > ul:nth-child(6) > li:nth-child(2) > a").Text()
 	res.Category = strings.Split(strings.TrimSpace(_category), " ")[0]
+	date := resp.Doc("#content > div.row-fluid.post-full > div > div.date > span:nth-child(2)").Text()
+	res.CreateTime, err = time.Parse("02 January 2006", date)
+	if err != nil {
+		logger.Warn(err)
+	}
 	this.Result(res)
 }
 

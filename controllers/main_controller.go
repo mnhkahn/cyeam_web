@@ -16,7 +16,13 @@ func Index(c *app.Context) error {
 		c.HTML([]string{"mail.html"}, nil)
 		return nil
 	}
-	c.HTML([]string{"./views/index.html", "./views/head.html", "./views/tail.html"}, search.Peanut("*", 1, 3))
+	peanut := search.Peanut("*", 1, 3)
+	for _, p := range peanut.Docs {
+		if p.Figure == "" {
+			p.Figure = "http://cyeam.qiniudn.com/gopherswrench.jpg"
+		}
+	}
+	c.HTML([]string{"./views/index.html", "./views/head.html", "./views/tail.html"}, peanut)
 	return nil
 }
 
