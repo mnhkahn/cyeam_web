@@ -3,7 +3,6 @@ package main
 import (
 	"cyeam/controllers"
 	"cyeam/search"
-	"log"
 	"net/http"
 	"os"
 
@@ -31,8 +30,6 @@ func main() {
 func init() {
 	go search.InitMaodou()
 
-	logger.StdLogger = logger.NewLogger(log.LstdFlags|log.Lshortfile, 100, 50, 1)
-
 	app.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
 	app.Handle("/", &app.Got{controllers.Index})
@@ -51,6 +48,7 @@ func init() {
 	app.Handle("/feed/", &app.Got{controllers.Feed})
 	app.Handle("/resume", &app.Got{controllers.Resume})
 	app.Handle("/geek", &app.Got{controllers.Toutiao})
+	app.Handle("/neitui", &app.Got{controllers.Neitui})
 
 	app.Handle("/.well-known/pki-validation/fileauth.htm", &app.Got{controllers.SSLVerify})
 	app.Handle("/google97ec3a9b69e1f4db.html", &app.Got{controllers.GoogleVerify})

@@ -101,3 +101,8 @@ func Toutiao(c *app.Context) error {
 	c.HTML([]string{"./views/toutiao.html", "./views/head.html", "./views/tail.html"}, nil)
 	return nil
 }
+
+func Neitui(c *app.Context) error {
+	c.HTML([]string{"./views/neitui.html", "./views/head.html", "./views/tail.html"}, nil)
+	return nil
+}
