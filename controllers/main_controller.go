@@ -52,7 +52,16 @@ func SearchView(c *app.Context) error {
 		return nil
 	}
 
-	c.HTML([]string{"./views/search.html", "./views/head.html", "./views/tail.html"}, search.Peanut(t, 1, 10))
+	page, _ := c.GetInt("page")
+	if page <= 0 || page >= 100 {
+		page = 1
+	}
+	size, _ := c.GetInt("ps")
+	if size <= 0 || size >= 100 {
+		size = 20
+	}
+
+	c.HTML([]string{"./views/search.html", "./views/head.html", "./views/tail.html"}, search.Peanut(t, page, size))
 	return nil
 }
 
