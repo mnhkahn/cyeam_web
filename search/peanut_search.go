@@ -30,10 +30,6 @@ func Peanut(q string, page, size int) *structs.SearchResult {
 
 	se := structs.NewSearchResult()
 
-	if q == "*" {
-		q = "golang"
-	}
-
 	cnt, _, res := blogCrawler.Dao.Search(q, size, (page-1)*size)
 
 	se.Summary.Q = q
@@ -59,30 +55,17 @@ type CyeamBlogCrawler struct {
 	maodou.MaoDou
 }
 
-func (this *CyeamBlogCrawler) Start() {
-	resp, err := this.Cawl("http://blog.cyeam.com/all.html")
-	if err != nil {
-		logger.Warn(err)
-	} else {
-		this.Index(resp)
-	}
-}
-
-func (this *CyeamBlogCrawler) Index(resp *maodou.Response) {
+func (this *CyeamBlogCrawler) Index(resp *maodou.Response, jobs chan string) error {
 	resp.Doc(`#content > div > div > div > h2 > a`).Each(func(i int, s *goquery.Selection) {
 		href, has := s.Attr("href")
 		if has {
-			resp, err := this.Cawl("http://blog.cyeam.com/" + href)
-			if err != nil {
-				logger.Warn(err)
-			} else {
-				this.Detail(resp)
-			}
+			this.AddJob("http://blog.cyeam.com/" + href)
 		}
 	})
+	return nil
 }
 
-func (this *CyeamBlogCrawler) Detail(resp *maodou.Response) {
+func (this *CyeamBlogCrawler) Detail(resp *maodou.Response) (*models.Result, error) {
 	var err error
 	res := new(models.Result)
 	u, _ := url.Parse(resp.Url)
@@ -111,23 +94,16 @@ func (this *CyeamBlogCrawler) Detail(resp *maodou.Response) {
 	date := resp.Doc("#content > div.row-fluid.post-full > div > div.date > span:nth-child(2)").Text()
 	res.CreateTime, err = time.Parse("02 January 2006", date)
 	if err != nil {
-		logger.Warn(err)
+		return res, err
 	}
-	this.Result(res)
-}
-
-func (this *CyeamBlogCrawler) Result(result *models.Result) {
-	err := this.Dao.AddResult(result)
-	if err != nil {
-		logger.Warn(err, result)
-	}
+	return res, nil
 }
 
 func NewCyeamBlogCrawler() *CyeamBlogCrawler {
 	c := new(CyeamBlogCrawler)
-	c.MaoDou.Init()
+	c.MaoDou.Init("http://blog.cyeam.com/#all.html")
 	c.SetRate(24 * time.Hour)
-	c.SetDao("peanut", "./peanut.db")
+	c.SetD(false)
 	return c
 }
 

@@ -13,11 +13,11 @@ require (
 	github.com/json-iterator/go v1.1.5 // indirect
 	github.com/kisielk/gotool v1.0.0 // indirect
 	github.com/mattn/go-colorable v0.0.9 // indirect
-	github.com/mattn/go-isatty v0.0.3 // indirect
+	github.com/mattn/go-isatty v0.0.4 // indirect
 	github.com/mattn/go-sqlite3 v1.9.0 // indirect
 	github.com/mnhkahn/asciiimg v1.0.0
 	github.com/mnhkahn/gogogo v1.0.1
-	github.com/mnhkahn/maodou v1.0.3
+	github.com/mnhkahn/maodou v1.0.4
 	github.com/mnhkahn/resume v1.0.0
 	github.com/mnhkahn/swiftype v1.1.1
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
@@ -25,6 +25,6 @@ require (
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/reconquest/barely v0.0.0-20160729074550-0f12e3bb2e13 // indirect
 	github.com/reconquest/loreley v0.0.0-20160708080500-2ab6b7470a54 // indirect
-	golang.org/x/crypto v0.0.0-20180820150726-614d502a4dac // indirect
-	golang.org/x/tools v0.0.0-20180828015842-6cd1fcedba52 // indirect
+	golang.org/x/crypto v0.0.0-20180830192347-182538f80094 // indirect
+	golang.org/x/tools v0.0.0-20180830214440-4bc20fc7916b // indirect
 )
