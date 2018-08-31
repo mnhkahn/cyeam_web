@@ -101,7 +101,7 @@ func (this *CyeamBlogCrawler) Detail(resp *maodou.Response) (*models.Result, err
 
 func NewCyeamBlogCrawler() *CyeamBlogCrawler {
 	c := new(CyeamBlogCrawler)
-	c.MaoDou.Init("http://blog.cyeam.com/#all.html")
+	c.MaoDou.Init("http://blog.cyeam.com/all.html")
 	c.SetRate(24 * time.Hour)
 	c.SetD(false)
 	return c
