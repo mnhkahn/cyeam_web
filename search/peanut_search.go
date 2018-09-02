@@ -111,7 +111,7 @@ func (this *CyeamBlogCrawler) Detail(resp *maodou.Response) (*models.Result, err
 }
 
 const analyticsLink = "https://www.googleapis.com/analytics/v3/data/ga?ids=ga%3A84991381&start-date=30daysAgo&end-date=yesterday&metrics=ga%3Apageviews&dimensions=ga%3ApagePath&key=https://www.googleapis.com/analytics/v3/data/ga?ids=ga%3A84991381&start-date=30daysAgo&end-date=yesterday&metrics=ga%3Apageviews&dimensions=ga%3ApagePath"
-const crawlRoot = "http://blog.cyeam.com/#all.html"
+const crawlRoot = "http://blog.cyeam.com/all.html"
 
 func NewCyeamBlogCrawler() *CyeamBlogCrawler {
 	c := new(CyeamBlogCrawler)
