@@ -25,4 +25,5 @@ type Doc struct {
 	Des    string    `json:"des"`
 	Figure string    `json:"figure"`
 	Date   time.Time `json:"date"`
+	PV     int       `json:"pv"`
 }

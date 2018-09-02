@@ -48,7 +48,7 @@
 
             <h1 class="page-header">
                 搜索{{.Summary.Q}}
-                <small>找到约 {{.Summary.NumDocs}} 条结果 （用时 {{.Summary.Duration}} ms)</small>
+                <small>找到约 {{.Summary.NumDocs}} 条结果 （用时 {{.Summary.Duration}} μs)</small>
             </h1>
 
         {{range .Docs}}
@@ -59,9 +59,9 @@
                     <p class="card-text">{{.Des}}</p>
                     <a href="{{.Link}}" class="btn btn-primary">Read More →</a>
                 </div>
-                {{/*<div class="card-footer text-muted">*/}}
-                    {{/*Posted on {{.Date}}*/}}
-                {{/*</div>*/}}
+                <div class="card-footer text-muted">
+                    Posted on {{.Date.Format "2006-01-02"}}. Recent page views {{.PV}}.
+                </div>
             </div>
             <hr> {{end}}
 

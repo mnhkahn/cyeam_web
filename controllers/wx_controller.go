@@ -11,6 +11,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/mnhkahn/peanut/index"
+
 	"cyeam/models"
 	"cyeam/search"
 
@@ -192,7 +194,7 @@ func handleText(req *models.Request, resp *models.Response) *models.Response {
 		resp.Articles = new(models.Articles)
 		resp.Articles.Items = append(resp.Articles.Items, &a)
 	} else {
-		se := search.Peanut(req.Content.Data, 1, 10)
+		se := search.Peanut(req.Content.Data, 1, 10, "PV", index.DESC)
 		if len(se.Docs) > 0 {
 			buf := bytes.NewBuffer(nil)
 

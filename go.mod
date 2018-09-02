@@ -16,8 +16,9 @@ require (
 	github.com/mattn/go-isatty v0.0.4 // indirect
 	github.com/mattn/go-sqlite3 v1.9.0 // indirect
 	github.com/mnhkahn/asciiimg v1.0.0
-	github.com/mnhkahn/gogogo v1.0.1
-	github.com/mnhkahn/maodou v1.0.4
+	github.com/mnhkahn/gogogo v1.0.2
+	github.com/mnhkahn/maodou v1.0.5
+	github.com/mnhkahn/peanut v1.0.3
 	github.com/mnhkahn/resume v1.0.0
 	github.com/mnhkahn/swiftype v1.1.1
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
@@ -26,5 +27,6 @@ require (
 	github.com/reconquest/barely v0.0.0-20160729074550-0f12e3bb2e13 // indirect
 	github.com/reconquest/loreley v0.0.0-20160708080500-2ab6b7470a54 // indirect
 	golang.org/x/crypto v0.0.0-20180830192347-182538f80094 // indirect
-	golang.org/x/tools v0.0.0-20180830214440-4bc20fc7916b // indirect
+	golang.org/x/oauth2 v0.0.0-20180821212333-d2e6202438be
+	golang.org/x/tools v0.0.0-20180831211245-7ca132754999 // indirect
 )

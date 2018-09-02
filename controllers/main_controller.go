@@ -7,6 +7,8 @@ import (
 	"cyeam/structs"
 	"net/http"
 
+	"github.com/mnhkahn/peanut/index"
+
 	"github.com/mnhkahn/gogogo/app"
 	"github.com/mnhkahn/gogogo/logger"
 )
@@ -16,7 +18,7 @@ func Index(c *app.Context) error {
 		c.HTML([]string{"mail.html"}, nil)
 		return nil
 	}
-	peanut := search.Peanut("*", 1, 3)
+	peanut := search.Peanut("*", 1, 3, "PubDate", index.DESC)
 	for _, p := range peanut.Docs {
 		if p.Figure == "" {
 			p.Figure = "http://cyeam.qiniudn.com/gopherswrench.jpg"
@@ -40,10 +42,14 @@ func Search(c *app.Context) error {
 	if size <= 0 || size >= 100 {
 		size = 20
 	}
-	c.JSON(search.Peanut(t, page, size))
+	sortField := c.GetString("sort", "PV")
+	asc, _ := c.GetBool("sort_asc")
+
+	c.JSON(search.Peanut(t, page, size, sortField, asc))
 	return nil
 }
 
+// https://startbootstrap.com/template-overviews/blog-home/
 func SearchView(c *app.Context) error {
 	t := c.GetString("t")
 	if len(t) == 0 {
@@ -60,8 +66,10 @@ func SearchView(c *app.Context) error {
 	if size <= 0 || size >= 100 {
 		size = 20
 	}
+	sortField := c.GetString("sort", "PV")
+	asc, _ := c.GetBool("sort_asc")
 
-	c.HTML([]string{"./views/search.html", "./views/head.html", "./views/tail.html"}, search.Peanut(t, page, size))
+	c.HTML([]string{"./views/search.html", "./views/head.html", "./views/tail.html"}, search.Peanut(t, page, size, sortField, asc))
 	return nil
 }
 
