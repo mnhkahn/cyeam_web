@@ -1,5 +1,6 @@
 github.com/360EntSecGroup-Skylar/goreporter v0.0.0-20180523022159-2993f1c8801c h1:4a9C/mzkJcomVyXIso6GYThQNJ7XWFNvbpr46tbZV64=
 github.com/360EntSecGroup-Skylar/goreporter v0.0.0-20180523022159-2993f1c8801c/go.mod h1:8e+EFRt2syN2FyQ3Q5JZEHLhFlEPm+ANyFLe8UyNwMw=
+github.com/360EntSecGroup-Skylar/goreporter v0.0.0-20180902115603-df1b20f7c5d0/go.mod h1:8e+EFRt2syN2FyQ3Q5JZEHLhFlEPm+ANyFLe8UyNwMw=
 github.com/BurntSushi/toml v0.3.0 h1:e1/Ivsx3Z0FVTV0NSOv/aVgbUWyQuzj7DDnFblkRvsY=
 github.com/BurntSushi/toml v0.3.0/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/PuerkitoBio/goquery v1.4.1 h1:smcIRGdYm/w7JSbcdeLHEMzxmsBQvl8lhf0dSw2nzMI=
@@ -68,6 +69,8 @@ github.com/mnhkahn/gogogo v1.0.1 h1:nQqxYUvAf1uxTbrExD7+3KuBMpFa4nTaDk2h9GB0Wp8=
 github.com/mnhkahn/gogogo v1.0.1/go.mod h1:2H7pELixbPqzXoX5mOT8co8aTkhZpl5gVb4CcZDJO54=
 github.com/mnhkahn/gogogo v1.0.2 h1:uFhGfOz5y4hsRztE7HA3yQW58lQ6ATDl53ezC5NHq1M=
 github.com/mnhkahn/gogogo v1.0.2/go.mod h1:KM3JDQ9Xx9atIfBnKhEErETA/J1uMsFFK1ld4nwuBig=
+github.com/mnhkahn/gogogo v1.0.3 h1:jI+Puc/5gd8ZTizU8ap4LnJKp6HK66f4NR9EO0+gcX8=
+github.com/mnhkahn/gogogo v1.0.3/go.mod h1:KM3JDQ9Xx9atIfBnKhEErETA/J1uMsFFK1ld4nwuBig=
 github.com/mnhkahn/maodou v0.0.0-20160717024355-4d7c226c386a h1:NpKUBFWEAuUERjPvopUEOVO5N56Ky7pGLyapUtXgVIo=
 github.com/mnhkahn/maodou v0.0.0-20160717024355-4d7c226c386a/go.mod h1:WM/vB1HFakqkJPtP/pQB/td6btvq3bVYF3d4jhvGgH4=
 github.com/mnhkahn/maodou v0.0.0-20180830082834-71bce7c823a3 h1:q0SJI/9iIWL1VmAhZ/viveenwYamapCf6uVKAspTVtg=
