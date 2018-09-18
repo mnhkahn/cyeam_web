@@ -41,7 +41,7 @@ func Peanut(q string, page, size int, sort string, asc bool) *structs.SearchResu
 	for i, _ := range res {
 		doc := new(structs.Doc)
 		doc.Title = res[i].Title
-		doc.Link = res[i].Link + "?utm_source=peanut"
+		doc.Link = res[i].Link + "?utm_source=peanut&utm_medium=article"
 		doc.Des = res[i].Description
 		doc.Figure = res[i].Figure
 		doc.Date = res[i].ParseDate
