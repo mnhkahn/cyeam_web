@@ -18,7 +18,7 @@ func Index(c *app.Context) error {
 		c.HTML([]string{"mail.html"}, nil)
 		return nil
 	}
-	peanut := search.Peanut("*", 1, 3, "PubDate", index.DESC)
+	peanut := search.Peanut("*", 1, 4, "PubDate", index.DESC)
 	for _, p := range peanut.Docs {
 		if p.Figure == "" {
 			p.Figure = "http://cyeam.qiniudn.com/gopherswrench.jpg"
