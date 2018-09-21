@@ -33,6 +33,10 @@ func Peanut(q string, page, size int, sort string, asc bool) *structs.SearchResu
 
 	se := structs.NewSearchResult()
 
+	if blogCrawler == nil {
+		return se
+	}
+
 	cnt, _, res := blogCrawler.Dao.Search(q, size, (page-1)*size, sort, asc)
 
 	se.Summary.Q = q

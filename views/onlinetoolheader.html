@@ -1,0 +1,115 @@
+{{define "TOOLHEAD"}}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Web 开发小工具">
+    <meta name="author" content="mnhkahn">
+
+    <title>Web 开发小工具</title>
+    <link rel="shortcut icon" href="/static/c32.ico"/>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/bootstrap.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link href="/static/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/static/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/prism.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="/static/jquery-1.10.2.js "></script>
+    <script src="/static/prism.js"></script>
+
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-1651120361108148",
+            enable_page_level_ads: true
+        });
+    </script>
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; min-height: 0px;">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        {{/*<a class="navbar-brand" href="index.html">小工具合集</a>*/}}
+        </div>
+        <!-- /.navbar-header -->
+        <!-- /.navbar-top-links -->
+
+        <div class="navbar-default sidebar" role="navigation" style="margin-top: 20px;">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                {{/*<li class="sidebar-search">*/}}
+                {{/*<div class="input-group custom-search-form">*/}}
+                {{/*<input type="text" class="form-control" placeholder="Search...">*/}}
+                {{/*<span class="input-group-btn">*/}}
+                {{/*<button class="btn btn-default" type="button">*/}}
+                {{/*<i class="fa fa-search"></i>*/}}
+                {{/*</button>*/}}
+                {{/*</span>*/}}
+                {{/*</div>*/}}
+                {{/*<!-- /input-group -->*/}}
+                {{/*</li>*/}}
+                    <li>
+                        <a href="/tool/formatjson"><i class="fa fa-dashboard fa-fw"></i> 格式化 json</a>
+                    </li>
+                    <li>
+                        <a href="/tool/json2gostruct"><i class="fa fa-dashboard fa-fw"></i> json 转 go 结构体</a>
+                    </li>
+                    <li>
+                        <a href="/tool/urlescape"><i class="fa fa-dashboard fa-fw"></i> Url Encode 编码</a>
+                    </li>
+                    <li>
+                        <a href="/tool/urlunescape"><i class="fa fa-dashboard fa-fw"></i> Url Decode 解码</a>
+                    </li>
+                    <li>
+                        <a href="/tool/base32"><i class="fa fa-dashboard fa-fw"></i> Base 32 编码</a>
+                    </li>
+                    <li>
+                        <a href="/tool/base32decode"><i class="fa fa-dashboard fa-fw"></i> Base 32 解码</a>
+                    </li>
+                    <li>
+                        <a href="/tool/base64"><i class="fa fa-dashboard fa-fw"></i> Base 64 编码</a>
+                    </li>
+                    <li>
+                        <a href="/tool/base64decode"><i class="fa fa-dashboard fa-fw"></i> Base 64 解码</a>
+                    </li>
+                    <li>
+                        <a href="/tool/hex"><i class="fa fa-dashboard fa-fw"></i> Hex 十六进制编码</a>
+                    </li>
+                    <li>
+                        <a href="/tool/hexdecode"><i class="fa fa-dashboard fa-fw"></i> Hex 十六进制解码</a>
+                    </li>
+                {{/*<li>*/}}
+                {{/*<a href="/tool/ascii"><i class="fa fa-dashboard fa-fw"></i> 转 ASCII 码</a>*/}}
+                {{/*</li>*/}}
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+{{end}}

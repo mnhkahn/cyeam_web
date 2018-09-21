@@ -16,7 +16,7 @@ require (
 	github.com/mattn/go-isatty v0.0.4 // indirect
 	github.com/mattn/go-sqlite3 v1.9.0 // indirect
 	github.com/mnhkahn/asciiimg v1.0.0
-	github.com/mnhkahn/gogogo v1.0.3
+	github.com/mnhkahn/gogogo v1.0.4
 	github.com/mnhkahn/maodou v1.0.5
 	github.com/mnhkahn/peanut v1.0.3
 	github.com/mnhkahn/resume v1.0.0

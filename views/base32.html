@@ -1,0 +1,48 @@
+{{template "TOOLHEAD"}}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Base32 编码</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-6">
+            <textarea id="data-json" placeholder="在此输入..." class="form-control"
+                      style="height:100%;height: 87vh;min-height:520px;padding:10px 10px 10px 30px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
+        </div>
+        <div class="col-lg-6">
+            <pre class="language-go" id="go-struct-view" style="height:100%;height: 87vh;min-height:520px;margin: 0px;">
+            </pre>
+        </div>
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <!-- /.col-lg-6 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+    </div>
+    <!-- /.row -->
+    <div class="row">
+    </div>
+    <!-- /.row -->
+</div>
+<script type="application/javascript">
+    $('#data-json').bind('input propertychange', function () {
+        console.debug($(this).val());
+        // var json = '{"a":1}';
+        var json = $(this).val();
+        var url = "/tool/base32/exec?in0=" + json;
+        $.ajax({
+            url: url,
+            dataType: 'json',
+        }).done(function (dd) {
+            $('#go-struct-view').html(dd.out0);
+        });
+    });
+</script>
+<!-- /#page-wrapper -->
+{{template "TOOLTAIL"}}
