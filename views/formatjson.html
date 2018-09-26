@@ -35,13 +35,16 @@
         console.debug($(this).val());
         // var json = '{"a":1}';
         var json = $(this).val();
-        var url = "/tool/formatjson/exec?in0=" + json;
+        var url = "/tool/formatjson/exec";
         $.ajax({
             url: url,
             dataType: 'json',
+            method: 'post',
+            data: JSON.stringify({ "in0": json }),
         }).done(function (dd) {
-            console.debug(dd);
             $('#go-struct-view').html(dd.out0);
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            $('#go-struct-view').html(jqXHR.responseText);
         });
     });
 </script>

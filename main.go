@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"cyeam/controllers"
-	"cyeam/search"
 	"encoding/base32"
 	"encoding/base64"
 	"encoding/hex"
@@ -36,7 +35,7 @@ func main() {
 }
 
 func init() {
-	go search.InitMaodou()
+	//go search.InitMaodou()
 
 	app.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
@@ -61,7 +60,7 @@ func init() {
 	app.Handle("/.well-known/pki-validation/fileauth.htm", &app.Got{controllers.SSLVerify})
 	app.Handle("/google97ec3a9b69e1f4db.html", &app.Got{controllers.GoogleVerify})
 
-	app.Handle("/tool", &app.Got{controllers.OnlineToolHome})
+	app.Handle("/tool", &app.Got{controllers.FormatJson})
 	app.Handle("/tool/json2gostruct", &app.Got{controllers.JsonToGoStruct})
 	app.Handle("/tool/formatjson", &app.Got{controllers.FormatJson})
 	app.Handle("/tool/urlescape", &app.Got{controllers.UrlEscape})
