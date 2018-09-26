@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"cyeam/controllers"
+	"cyeam/search"
 	"encoding/base32"
 	"encoding/base64"
 	"encoding/hex"
@@ -35,7 +36,7 @@ func main() {
 }
 
 func init() {
-	//go search.InitMaodou()
+	go search.InitMaodou()
 
 	app.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
