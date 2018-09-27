@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"cyeam/controllers"
-	"cyeam/search"
 	"encoding/base32"
 	"encoding/base64"
 	"encoding/hex"
@@ -11,6 +10,8 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+
+	"github.com/mnhkahn/dmltogo"
 
 	"net"
 
@@ -36,7 +37,7 @@ func main() {
 }
 
 func init() {
-	go search.InitMaodou()
+	//go search.InitMaodou()
 
 	app.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
@@ -63,6 +64,7 @@ func init() {
 
 	app.Handle("/tool", &app.Got{controllers.FormatJson})
 	app.Handle("/tool/json2gostruct", &app.Got{controllers.JsonToGoStruct})
+	app.Handle("/tool/dml2gostruct", &app.Got{controllers.DMLToGoStruct})
 	app.Handle("/tool/formatjson", &app.Got{controllers.FormatJson})
 	app.Handle("/tool/urlescape", &app.Got{controllers.UrlEscape})
 	app.Handle("/tool/urlunescape", &app.Got{controllers.UrlUnEscape})
@@ -75,12 +77,13 @@ func init() {
 	app.Handle("/tool/ascii", &app.Got{controllers.Hex})
 	app.Handle("/tool/json2gostruct/exec", func_to_handler.NewFuncToHandler(func(data string) (string, error) {
 		var parser gojson.Parser = gojson.ParseJson
-		if output, err := gojson.Generate(bytes.NewBufferString(data), parser, "Foo", "main", []string{"json"}, false); err != nil {
+		if output, err := gojson.Generate(bytes.NewBufferString(data), parser, "Foo", "main", []string{"json"}, false, false); err != nil {
 			return "", err
 		} else {
 			return string(output), nil
 		}
 	}))
+	app.Handle("/tool/dml2gostruct/exec", func_to_handler.NewFuncToHandler(dmltogo.DmlToGo))
 	app.Handle("/tool/formatjson/exec", func_to_handler.NewFuncToHandler(func(data string) ([]byte, error) {
 		var out bytes.Buffer
 		err := json.Indent(&out, []byte(data), "", "    ")

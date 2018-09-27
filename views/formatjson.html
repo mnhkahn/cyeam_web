@@ -32,7 +32,6 @@
 </div>
 <script type="application/javascript">
     $('#data-json').bind('input propertychange', function () {
-        console.debug($(this).val());
         // var json = '{"a":1}';
         var json = $(this).val();
         var url = "/tool/formatjson/exec";
@@ -43,6 +42,9 @@
             data: JSON.stringify({ "in0": json }),
         }).done(function (dd) {
             $('#go-struct-view').html(dd.out0);
+            $('#go-struct-view').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
         }).fail(function (jqXHR, textStatus, errorThrown) {
             $('#go-struct-view').html(jqXHR.responseText);
         });

@@ -13,6 +13,11 @@ func JsonToGoStruct(c *app.Context) error {
 	return nil
 }
 
+func DMLToGoStruct(c *app.Context) error {
+	c.HTML([]string{"./views/dmltogostruct.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+	return nil
+}
+
 func FormatJson(c *app.Context) error {
 	c.HTML([]string{"./views/formatjson.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
 	return nil

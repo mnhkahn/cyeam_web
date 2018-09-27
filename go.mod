@@ -4,6 +4,7 @@ module cyeam
 require (
 	github.com/360EntSecGroup-Skylar/goreporter v0.0.0-20180902115603-df1b20f7c5d0 // indirect
 	github.com/BurntSushi/toml v0.3.1 // indirect
+	github.com/ChimeraCoder/gojson v1.0.1-0.20180818231315-fa01aa3a2088
 	github.com/PuerkitoBio/goquery v1.4.1
 	github.com/astaxie/beego v1.10.1 // indirect
 	github.com/facebookgo/inject v0.0.0-20180706035515-f23751cae28b // indirect
@@ -17,6 +18,7 @@ require (
 	github.com/mattn/go-isatty v0.0.4 // indirect
 	github.com/mattn/go-sqlite3 v1.9.0 // indirect
 	github.com/mnhkahn/asciiimg v1.0.0
+	github.com/mnhkahn/dmltogo v1.0.0 // indirect
 	github.com/mnhkahn/gogogo v1.0.5
 	github.com/mnhkahn/maodou v1.0.5
 	github.com/mnhkahn/peanut v1.0.3
@@ -28,7 +30,7 @@ require (
 	github.com/reconquest/barely v0.0.0-20160729074550-0f12e3bb2e13 // indirect
 	github.com/reconquest/loreley v0.0.0-20160708080500-2ab6b7470a54 // indirect
 	golang.org/x/crypto v0.0.0-20180830192347-182538f80094 // indirect
-	golang.org/x/net v0.0.0-20180925072008-f04abc6bdfa7 // indirect
+	golang.org/x/net v0.0.0-20180926154720-4dfa2610cdf3 // indirect
 	golang.org/x/oauth2 v0.0.0-20180821212333-d2e6202438be
 	golang.org/x/tools v0.0.0-20180831211245-7ca132754999 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
