@@ -2,36 +2,21 @@
 module cyeam
 
 require (
-	github.com/360EntSecGroup-Skylar/goreporter v0.0.0-20180902115603-df1b20f7c5d0 // indirect
 	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/ChimeraCoder/gojson v1.0.1-0.20180818231315-fa01aa3a2088
 	github.com/PuerkitoBio/goquery v1.4.1
-	github.com/astaxie/beego v1.10.1 // indirect
-	github.com/facebookgo/inject v0.0.0-20180706035515-f23751cae28b // indirect
-	github.com/facebookgo/structtag v0.0.0-20150214074306-217e25fb9691 // indirect
-	github.com/fatih/color v1.7.0 // indirect
+	github.com/franela/goblin v0.0.0-20180624194345-6af5ecb776ce // indirect
 	github.com/franela/goreq v0.0.0-20171204163338-bcd34c9993f8 // indirect
-	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b // indirect
-	github.com/json-iterator/go v1.1.5 // indirect
-	github.com/kisielk/gotool v1.0.0 // indirect
-	github.com/mattn/go-colorable v0.0.9 // indirect
-	github.com/mattn/go-isatty v0.0.4 // indirect
-	github.com/mattn/go-sqlite3 v1.9.0 // indirect
 	github.com/mnhkahn/asciiimg v1.0.0
-	github.com/mnhkahn/dmltogo v1.0.0 // indirect
+	github.com/mnhkahn/dmltogo v1.0.1
 	github.com/mnhkahn/gogogo v1.0.5
 	github.com/mnhkahn/maodou v1.0.5
 	github.com/mnhkahn/peanut v1.0.3
 	github.com/mnhkahn/resume v1.0.0
-	github.com/mnhkahn/swiftype v1.1.1
-	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
-	github.com/modern-go/reflect2 v1.0.1 // indirect
+	github.com/mnhkahn/swiftype v1.1.1 // indirect
 	github.com/patrickmn/go-cache v2.1.0+incompatible
-	github.com/reconquest/barely v0.0.0-20160729074550-0f12e3bb2e13 // indirect
-	github.com/reconquest/loreley v0.0.0-20160708080500-2ab6b7470a54 // indirect
-	golang.org/x/crypto v0.0.0-20180830192347-182538f80094 // indirect
 	golang.org/x/net v0.0.0-20180926154720-4dfa2610cdf3 // indirect
 	golang.org/x/oauth2 v0.0.0-20180821212333-d2e6202438be
-	golang.org/x/tools v0.0.0-20180831211245-7ca132754999 // indirect
+	golang.org/x/sys v0.0.0-20180926160741-c2ed4eda69e7 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 )
