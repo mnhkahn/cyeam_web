@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"cyeam/controllers"
+	"cyeam/search"
 	"encoding/base32"
 	"encoding/base64"
 	"encoding/hex"
@@ -10,6 +11,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"runtime"
 
 	"github.com/mnhkahn/dmltogo"
 
@@ -37,7 +39,9 @@ func main() {
 }
 
 func init() {
-	//go search.InitMaodou()
+	if runtime.GOOS != "darwin" {
+		go search.InitMaodou()
+	}
 
 	app.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
