@@ -35,10 +35,12 @@
         console.debug($(this).val());
         // var json = '{"a":1}';
         var json = $(this).val();
-        var url = "/tool/json2gostruct/exec?in0=" + json;
+        var url = "/tool/json2gostruct/exec";
         $.ajax({
             url: url,
             dataType: 'json',
+            method: 'post',
+            data: JSON.stringify({ "in0": json }),
         }).done(function (dd) {
             $('#go-struct-view').html(dd.out0);
             $('#go-struct-view').each(function(i, block) {
