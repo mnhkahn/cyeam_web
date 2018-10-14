@@ -7,6 +7,7 @@ require (
 	github.com/PuerkitoBio/goquery v1.4.1
 	github.com/franela/goblin v0.0.0-20180624194345-6af5ecb776ce // indirect
 	github.com/franela/goreq v0.0.0-20171204163338-bcd34c9993f8 // indirect
+	github.com/issue9/assert v0.0.0-20180725152606-9e19636c7256
 	github.com/mnhkahn/asciiimg v1.0.0
 	github.com/mnhkahn/dmltogo v1.0.2
 	github.com/mnhkahn/gogogo v1.0.6

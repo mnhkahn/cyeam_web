@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"cyeam/controllers"
 	"cyeam/search"
+	"cyeam/util"
 	"encoding/base32"
 	"encoding/base64"
 	"encoding/hex"
@@ -68,6 +69,7 @@ func init() {
 
 	app.Handle("/tool", &app.Got{controllers.FormatJson})
 	app.Handle("/tool/json2gostruct", &app.Got{controllers.JsonToGoStruct})
+	app.Handle("/tool/json2thriftstruct", &app.Got{controllers.JsonToThriftStruct})
 	app.Handle("/tool/dml2gostruct", &app.Got{controllers.DMLToGoStruct})
 	app.Handle("/tool/formatjson", &app.Got{controllers.FormatJson})
 	app.Handle("/tool/urlescape", &app.Got{controllers.UrlEscape})
@@ -88,6 +90,7 @@ func init() {
 		}
 	}))
 	app.Handle("/tool/dml2gostruct/exec", func_to_handler.NewFuncToHandler(dmltogo.DmlToGo))
+	app.Handle("/tool/jsontothriftstruct/exec", func_to_handler.NewFuncToHandler(util.JsonToThrift))
 	app.Handle("/tool/formatjson/exec", func_to_handler.NewFuncToHandler(func(data string) ([]byte, error) {
 		var out bytes.Buffer
 		err := json.Indent(&out, []byte(data), "", "    ")
