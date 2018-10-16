@@ -11,7 +11,7 @@ import (
 
 func TestJsonToThrift(t *testing.T) {
 	res, err := JsonToThrift(`{"id":1,"type":"2"}`)
-	assert.NotNil(t, err)
+	assert.Nil(t, err)
 	assert.NotEmpty(t, res)
 	logger.Info(string(res))
 }

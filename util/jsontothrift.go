@@ -7,6 +7,7 @@ import (
 	"html/template"
 	"math"
 	"reflect"
+	"regexp"
 	"sort"
 )
 
@@ -24,6 +25,24 @@ func JsonToThrift(jsonBytes string) ([]byte, error) {
 	for k, v := range mapJson {
 		ts.Fields = append(ts.Fields, &Declare{getThriftType(v), k})
 	}
+
+	// sort
+	// pretty json
+	var out bytes.Buffer
+	err = json.Indent(&out, []byte(jsonBytes), "", "    ")
+	if err != nil {
+		return nil, err
+	}
+	r, _ := regexp.Compile(`\"\w+\":`)
+	keySorts := r.FindAllString(out.String(), -1)
+	for i := 0; i < len(keySorts); i++ {
+		keySorts[i] = keySorts[i][1 : len(keySorts[i])-2]
+	}
+	sortMap := make(map[string]int, len(keySorts))
+	for i, key := range keySorts {
+		sortMap[key] = i
+	}
+	ts.SortFields = sortMap
 	sort.Sort(ts)
 
 	var buf bytes.Buffer
@@ -31,7 +50,9 @@ func JsonToThrift(jsonBytes string) ([]byte, error) {
 	tpl := template.New("clientTpl").Funcs(funcMap)
 	tpl = template.Must(tpl.Parse(thriftStructTmpl))
 	err = tpl.ExecuteTemplate(&buf, "clientTpl", ts)
-
+	if err != nil {
+		return nil, err
+	}
 	return buf.Bytes(), nil
 }
 
@@ -54,7 +75,6 @@ func getThriftType(v interface{}) string {
 		}
 		return "i64"
 	default:
-		_ = v.(int)
 		return "not support type " + reflect.ValueOf(v).Kind().String()
 	}
 }
@@ -62,6 +82,7 @@ func getThriftType(v interface{}) string {
 type ThriftStruct struct {
 	StructName string
 	Fields     []*Declare
+	SortFields map[string]int
 }
 
 func (ts *ThriftStruct) Len() int {
@@ -69,7 +90,8 @@ func (ts *ThriftStruct) Len() int {
 }
 
 func (ts *ThriftStruct) Less(i, j int) bool {
-	return ts.Fields[i].Name < ts.Fields[j].Name
+	sa, sb := ts.SortFields[ts.Fields[i].Name], ts.SortFields[ts.Fields[j].Name]
+	return sa < sb
 }
 
 func (ts *ThriftStruct) Swap(i, j int) {
@@ -96,7 +118,6 @@ var funcMap = template.FuncMap{
 
 var thriftStructTmpl = `
 struct {{.StructName}} {
-{{range $i, $field := .Fields}}
-    {{inc $i}}: required {{$field.Type}} {{$field.Name}},{{end}}
-}
+{{range $i, $field := .Fields}}	{{inc $i}}: required {{$field.Type}} {{$field.Name}},
+{{end}}}
 `
