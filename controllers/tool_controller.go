@@ -106,3 +106,8 @@ func Neitui(c *app.Context) error {
 	c.HTML([]string{"./views/neitui.html", "./views/head.html", "./views/tail.html"}, nil)
 	return nil
 }
+
+func Favicon(c *app.Context) error {
+	c.HTML([]string{"./static/c32.ico"}, nil)
+	return nil
+}

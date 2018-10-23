@@ -53,6 +53,7 @@ func init() {
 	app.Handle("/jos_guid.txt", &app.Got{controllers.JDVerify})
 	app.Handle("/douban/movie", &app.Got{controllers.DoubanMovie})
 
+	app.Handle("/favicon.ico", &app.Got{controllers.Favicon})
 	app.Handle("/toolbox", &app.Got{controllers.ToolBox})
 	app.Handle("/ascii", &app.Got{controllers.Ascii})
 	app.Handle("/robots.txt", &app.Got{controllers.Robots})
