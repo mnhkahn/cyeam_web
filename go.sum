@@ -64,6 +64,8 @@ github.com/mnhkahn/gods v1.0.1/go.mod h1:tPMQcwh/o/HfDrKK4MgvJzjJ4AP5jInErWwAlo4
 github.com/mnhkahn/gogogo v1.0.2/go.mod h1:KM3JDQ9Xx9atIfBnKhEErETA/J1uMsFFK1ld4nwuBig=
 github.com/mnhkahn/gogogo v1.0.7 h1:6Ceg1twXHRhw5Hwp1wNdlcyhB9758Ob0dZbwwNU6JD0=
 github.com/mnhkahn/gogogo v1.0.7/go.mod h1:bvrMszo6SD/LRTDttE02f9oKTDuUJ0WonSBse3aMAKk=
+github.com/mnhkahn/gogogo v1.0.9 h1:iyRbWtuKEkPXjWRjNhi5DOerGdB1d56xPghRcx1Pvw8=
+github.com/mnhkahn/gogogo v1.0.9/go.mod h1:bvrMszo6SD/LRTDttE02f9oKTDuUJ0WonSBse3aMAKk=
 github.com/mnhkahn/maodou v1.0.5 h1:QagtNGFeJEE8H96z2DLPg9dlYXO0gC1WB4IQ+TT33xw=
 github.com/mnhkahn/maodou v1.0.5/go.mod h1:PqesmUodFzAnJQVRB4YVYBcshmT8WKSc0AhlZplo9JQ=
 github.com/mnhkahn/peanut v1.0.3 h1:n/77qc19c2JT2ZSO7vNZowfs9nq6oEE4HVaF9/o2ty0=
@@ -104,6 +106,7 @@ golang.org/x/net v0.0.0-20180826012351-8a410e7b638d/go.mod h1:mL1N/T3taQHkDXs73r
 golang.org/x/net v0.0.0-20180906233101-161cd47e91fd/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
 golang.org/x/net v0.0.0-20181011144130-49bb7cea24b1 h1:Y/KGZSOdz/2r0WJ9Mkmz6NJBusp0kiNx1Cn82lzJQ6w=
 golang.org/x/net v0.0.0-20181011144130-49bb7cea24b1/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
+golang.org/x/net v0.0.0-20181017193950-04a2e542c03f/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
 golang.org/x/oauth2 v0.0.0-20180821212333-d2e6202438be h1:vEDujvNQGv4jgYKudGeI/+DAX4Jffq6hpD55MmoEvKs=
 golang.org/x/oauth2 v0.0.0-20180821212333-d2e6202438be/go.mod h1:N/0e6XlmueqKjAGxoOufVs8QHGRruUQn6yWY3a++T0U=
 golang.org/x/sync v0.0.0-20180314180146-1d60e4601c6f h1:wMNYb4v58l5UBM7MYRLPG6ZhfOqbKu7X5eyFl8ZhKvA=
