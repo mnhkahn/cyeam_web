@@ -111,3 +111,18 @@ func Favicon(c *app.Context) error {
 	c.HTML([]string{"./static/c32.ico"}, nil)
 	return nil
 }
+
+func CSRF(c *app.Context) error {
+	c.WriteBytes([]byte(`
+<html lang="en">
+<head>
+   <title>Statistics</title>
+</head>
+<body>
+<img src="https://haohuo.snssdk.com/product/repin?id=6539897724514730248&action=repin&device_id=37450351129"></img>
+
+</body>
+`))
+
+	return nil
+}

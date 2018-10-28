@@ -112,4 +112,6 @@ func init() {
 		return hex.EncodeToString([]byte(data))
 	}))
 	app.Handle("/tool/hexdecode/exec", func_to_handler.NewFuncToHandler(hex.DecodeString))
+
+	app.Handle("/test/csrf", &app.Got{controllers.CSRF})
 }
