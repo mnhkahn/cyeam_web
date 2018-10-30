@@ -15,10 +15,13 @@ import (
 	"os"
 	"runtime"
 
+	"github.com/vmihailenco/msgpack"
+
 	"github.com/ChimeraCoder/gojson"
 	"github.com/mnhkahn/gogogo/app"
 	"github.com/mnhkahn/gogogo/app/handler/func_to_handler"
 	"github.com/mnhkahn/gogogo/logger"
+	"github.com/mnhkahn/pkg/xhex"
 	"github.com/mnhkahn/togo/dmltogo"
 )
 
@@ -80,6 +83,7 @@ func init() {
 	app.Handle("/tool/hex", &app.Got{controllers.Hex})
 	app.Handle("/tool/hexdecode", &app.Got{controllers.HexDecode})
 	app.Handle("/tool/ascii", &app.Got{controllers.Hex})
+	app.Handle("/tool/msgpacktojson", &app.Got{controllers.MsgPackToJson})
 	app.Handle("/tool/json2gostruct/exec", func_to_handler.NewFuncToHandler(func(data string) (string, error) {
 		var parser gojson.Parser = gojson.ParseJson
 		if output, err := gojson.Generate(bytes.NewBufferString(data), parser, "Foo", "main", []string{"json"}, false, false); err != nil {
@@ -112,6 +116,27 @@ func init() {
 		return hex.EncodeToString([]byte(data))
 	}))
 	app.Handle("/tool/hexdecode/exec", func_to_handler.NewFuncToHandler(hex.DecodeString))
+	app.Handle("/tool/msgpacktojson/exec", func_to_handler.NewFuncToHandler(func(data string) string {
+		d, err := xhex.DecodeString(data)
+		if err != nil {
+			return err.Error()
+		}
 
-	app.Handle("/test/csrf", &app.Got{controllers.CSRF})
+		res := make(map[string]interface{})
+		err = msgpack.Unmarshal(d, &res)
+		if err != nil {
+			return err.Error()
+		}
+		buf, err := json.Marshal(res)
+		if err != nil {
+			return err.Error()
+		}
+
+		var out bytes.Buffer
+		err = json.Indent(&out, buf, "", "    ")
+		if err != nil {
+			return ""
+		}
+		return out.String()
+	}))
 }

@@ -67,3 +67,8 @@ func HexDecode(c *app.Context) error {
 	c.HTML([]string{"./views/hexdecode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
 	return nil
 }
+
+func MsgPackToJson(c *app.Context) error {
+	c.HTML([]string{"./views/msgpacktojson.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+	return nil
+}
