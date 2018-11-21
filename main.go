@@ -14,6 +14,7 @@ import (
 	"net/url"
 	"os"
 	"runtime"
+	"strings"
 
 	"github.com/vmihailenco/msgpack"
 
@@ -84,6 +85,7 @@ func init() {
 	app.Handle("/tool/hexdecode", &app.Got{controllers.HexDecode})
 	app.Handle("/tool/ascii", &app.Got{controllers.Hex})
 	app.Handle("/tool/msgpacktojson", &app.Got{controllers.MsgPackToJson})
+	app.Handle("/tool/jsonpack", &app.Got{controllers.JsonPack})
 	app.Handle("/tool/json2gostruct/exec", func_to_handler.NewFuncToHandler(func(data string) (string, error) {
 		var parser gojson.Parser = gojson.ParseJson
 		if output, err := gojson.Generate(bytes.NewBufferString(data), parser, "Foo", "main", []string{"json"}, false, false); err != nil {
@@ -138,5 +140,10 @@ func init() {
 			return ""
 		}
 		return out.String()
+	}))
+	app.Handle("/tool/jsonpack/exec", func_to_handler.NewFuncToHandler(func(data string) string {
+		out := strings.Replace(data, " ", "", -1)
+		out = strings.Replace(out, "\n", "", -1)
+		return out
 	}))
 }
