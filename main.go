@@ -16,14 +16,13 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/vmihailenco/msgpack"
-
 	"github.com/ChimeraCoder/gojson"
 	"github.com/mnhkahn/gogogo/app"
 	"github.com/mnhkahn/gogogo/app/handler/func_to_handler"
 	"github.com/mnhkahn/gogogo/logger"
 	"github.com/mnhkahn/pkg/xhex"
 	"github.com/mnhkahn/togo/dmltogo"
+	"github.com/vmihailenco/msgpack"
 )
 
 func main() {
@@ -88,7 +87,7 @@ func init() {
 	app.Handle("/tool/jsonpack", &app.Got{controllers.JsonPack})
 	app.Handle("/tool/json2gostruct/exec", func_to_handler.NewFuncToHandler(func(data string) (string, error) {
 		var parser gojson.Parser = gojson.ParseJson
-		if output, err := gojson.Generate(bytes.NewBufferString(data), parser, "Foo", "main", []string{"json"}, false, false); err != nil {
+		if output, err := gojson.Generate(bytes.NewBufferString(data), parser, "Foo", "dto", []string{"json"}, true, true); err != nil {
 			return "", err
 		} else {
 			return string(output), nil
