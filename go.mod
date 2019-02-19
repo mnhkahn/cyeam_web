@@ -16,7 +16,7 @@ require (
 	github.com/mattn/go-sqlite3 v1.10.0 // indirect
 	github.com/mnhkahn/asciiimg v1.0.0
 	github.com/mnhkahn/gogogo v1.0.9
-	github.com/mnhkahn/maodou v1.0.5
+	github.com/mnhkahn/maodou v1.0.6
 	github.com/mnhkahn/peanut v1.0.3
 	github.com/mnhkahn/pkg v0.0.0-20181030083427-71a5c5c3f3ba
 	github.com/mnhkahn/resume v1.0.0

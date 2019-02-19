@@ -71,11 +71,12 @@ github.com/mnhkahn/asciiimg v1.0.0/go.mod h1:cyhnyOQd3zcogd2uSxYdKJQOj2ReEX7/pXm
 github.com/mnhkahn/gods v1.0.1 h1:Hiz/zIpgPfOCzt0rCamnZ+pwAhrYCZGDsuQnT0tzArk=
 github.com/mnhkahn/gods v1.0.1/go.mod h1:tPMQcwh/o/HfDrKK4MgvJzjJ4AP5jInErWwAlo4gvnA=
 github.com/mnhkahn/gogogo v1.0.2/go.mod h1:KM3JDQ9Xx9atIfBnKhEErETA/J1uMsFFK1ld4nwuBig=
+github.com/mnhkahn/gogogo v1.0.3/go.mod h1:KM3JDQ9Xx9atIfBnKhEErETA/J1uMsFFK1ld4nwuBig=
 github.com/mnhkahn/gogogo v1.0.7/go.mod h1:bvrMszo6SD/LRTDttE02f9oKTDuUJ0WonSBse3aMAKk=
 github.com/mnhkahn/gogogo v1.0.9 h1:iyRbWtuKEkPXjWRjNhi5DOerGdB1d56xPghRcx1Pvw8=
 github.com/mnhkahn/gogogo v1.0.9/go.mod h1:bvrMszo6SD/LRTDttE02f9oKTDuUJ0WonSBse3aMAKk=
-github.com/mnhkahn/maodou v1.0.5 h1:QagtNGFeJEE8H96z2DLPg9dlYXO0gC1WB4IQ+TT33xw=
-github.com/mnhkahn/maodou v1.0.5/go.mod h1:PqesmUodFzAnJQVRB4YVYBcshmT8WKSc0AhlZplo9JQ=
+github.com/mnhkahn/maodou v1.0.6 h1:ZTtFxWa12T0UvGhUSSlLbBgUZS5ZizjoViiOx/N83D8=
+github.com/mnhkahn/maodou v1.0.6/go.mod h1:JkPkoRPhkOSoLTEglW+DpVnh1VXpSdhv4w5c7cPmovs=
 github.com/mnhkahn/peanut v1.0.3 h1:n/77qc19c2JT2ZSO7vNZowfs9nq6oEE4HVaF9/o2ty0=
 github.com/mnhkahn/peanut v1.0.3/go.mod h1:gvR73OkzzLVYD3Cu3CPBIocG16RJOAHz+PGhsl+kebM=
 github.com/mnhkahn/pkg v0.0.0-20181030083427-71a5c5c3f3ba h1:XceOSsGs3ejGk7uzZomNuTcIwVrjSlWYcpFrT3CCG9E=

@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"cyeam/controllers"
+	"cyeam/search"
 	"cyeam/util"
 	"encoding/base32"
 	"encoding/base64"
@@ -12,6 +13,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"runtime"
 	"strings"
 
 	"github.com/ChimeraCoder/gojson"
@@ -39,9 +41,9 @@ func main() {
 }
 
 func init() {
-	//if runtime.GOOS != "darwin" {
-	//	go search.InitMaodou()
-	//}
+	if runtime.GOOS != "darwin" {
+		go search.InitMaodou()
+	}
 
 	app.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
