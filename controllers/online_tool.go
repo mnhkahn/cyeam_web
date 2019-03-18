@@ -13,6 +13,11 @@ func JsonToGoStruct(c *app.Context) error {
 	return nil
 }
 
+func XMLToGoStruct(c *app.Context) error {
+	c.HTML([]string{"./views/xmltogostruct.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+	return nil
+}
+
 func JsonToThriftStruct(c *app.Context) error {
 	c.HTML([]string{"./views/jsontothriftstruct.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
 	return nil

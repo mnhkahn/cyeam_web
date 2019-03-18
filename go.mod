@@ -14,6 +14,7 @@ require (
 	github.com/issue9/assert v1.1.0
 	github.com/jimsmart/schema v0.0.0-20181113191328-8d0563922e25 // indirect
 	github.com/mattn/go-sqlite3 v1.10.0 // indirect
+	github.com/miku/zek v0.1.7 // indirect
 	github.com/mnhkahn/asciiimg v1.0.0
 	github.com/mnhkahn/gogogo v1.0.9
 	github.com/mnhkahn/maodou v1.0.6

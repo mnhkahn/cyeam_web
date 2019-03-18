@@ -9,6 +9,7 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"encoding/json"
+	"go/format"
 	"net"
 	"net/http"
 	"net/url"
@@ -17,6 +18,7 @@ import (
 	"strings"
 
 	"github.com/ChimeraCoder/gojson"
+	"github.com/miku/zek"
 	"github.com/mnhkahn/gogogo/app"
 	"github.com/mnhkahn/gogogo/app/handler/func_to_handler"
 	"github.com/mnhkahn/gogogo/logger"
@@ -71,6 +73,7 @@ func init() {
 
 	app.Handle("/tool", &app.Got{controllers.FormatJson})
 	app.Handle("/tool/json2gostruct", &app.Got{controllers.JsonToGoStruct})
+	app.Handle("/tool/xml2gostruct", &app.Got{controllers.XMLToGoStruct})
 	app.Handle("/tool/json2thriftstruct", &app.Got{controllers.JsonToThriftStruct})
 	app.Handle("/tool/dml2gostruct", &app.Got{controllers.DMLToGoStruct})
 	app.Handle("/tool/formatjson", &app.Got{controllers.FormatJson})
@@ -92,6 +95,25 @@ func init() {
 		} else {
 			return string(output), nil
 		}
+	}))
+	app.Handle("/tool/xml2gostruct/exec", func_to_handler.NewFuncToHandler(func(data string) (string, error) {
+		root := new(zek.Node)
+		if _, err := root.ReadFrom(strings.NewReader(data)); err != nil {
+			return err.Error(), err
+		}
+		var buf bytes.Buffer
+		sw := zek.NewStructWriter(&buf)
+		if err := sw.WriteNode(root); err != nil {
+			return err.Error(), err
+		}
+
+		var out []byte
+		var err error
+		if out, err = format.Source(buf.Bytes()); err != nil {
+			return err.Error(), err
+
+		}
+		return string(out), nil
 	}))
 	app.Handle("/tool/dml2gostruct/exec", func_to_handler.NewFuncToHandler(dmltogo.DmlToGo))
 	app.Handle("/tool/jsontothriftstruct/exec", func_to_handler.NewFuncToHandler(util.JsonToThrift))
