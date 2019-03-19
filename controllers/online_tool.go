@@ -33,6 +33,11 @@ func FormatJson(c *app.Context) error {
 	return nil
 }
 
+func FormatXML(c *app.Context) error {
+	c.HTML([]string{"./views/formatxml.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+	return nil
+}
+
 func UrlEscape(c *app.Context) error {
 	c.HTML([]string{"./views/urlescape.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
 	return nil

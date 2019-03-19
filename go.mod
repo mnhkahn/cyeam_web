@@ -14,7 +14,7 @@ require (
 	github.com/issue9/assert v1.1.0
 	github.com/jimsmart/schema v0.0.0-20181113191328-8d0563922e25 // indirect
 	github.com/mattn/go-sqlite3 v1.10.0 // indirect
-	github.com/miku/zek v0.1.7 // indirect
+	github.com/miku/zek v0.1.7
 	github.com/mnhkahn/asciiimg v1.0.0
 	github.com/mnhkahn/gogogo v1.0.9
 	github.com/mnhkahn/maodou v1.0.6
@@ -30,6 +30,7 @@ require (
 	github.com/smartystreets/goconvey v0.0.0-20181108003508-044398e4856c // indirect
 	github.com/stretchr/testify v1.3.0 // indirect
 	github.com/vmihailenco/msgpack v4.0.1+incompatible
+	github.com/yosssi/gohtml v0.0.0-20190128141317-9b7db94d32d9
 	golang.org/x/crypto v0.0.0-20190103213133-ff983b9c42bc // indirect
 	golang.org/x/net v0.0.0-20190119204137-ed066c81e75e // indirect
 	golang.org/x/oauth2 v0.0.0-20190115181402-5dab4167f31c

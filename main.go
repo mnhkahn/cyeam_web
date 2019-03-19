@@ -10,12 +10,15 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"go/format"
+	"html"
 	"net"
 	"net/http"
 	"net/url"
 	"os"
 	"runtime"
 	"strings"
+
+	"github.com/yosssi/gohtml"
 
 	"github.com/ChimeraCoder/gojson"
 	"github.com/miku/zek"
@@ -77,6 +80,7 @@ func init() {
 	app.Handle("/tool/json2thriftstruct", &app.Got{controllers.JsonToThriftStruct})
 	app.Handle("/tool/dml2gostruct", &app.Got{controllers.DMLToGoStruct})
 	app.Handle("/tool/formatjson", &app.Got{controllers.FormatJson})
+	app.Handle("/tool/formatxml", &app.Got{controllers.FormatXML})
 	app.Handle("/tool/urlescape", &app.Got{controllers.UrlEscape})
 	app.Handle("/tool/urlunescape", &app.Got{controllers.UrlUnEscape})
 	app.Handle("/tool/base32", &app.Got{controllers.Base32})
@@ -124,6 +128,10 @@ func init() {
 			return nil, err
 		}
 		return out.Bytes(), nil
+	}))
+	app.Handle("/tool/formatxml/exec", func_to_handler.NewFuncToHandler(func(data string) ([]byte, error) {
+		x := html.EscapeString(gohtml.FormatWithLineNo(data))
+		return []byte(x), nil
 	}))
 	app.Handle("/tool/urlescape/exec", func_to_handler.NewFuncToHandler(url.QueryEscape))
 	app.Handle("/tool/urlunescape/exec", func_to_handler.NewFuncToHandler(url.QueryUnescape))
