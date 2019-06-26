@@ -111,3 +111,8 @@ func Favicon(c *app.Context) error {
 	c.HTML([]string{"./static/c32.ico"}, nil)
 	return nil
 }
+
+func Ads(c *app.Context) error {
+	c.WriteString("google.com, pub-1651120361108148, DIRECT, f08c47fec0942fa0")
+	return nil
+}

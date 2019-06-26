@@ -62,6 +62,7 @@ func init() {
 	app.Handle("/douban/movie", &app.Got{controllers.DoubanMovie})
 
 	app.Handle("/favicon.ico", &app.Got{controllers.Favicon})
+	app.Handle("/ads.txt", &app.Got{controllers.Ads})
 	app.Handle("/toolbox", &app.Got{controllers.ToolBox})
 	app.Handle("/ascii", &app.Got{controllers.Ascii})
 	app.Handle("/robots.txt", &app.Got{controllers.Robots})
