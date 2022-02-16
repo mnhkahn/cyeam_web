@@ -177,5 +177,4 @@ func init() {
 		return out
 	}))
 
-	app.Handle("/job", &app.Got{controllers.Job})
 }
