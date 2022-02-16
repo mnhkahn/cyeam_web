@@ -104,6 +104,6 @@ func DoubanMovie(c *app.Context) error {
 }
 
 func Job(c *app.Context) error {
-	c.HTML([]string{"./static/job.html"}, nil)
+	c.HTML([]string{"./static/neitui.html"}, nil)
 	return nil
 }
