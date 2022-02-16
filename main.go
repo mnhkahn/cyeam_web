@@ -176,4 +176,6 @@ func init() {
 		out = strings.Replace(out, "\n", "", -1)
 		return out
 	}))
+
+	app.Handle("/job", &app.Got{controllers.Job})
 }

@@ -102,3 +102,8 @@ func DoubanMovie(c *app.Context) error {
 	c.JSON(models.Douban(name))
 	return nil
 }
+
+func Job(c *app.Context) error {
+	c.HTML([]string{"./static/job.html"}, nil)
+	return nil
+}
