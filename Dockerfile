@@ -1,6 +1,6 @@
 FROM golang:latest as app-builder
 WORKDIR /go/src/app
-COPY . .
+COPY * ./
 RUN echo "Cache break counter: 7"
 # Static build required so that we can safely copy the binary over.
 # `-tags timetzdata` embeds zone info from the "time/tzdata" package.
@@ -12,9 +12,6 @@ RUN ls -al
 FROM scratch
 # the test program:
 COPY --from=app-builder /go/bin/cyeam /cyeam
-COPY --from=app-builder /static /
-COPY --from=app-builder /templates /
-COPY --from=app-builder /views /
 
 # the tls certificates:
 # NB: this pulls directly from the upstream image, which already has ca-certificates:
