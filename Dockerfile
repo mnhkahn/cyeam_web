@@ -22,6 +22,9 @@ COPY ./views/. .
 WORKDIR /static
 COPY ./static/. .
 
+WORKDIR /templates
+COPY ./templates/. .
+
 WORKDIR /
 
 #COPY --from=0 /go/src/app/views/ .
