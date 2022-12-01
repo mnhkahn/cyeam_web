@@ -37,7 +37,7 @@ func main() {
 
 	str, _ := os.Getwd()
 	logger.Info(str)
-	err := filepath.Walk(str, func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk("/views", func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			fmt.Println(err)
 			return err
