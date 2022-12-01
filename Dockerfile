@@ -20,7 +20,7 @@ COPY --from=app-builder /go/bin/cyeam /go/src/app/cyeam
 # the tls certificates:
 # NB: this pulls directly from the upstream image, which already has ca-certificates:
 COPY --from=alpine:latest /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-COPY --from=0 /go/src/app/views/ /go/src/app/
+COPY --from=0 /go/src/app/views/ /go/src/app/views/
 
 CMD ["/go/src/app/cyeam"]
 
