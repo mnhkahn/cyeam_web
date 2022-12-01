@@ -2,7 +2,7 @@ FROM golang:latest as app-builder
 WORKDIR /go/src/app
 COPY . .
 #COPY ./static/ /go/src/app/static
-COPY ./views .
+COPY ./views/index.html .
 #COPY ./templates /go/src/app/templates
 RUN ls -al /go/src/app/
 
