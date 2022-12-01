@@ -5,8 +5,10 @@ RUN echo "Cache break counter: 7"
 # Static build required so that we can safely copy the binary over.
 # `-tags timetzdata` embeds zone info from the "time/tzdata" package.
 RUN CGO_ENABLED=0 go install -ldflags '-extldflags "-static"' -tags timetzdata ./...
-CMD ["pwd"]
-CMD ["ls -al"]
+
+RUN pwd
+RUN ls -al
+
 FROM scratch
 # the test program:
 COPY --from=app-builder /go/bin/cyeam /cyeam
