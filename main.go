@@ -33,6 +33,9 @@ func main() {
 		port = "5000"
 	}
 
+	str, _ := os.Getwd()
+	logger.Info(str)
+
 	l, err := net.Listen("tcp", ":"+port)
 	if err != nil {
 		logger.Errorf("Listen: %v", err)
