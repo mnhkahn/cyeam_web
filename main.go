@@ -8,6 +8,7 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"encoding/json"
+	"fmt"
 	"github.com/ChimeraCoder/gojson"
 	"github.com/miku/zek"
 	"github.com/mnhkahn/gogogo/app"
@@ -23,6 +24,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -35,6 +37,17 @@ func main() {
 
 	str, _ := os.Getwd()
 	logger.Info(str)
+	err := filepath.Walk(str, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			fmt.Println(err)
+			return err
+		}
+		fmt.Printf("dir: %v: name: %s\n", info.IsDir(), path)
+		return nil
+	})
+	if err != nil {
+		fmt.Println(err)
+	}
 
 	l, err := net.Listen("tcp", ":"+port)
 	if err != nil {
