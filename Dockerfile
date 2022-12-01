@@ -1,7 +1,6 @@
 FROM golang:latest as app-builder
 WORKDIR /go/src/app
 COPY . .
-COPY --from=app-builder . /go/src/app/
 #COPY ./static/ /go/src/app/static
 #COPY ./views /go/src/app/views
 #COPY ./templates /go/src/app/templates
