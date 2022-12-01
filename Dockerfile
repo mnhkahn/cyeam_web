@@ -1,11 +1,6 @@
 FROM golang:latest as app-builder
 WORKDIR /go/src/app
 COPY . .
-#COPY ./static/ /go/src/app/static
-COPY ./views .
-COPY ./views/index.html .
-#COPY ./templates /go/src/app/templates
-RUN ls -al /go/src/app/
 
 RUN echo "Cache break counter: 7"
 # Static build required so that we can safely copy the binary over.
@@ -16,11 +11,13 @@ RUN pwd
 
 FROM scratch
 # the test program:
-COPY --from=app-builder /go/bin/cyeam /go/src/app/cyeam
+COPY --from=app-builder /go/bin/cyeam /cyeam
 # the tls certificates:
 # NB: this pulls directly from the upstream image, which already has ca-certificates:
 COPY --from=alpine:latest /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=0 /go/src/app/views/ /go/src/app/views/
+COPY --from=0 /go/src/app/static/ /go/src/app/static/
+COPY --from=0 /go/src/app/templates/ /go/src/app/templates/
 
-CMD ["/go/src/app/cyeam"]
+CMD ["/cyeam"]
 
