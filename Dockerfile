@@ -1,6 +1,7 @@
 FROM golang:latest as app-builder
 WORKDIR /go/src/app
 COPY . .
+
 RUN echo "Cache break counter: 7"
 # Static build required so that we can safely copy the binary over.
 # `-tags timetzdata` embeds zone info from the "time/tzdata" package.
@@ -17,9 +18,9 @@ COPY --from=alpine:latest /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 WORKDIR /
 COPY . .
-#COPY --from=0 /go/src/app/views /
-#COPY --from=0 /go/src/app/static/ /static/
-#COPY --from=0 /go/src/app/templates/ /templates/
+COPY --from=0 /go/src/app/views /
+COPY --from=0 /go/src/app/static/ /static/
+COPY --from=0 /go/src/app/templates/ /templates/
 
 CMD ["/cyeam"]
 
