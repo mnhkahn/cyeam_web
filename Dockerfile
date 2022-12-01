@@ -1,9 +1,10 @@
 FROM golang:latest as app-builder
 WORKDIR /go/src/app
 COPY . .
-COPY ./static /go/src/app/static
-COPY ./views /go/src/app/views
-COPY ./templates /go/src/app/templates
+COPY --from=app-builder . /go/src/app/
+#COPY ./static/ /go/src/app/static
+#COPY ./views /go/src/app/views
+#COPY ./templates /go/src/app/templates
 RUN ls -al /go/src/app/
 
 RUN echo "Cache break counter: 7"
