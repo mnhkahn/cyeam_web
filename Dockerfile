@@ -12,6 +12,10 @@ RUN ls -al
 FROM scratch
 # the test program:
 COPY --from=app-builder /go/bin/cyeam /cyeam
+COPY --from=app-builder /static /
+COPY --from=app-builder /templates /
+COPY --from=app-builder /views /
+
 # the tls certificates:
 # NB: this pulls directly from the upstream image, which already has ca-certificates:
 COPY --from=alpine:latest /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
