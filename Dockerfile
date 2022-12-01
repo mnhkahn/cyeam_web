@@ -16,9 +16,9 @@ COPY --from=app-builder /go/bin/cyeam /cyeam
 # NB: this pulls directly from the upstream image, which already has ca-certificates:
 COPY --from=alpine:latest /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
-WORKDIR /
+WORKDIR /views
 COPY . .
-RUN mkdir -p /go/src/app/views/
+RUN #mkdir -p /go/src/app/views/
 COPY --from=0 /go/src/app/views/ /
 COPY --from=0 /go/src/app/static/ /static/
 COPY --from=0 /go/src/app/templates/ /templates/
