@@ -2,6 +2,8 @@ FROM golang:latest as app-builder
 WORKDIR /go/src/app
 COPY . .
 COPY /static ./
+COPY /views ./
+COPY /templates ./
 
 RUN echo "Cache break counter: 7"
 # Static build required so that we can safely copy the binary over.
