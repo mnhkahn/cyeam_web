@@ -4,6 +4,7 @@ COPY . .
 COPY ./static /static
 COPY ./views /views
 COPY ./templates /templates
+RUN ls -al /
 
 RUN echo "Cache break counter: 7"
 # Static build required so that we can safely copy the binary over.
