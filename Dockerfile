@@ -18,7 +18,7 @@ COPY --from=alpine:latest /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 WORKDIR /
 COPY . .
-COPY --from=0 /go/src/app/views /views/
+COPY --from=0 /go/src/app/views/ /
 COPY --from=0 /go/src/app/static/ /static/
 COPY --from=0 /go/src/app/templates/ /templates/
 
