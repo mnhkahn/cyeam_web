@@ -17,10 +17,10 @@ FROM scratch
 # the test program:
 COPY --from=app-builder /go/bin/cyeam /cyeam
 
+RUN ls -al /
+
 # the tls certificates:
 # NB: this pulls directly from the upstream image, which already has ca-certificates:
 COPY --from=alpine:latest /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
-
-RUN ls -al /
 
 CMD ["/cyeam"]
