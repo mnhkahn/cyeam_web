@@ -1,6 +1,8 @@
 // +heroku goVersion go1.11
 module cyeam
 
+go 1.16
+
 require (
 	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/ChimeraCoder/gojson v1.0.1-0.20180818231315-fa01aa3a2088

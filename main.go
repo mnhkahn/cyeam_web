@@ -3,23 +3,11 @@ package main
 import (
 	"bytes"
 	"cyeam/controllers"
-	"cyeam/search"
 	"cyeam/util"
 	"encoding/base32"
 	"encoding/base64"
 	"encoding/hex"
 	"encoding/json"
-	"go/format"
-	"html"
-	"net"
-	"net/http"
-	"net/url"
-	"os"
-	"runtime"
-	"strings"
-
-	"github.com/yosssi/gohtml"
-
 	"github.com/ChimeraCoder/gojson"
 	"github.com/miku/zek"
 	"github.com/mnhkahn/gogogo/app"
@@ -28,6 +16,14 @@ import (
 	"github.com/mnhkahn/pkg/xhex"
 	"github.com/mnhkahn/togo/dmltogo"
 	"github.com/vmihailenco/msgpack"
+	"github.com/yosssi/gohtml"
+	"go/format"
+	"html"
+	"net"
+	"net/http"
+	"net/url"
+	"os"
+	"strings"
 )
 
 func main() {
@@ -46,10 +42,6 @@ func main() {
 }
 
 func init() {
-	if runtime.GOOS != "darwin" {
-		go search.InitMaodou()
-	}
-
 	app.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
 	app.Handle("/", &app.Got{controllers.Index})
