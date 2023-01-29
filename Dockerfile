@@ -27,9 +27,5 @@ COPY ./templates/. .
 
 WORKDIR /
 
-#COPY --from=0 /go/src/app/views/ .
-#COPY --from=0 /go/src/app/static/ ../static/
-#COPY --from=0 /go/src/app/templates/ ../templates/
-
 CMD ["/cyeam"]
 
