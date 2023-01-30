@@ -9,6 +9,15 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"go/format"
+	"html"
+	"net"
+	"net/http"
+	"net/url"
+	"os"
+	"path/filepath"
+	"strings"
+
 	"github.com/ChimeraCoder/gojson"
 	"github.com/miku/zek"
 	"github.com/mnhkahn/gogogo/app"
@@ -18,14 +27,6 @@ import (
 	"github.com/mnhkahn/togo/dmltogo"
 	"github.com/vmihailenco/msgpack"
 	"github.com/yosssi/gohtml"
-	"go/format"
-	"html"
-	"net"
-	"net/http"
-	"net/url"
-	"os"
-	"path/filepath"
-	"strings"
 )
 
 func main() {
@@ -60,7 +61,8 @@ func main() {
 func init() {
 	app.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
-	app.Handle("/", &app.Got{controllers.Index})
+	// app.Handle("/", &app.Got{controllers.Index})
+	app.Handle("/", &app.Got{controllers.ToolBox})
 	app.Handle("/bing", &app.Got{controllers.Bing})
 	app.Handle("/s", &app.Got{controllers.Search})
 	app.Handle("/t", &app.Got{controllers.SearchView})
