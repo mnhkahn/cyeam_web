@@ -23,6 +23,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    </script>Í
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({
@@ -34,33 +35,33 @@
 
 <body>
 
-{{template "HEAD"}}
+    {{template "HEAD"}}
 
-<!-- Page Content -->
-<div class="container">
+    <!-- Page Content -->
+    <div class="container">
 
-    <!-- Jumbotron Header -->
-    <header class="jumbotron hero-spacer">
-        <h2>Cyeam</h2>
-        <p>大家好，我是一个 Go 语言爱好者，这个网站就是基于 Go 开发。我在我的个人网站记录了一些 Go 语言的学习历程，希望对大家有帮助。</p>
-        <p>长期招人，不管是哪个方向的，可以给我<a href="/neitui">发简历</a>。</p>
-        <div class="row">
-            <div class="col-lg-3">
-                <a class="btn btn-primary btn-large" href="//blog.cyeam.com">进入个人博客</a>
-            </div>
-            <div class="col-lg-6">
-                {{/*<form style="float: left" class="form-inline" role="form" action="/t" method="GET">*/}}
-                    {{/*<div class="input-group">*/}}
-                        {{/*<input type="text" class="form-control" name="t" id="t" placeholder="Golang 优化之路">*/}}
-                        {{/*<span class="input-group-btn">*/}}
-                                    {{/*<button class="btn btn-default" type="submit">搜索</button>*/}}
+        <!-- Jumbotron Header -->
+        <header class="jumbotron hero-spacer">
+            <h2>Cyeam</h2>
+            <p>大家好，我是一个 Go 语言爱好者，这个网站就是基于 Go 开发。我在我的个人网站记录了一些 Go 语言的学习历程，希望对大家有帮助。</p>
+            <p>长期招人，不管是哪个方向的，可以给我<a href="/neitui">发简历</a>。</p>
+            <div class="row">
+                <div class="col-lg-3">
+                    <a class="btn btn-primary btn-large" href="//blog.cyeam.com">进入个人博客</a>
+                </div>
+                <div class="col-lg-6">
+                    {{/*<form style="float: left" class="form-inline" role="form" action="/t" method="GET">*/}}
+                        {{/*<div class="input-group">*/}}
+                            {{/*<input type="text" class="form-control" name="t" id="t" placeholder="Golang 优化之路">*/}}
+                            {{/*<span class="input-group-btn">*/}}
+                                {{/*<button class="btn btn-default" type="submit">搜索</button>*/}}
                                 {{/*</span>*/}}
-                        {{/*</input>*/}}
-                    {{/*</div>*/}}
-                    {{/*<!-- /input-group -->*/}}
-                {{/*</form>*/}}
+                            {{/*</input>*/}}
+                            {{/*</div>*/}}
+                        {{/*<!-- /input-group -->*/}}
+                        {{/*</form>*/}}
                     <script>
-                        (function() {
+                        (function () {
                             var cx = 'partner-pub-1651120361108148:8525397759';
                             var gcse = document.createElement('script');
                             gcse.type = 'text/javascript';
@@ -71,59 +72,60 @@
                         })();
                     </script>
                     <gcse:searchbox-only></gcse:searchbox-only>
-            </pre>
-            </div>
-        </div>
-
-    </header>
-
-    <hr>
-
-    <!-- Title -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h3>最近文章：</h3>
-        </div>
-    </div>
-    <!-- /.row -->
-
-    <!-- Page Features -->
-    <div class="row text-center">
-    {{range $i, $v := .Docs}}
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <div class="caption">
-                    <h3>{{.Title}}</h3>
-                    <p>{{.Des}}</p>
-                    <p>
-                        <a href="{{.Link}}" class="btn btn-primary">阅读全文</a>
-                    </p>
-                </div>
-                <div style="height: 150px">
-                    <img src="{{.Figure}}" alt="" style="width: auto;height: auto;max-width: 100%;max-height: 100%;">
+                    </pre>
                 </div>
             </div>
+
+        </header>
+
+        <hr>
+
+        <!-- Title -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>最近文章：</h3>
+            </div>
         </div>
-    {{end}}
+        <!-- /.row -->
+
+        <!-- Page Features -->
+        <div class="row text-center">
+            {{range $i, $v := .Docs}}
+            <div class="col-md-3 col-sm-6 hero-feature">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <h3>{{.Title}}</h3>
+                        <p>{{.Des}}</p>
+                        <p>
+                            <a href="{{.Link}}" class="btn btn-primary">阅读全文</a>
+                        </p>
+                    </div>
+                    <div style="height: 150px">
+                        <img src="{{.Figure}}" alt=""
+                            style="width: auto;height: auto;max-width: 100%;max-height: 100%;">
+                    </div>
+                </div>
+            </div>
+            {{end}}
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            {{template "TAIL"}}
+        </footer>
 
     </div>
-    <!-- /.row -->
+    <!-- /.container -->
 
-    <hr>
+    <!-- jQuery -->
+    <script src="/static/jquery-1.10.2.js"></script>
 
-    <!-- Footer -->
-    <footer>
-    {{template "TAIL"}}
-    </footer>
-
-</div>
-<!-- /.container -->
-
-<!-- jQuery -->
-<script src="/static/jquery-1.10.2.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/static/bootstrap.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/bootstrap.js"></script>
 
 </body>
 
