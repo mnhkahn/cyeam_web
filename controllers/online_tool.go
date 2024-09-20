@@ -3,10 +3,15 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 	"time"
 
+	"github.com/hexops/gotextdiff"
+	"github.com/hexops/gotextdiff/myers"
+	"github.com/hexops/gotextdiff/span"
 	"github.com/mnhkahn/gogogo/app"
 )
 
@@ -150,4 +155,27 @@ func TimestampExec(c *app.Context) error {
 	http.SetCookie(c.ResponseWriter, &cookie)
 	c.JSON(res)
 	return nil
+}
+
+func Diff(c *app.Context) error {
+	c.HTML([]string{"./views/diff.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"},
+		map[string]interface{}{})
+	return nil
+}
+
+func DiffExec(c *app.Context) error {
+	m := make(map[string]interface{})
+	if err := json.NewDecoder(c.Request.Body).Decode(&m); err != nil {
+		c.Request.Body.Close()
+		return err
+	}
+	a := m["a"].(string)
+	b := m["b"].(string)
+
+	edits := myers.ComputeEdits(span.URIFromPath("a.txt"), a, b)
+	diff := fmt.Sprint(gotextdiff.ToUnified("a.txt", "a.txt", a, edits))
+	log.Println(diff)
+	d, err := c.ResponseWriter.Write([]byte(diff))
+	log.Println(d)
+	return err
 }

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="description" content="Diff">
+    <title>Diff checker</title>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/diff2html/bundles/css/diff2html.min.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/diff2html/bundles/js/diff2html-ui.min.js"></script>
+    {{template "TOOLHEAD"}}
+    <div id="page-wrapper">
+        <div class="row">
+            {{/*
+            <div class="col-lg-12">*/}} {{/*
+                <h1 class="page-header">Base64 编码</h1>*/}} {{/*
+            </div>*/}} {{/*
+            <!-- /.col-lg-12 -->*/}}
+            <div class="col-lg-12">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 工具扁 -->
+                <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-1651120361108148" data-ad-slot="5949461026"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-6">
+                <textarea id="data1" placeholder="在此输入..." class="form-control" style="height: 27vh;min-height:20px;padding:10px 10px 10px 30px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
+            </div>
+            <div class="col-lg-6">
+                <textarea id="data2" placeholder="在此输入..." class="form-control" style="height: 27vh;min-height:20px;padding:10px 10px 10px 30px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
+                </pre>
+            </div>
+        </div>
+        <script>
+            function drawDiff(diffString) {
+                console.log(diffString);
+                // document.addEventListener('DOMContentLoaded', function() {
+                var targetElement = document.getElementById('myDiffElement');
+                var configuration = {
+                    drawFileList: false,
+                    fileListToggle: false,
+                    fileListStartVisible: false,
+                    fileContentToggle: false,
+                    matching: 'lines',
+                    outputFormat: 'side-by-side',
+                    synchronisedScroll: true,
+                    highlight: true,
+                    renderNothingWhenEmpty: false,
+                };
+                var diff2htmlUi = new Diff2HtmlUI(targetElement, diffString, configuration);
+                diff2htmlUi.draw();
+                diff2htmlUi.highlightCode();
+                // });
+            }
+
+            //             let diffString = `diff --git a/sample.js b/sample.js
+            // index 0000001..0ddf2ba
+            // --- a/sample.js
+            // +++ b/sample.js
+            // @@ -1 +1 @@
+            // -console.log("Hello World!")
+            // +console.log("Hello from Diff2Html!")`;
+        </script>
+        <div id="myDiffElement"></div>
+
+        <script type="application/javascript">
+            $('#data1').bind('input propertychange', function() {
+                diff();
+            });
+            $('#data2').bind('input propertychange', function() {
+                diff()
+            });
+
+            function diff() {
+                var url = "/tool/diff/exec";
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: JSON.stringify({
+                        a: $('#data1').val(),
+                        b: $('#data2').val()
+                    }),
+                }).done(function(dd) {
+                    console.log(dd);
+                    drawDiff(dd);
+                });
+            }
+        </script>
+
+
+
+
+        <!-- /.row -->
+        <div class="row">
+            <!-- /.col-lg-6 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+        </div>
+        <!-- /.row -->
+        <div class="row">
+        </div>
+        <!-- /.row -->
+    </div>
+
+    <!-- /#page-wrapper -->
+    {{template "TOOLTAIL"}}

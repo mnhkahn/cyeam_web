@@ -40,16 +40,15 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation"
-            style="margin-bottom: 0; min-height: 0px;">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; min-height: 0px;">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                {{/*<a class="navbar-brand" href="index.html">小工具合集</a>*/}}
+                </button> {{/*
+                <a class="navbar-brand" href="index.html">小工具合集</a>*/}}
             </div>
             <!-- /.navbar-header -->
             <!-- /.navbar-top-links -->
@@ -57,72 +56,75 @@
             <div class="navbar-default sidebar" role="navigation" style="margin-top: 20px;">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        {{/*<li class="sidebar-search">*/}}
-                            {{/*<div class="input-group custom-search-form">*/}}
-                                {{/*<input type="text" class="form-control" placeholder="Search...">*/}}
-                                {{/*<span class="input-group-btn">*/}}
+                        {{/*
+                        <li class="sidebar-search">*/}} {{/*
+                            <div class="input-group custom-search-form">*/}} {{/*
+                                <input type="text" class="form-control" placeholder="Search...">*/}} {{/*
+                                <span class="input-group-btn">*/}}
                                     {{/*<button class="btn btn-default" type="button">*/}}
                                         {{/*<i class="fa fa-search"></i>*/}}
                                         {{/*</button>*/}}
-                                    {{/*</span>*/}}
-                                {{/*</div>*/}}
-                            {{/*
-                            <!-- /input-group -->*/}}
-                            {{/*
+                                    {{/*</span>*/}} {{/*
+                            </div>*/}} {{/*
+                            <!-- /input-group -->*/}} {{/*
                         </li>*/}}
+                        <li>
+                            <a href="/tool/diff"><i class="fa fa-american-sign-language-interpreting fa-fw"></i> Diff</a>
+                        </li>
                         <li>
                             <a href="/tool/formatjson"><i class="fa fa-dashboard fa-fw"></i> 格式化 json</a>
                         </li>
                         <li>
-                            <a href="/tool/json2gostruct"><i class="fa fa-dashboard fa-fw"></i> json 转 go 结构体</a>
+                            <a href="/tool/json2gostruct"><i class="fa fa-refresh fa-fw"></i> json 转 go 结构体</a>
                         </li>
                         <li>
-                            <a href="/tool/xml2gostruct"><i class="fa fa-dashboard fa-fw"></i> xml 转 go 结构体</a>
+                            <a href="/tool/xml2gostruct"><i class="fa fa-refresh fa-fw"></i> xml 转 go 结构体</a>
                         </li>
                         <li>
                             <a href="/tool/dml2gostruct"><i class="fa fa-dashboard fa-fw"></i>SQL Create语句生成 go 结构体</a>
                         </li>
                         <li>
-                            <a href="/tool/json2thriftstruct"><i class="fa fa-dashboard fa-fw"></i>JSON 转 Thrift</a>
+                            <a href="/tool/json2thriftstruct"><i class="fa fa-refresh fa-fw"></i>JSON 转 Thrift</a>
                         </li>
                         <li>
-                            <a href="/tool/urlescape"><i class="fa fa-dashboard fa-fw"></i> Url Encode 编码</a>
+                            <a href="/tool/urlescape"><i class="fa fa-refresh fa-fw"></i> Url Encode 编码</a>
                         </li>
                         <li>
-                            <a href="/tool/urlunescape"><i class="fa fa-dashboard fa-fw"></i> Url Decode 解码</a>
+                            <a href="/tool/urlunescape"><i class="fa fa-refresh fa-fw"></i> Url Decode 解码</a>
                         </li>
                         <li>
-                            <a href="/tool/base32"><i class="fa fa-dashboard fa-fw"></i> Base 32 编码</a>
+                            <a href="/tool/base32"><i class="fa fa-refresh fa-fw"></i> Base 32 编码</a>
                         </li>
                         <li>
-                            <a href="/tool/base32decode"><i class="fa fa-dashboard fa-fw"></i> Base 32 解码</a>
+                            <a href="/tool/base32decode"><i class="fa fa-refresh fa-fw"></i> Base 32 解码</a>
                         </li>
                         <li>
-                            <a href="/tool/base64"><i class="fa fa-dashboard fa-fw"></i> Base 64 编码</a>
+                            <a href="/tool/base64"><i class="fa fa-refresh fa-fw"></i> Base 64 编码</a>
                         </li>
                         <li>
-                            <a href="/tool/base64decode"><i class="fa fa-dashboard fa-fw"></i> Base 64 解码</a>
+                            <a href="/tool/base64decode"><i class="fa fa-refresh fa-fw"></i> Base 64 解码</a>
                         </li>
                         <li>
-                            <a href="/tool/hex"><i class="fa fa-dashboard fa-fw"></i> Hex 十六进制编码</a>
+                            <a href="/tool/hex"><i class="fa fa-refresh fa-fw"></i> Hex 十六进制编码</a>
                         </li>
                         <li>
-                            <a href="/tool/hexdecode"><i class="fa fa-dashboard fa-fw"></i> Hex 十六进制解码</a>
+                            <a href="/tool/hexdecode"><i class="fa fa-refresh fa-fw"></i> Hex 十六进制解码</a>
                         </li>
                         <li>
-                            <a href="/tool/formatxml"><i class="fa fa-dashboard fa-fw"></i> 格式化 xml</a>
+                            <a href="/tool/formatxml"><i class="fa fa-refresh fa-fw"></i> 格式化 xml</a>
                         </li>
                         <li>
-                            <a href="/tool/msgpacktojson"><i class="fa fa-dashboard fa-fw"></i> MessagePack 转 JSON</a>
+                            <a href="/tool/msgpacktojson"><i class="fa fa-refresh fa-fw"></i> MessagePack 转 JSON</a>
                         </li>
                         <li>
-                            <a href="/tool/jsonpack"><i class="fa fa-dashboard fa-fw"></i>字符串压缩</a>
+                            <a href="/tool/jsonpack"><i class="fa fa-file-zip-o fa-fw"></i> 字符串压缩</a>
                         </li>
-                        {{/*<li>*/}}
-                            {{/*<a href="/tool/ascii"><i class="fa fa-dashboard fa-fw"></i> 转 ASCII 码</a>*/}}
-                            {{/*</li>*/}}
+                        {{/*
+                        <li>*/}} {{/*
+                            <a href="/tool/ascii"><i class="fa fa-refresh fa-fw"></i> 转 ASCII 码</a>*/}} {{/*
+                        </li>*/}}
                         <li>
-                            <a href="/tool/timestamp"><i class="fa fa-clock-o fa-fw"></i>时间戳</a>
+                            <a href="/tool/timestamp"><i class="fa fa-clock-o fa-fw"></i> 时间戳</a>
                         </li>
                     </ul>
 
