@@ -9,15 +9,13 @@ require (
 	github.com/PuerkitoBio/goquery v1.5.0
 	github.com/Shelnutt2/db2struct v0.0.0-20181222174121-11c43c24bfb2 // indirect
 	github.com/denisenkom/go-mssqldb v0.0.0-20190111225525-2fea367d496d // indirect
-	github.com/fatih/color v1.17.0
 	github.com/franela/goblin v0.0.0-20181003173013-ead4ad1d2727 // indirect
 	github.com/franela/goreq v0.0.0-20171204163338-bcd34c9993f8 // indirect
 	github.com/go-sql-driver/mysql v1.4.1 // indirect
 	github.com/gopherjs/gopherjs v0.0.0-20181103185306-d547d1d9531e // indirect
-	github.com/hexops/gotextdiff v1.0.3 // indirect
+	github.com/hexops/gotextdiff v1.0.3
 	github.com/issue9/assert v1.1.0
 	github.com/jimsmart/schema v0.0.0-20181113191328-8d0563922e25 // indirect
-	github.com/lornasong/diff-checker v0.0.0-20200428222844-95a8a0cb223a // indirect
 	github.com/mattn/go-sqlite3 v1.10.0 // indirect
 	github.com/miku/zek v0.1.7
 	github.com/mnhkahn/asciiimg v1.0.0
@@ -33,12 +31,13 @@ require (
 	github.com/sasbury/mini v0.0.0-20181226232755-dc74af49394b // indirect
 	github.com/smartystreets/assertions v0.0.0-20190116191733-b6c0e53d7304 // indirect
 	github.com/smartystreets/goconvey v0.0.0-20181108003508-044398e4856c // indirect
+	github.com/stretchr/testify v1.5.1 // indirect
 	github.com/vmihailenco/msgpack v4.0.1+incompatible
 	github.com/yosssi/gohtml v0.0.0-20190128141317-9b7db94d32d9
 	golang.org/x/crypto v0.0.0-20190103213133-ff983b9c42bc // indirect
 	golang.org/x/net v0.0.0-20190119204137-ed066c81e75e // indirect
 	golang.org/x/oauth2 v0.0.0-20190115181402-5dab4167f31c
+	golang.org/x/sys v0.18.0 // indirect
 	golang.org/x/tools v0.0.0-20190118193359-16909d206f00 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
-	gopkg.in/yaml.v2 v2.2.2 // indirect
 )
