@@ -103,6 +103,7 @@ func init() {
 	app.Handle("/tool/ascii", &app.Got{controllers.Hex})
 	app.Handle("/tool/msgpacktojson", &app.Got{controllers.MsgPackToJson})
 	app.Handle("/tool/jsonpack", &app.Got{controllers.JsonPack})
+	app.Handle("/tool/timestamp", &app.Got{controllers.Timestamp})
 	app.Handle("/tool/json2gostruct/exec", func_to_handler.NewFuncToHandler(func(data string) (string, error) {
 		var parser gojson.Parser = gojson.ParseJson
 		if output, err := gojson.Generate(bytes.NewBufferString(data), parser, "Foo", "dto", []string{"json"}, true, true); err != nil {
@@ -186,5 +187,5 @@ func init() {
 		out = strings.Replace(out, "\n", "", -1)
 		return out
 	}))
-
+	app.Handle("/tool/timestamp/exec", &app.Got{H: controllers.TimestampExec})
 }

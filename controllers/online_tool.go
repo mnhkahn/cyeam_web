@@ -1,7 +1,14 @@
 // Package controllers
 package controllers
 
-import "github.com/mnhkahn/gogogo/app"
+import (
+	"encoding/json"
+	"net/http"
+	"strconv"
+	"time"
+
+	"github.com/mnhkahn/gogogo/app"
+)
 
 func OnlineToolHome(c *app.Context) error {
 	c.HTML([]string{"./views/onlinetool.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
@@ -85,5 +92,62 @@ func MsgPackToJson(c *app.Context) error {
 
 func JsonPack(c *app.Context) error {
 	c.HTML([]string{"./views/jsonpack.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+	return nil
+}
+
+func Timestamp(c *app.Context) error {
+	cook, _ := c.Request.Cookie("zone")
+	zone := "8"
+	if cook != nil {
+		zone = cook.Value
+	}
+	n := time.Now()
+	c.HTML([]string{"./views/timestamp.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"},
+		map[string]interface{}{
+			"now":  n.Unix(),
+			"zone": zone,
+			// "res":  n.Format(time.DateTime),
+		})
+	return nil
+}
+
+func TimestampExec(c *app.Context) error {
+	m := make(map[string]interface{})
+	if err := json.NewDecoder(c.Request.Body).Decode(&m); err != nil {
+		c.Request.Body.Close()
+		return err
+	}
+	var loc *time.Location
+	var err error
+
+	z := m["zone"].(string)
+	timestamp := m["timestamp"].(string)
+	t, _ := strconv.ParseInt(timestamp, 10, 64)
+	zone, _ := strconv.ParseInt(z, 10, 64)
+
+	res := make(map[string]interface{}, 1)
+	if zone == 0 {
+		loc = time.UTC
+	} else if zone == 8 {
+		loc, err = time.LoadLocation("Asia/Shanghai")
+		if err != nil {
+			return err
+		}
+	}
+
+	if len(timestamp) == 13 {
+		res["data"] = time.Unix(int64(t)/1000, int64(t)-(int64(t)/1000)*1000).In(loc).Format(time.DateTime)
+	} else {
+		res["data"] = time.Unix(int64(t), 0).In(loc).Format(time.DateTime)
+	}
+
+	cookie := http.Cookie{
+		Name:     "zone",
+		Value:    z,
+		HttpOnly: true,
+		Path:     "/",
+	}
+	http.SetCookie(c.ResponseWriter, &cookie)
+	c.JSON(res)
 	return nil
 }

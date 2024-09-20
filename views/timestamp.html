@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="description" content="时间戳转换">
+    <title>时间戳转换</title>
+    {{template "TOOLHEAD"}}
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 工具扁 -->
+                <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-1651120361108148" data-ad-slot="5949461026"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+        <form id="form-inline" action="" method="" class="form-inline">
+            <div class="form-group">
+                <label for="timestamp">Unix时间戳（Unix timestamp）</label>
+                <input type="text" class="form-control" id="timestamp" value="{{.now}}">
+            </div>
+            <div class="form-group">
+                <select id="zone" class="form-control">
+                    <option value="0" {{if eq "0" .zone}}selected{{end}}>UTC+0</option>
+                    <option value="8" {{if eq "8" .zone}}selected{{end}}>UTC+8</option>
+                </select>
+            </div>
+            <button id="trans" type="submit" class="btn btn-default">转换</button>
+            <div class="form-group">
+                <span type="text" class="form-control" id="res" placeholder="" style="width: 200px;">{{.res}}</span>
+            </div>
+        </form>
+    </div>
+    <script type="application/javascript">
+        $('#form-inline').submit(function(e) {
+            e.preventDefault();
+            console.debug("AAA1");
+            let timestamp = $('#timestamp').val();
+            let zone = $("#zone option:selected").val();
+            console.log(timestamp, zone);
+            var url = "/tool/timestamp/exec";
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                method: 'post',
+                data: JSON.stringify({
+                    "timestamp": timestamp,
+                    "zone": zone
+                }),
+            }).done(function(dd) {
+                $("#res").html(dd.data);
+            }).fail(function(jqXHR, textStatus, errorThrown) {
+
+            });
+        });
+    </script>
+    <!-- /#page-wrapper -->
+    {{template "TOOLTAIL"}}
