@@ -20,6 +20,7 @@ import (
 
 	"github.com/ChimeraCoder/gojson"
 	"github.com/miku/zek"
+	ddlmaker "github.com/mnhkahn/ddl-maker"
 	"github.com/mnhkahn/gogogo/app"
 	"github.com/mnhkahn/gogogo/app/handler/func_to_handler"
 	"github.com/mnhkahn/gogogo/logger"
@@ -105,6 +106,8 @@ func init() {
 	app.Handle("/tool/jsonpack", &app.Got{controllers.JsonPack})
 	app.Handle("/tool/timestamp", &app.Got{controllers.Timestamp})
 	app.Handle("/tool/diff", &app.Got{controllers.Diff})
+	app.Handle("/tool/json2ddl", &app.Got{controllers.Json2DDL})
+
 	app.Handle("/tool/json2gostruct/exec", func_to_handler.NewFuncToHandler(func(data string) (string, error) {
 		var parser gojson.Parser = gojson.ParseJson
 		if output, err := gojson.Generate(bytes.NewBufferString(data), parser, "Foo", "dto", []string{"json"}, true, true); err != nil {
@@ -190,4 +193,24 @@ func init() {
 	}))
 	app.Handle("/tool/timestamp/exec", &app.Got{H: controllers.TimestampExec})
 	app.Handle("/tool/diff/exec", &app.Got{H: controllers.DiffExec})
+	app.Handle("/tool/json2ddl/exec", func_to_handler.NewFuncToHandler(func(data string) string {
+		conf := ddlmaker.Config{
+			DB: ddlmaker.DBConfig{
+				Driver:  "mysql",
+				Engine:  "InnoDB",
+				Charset: "utf8mb4",
+			},
+			OutFilePath: os.TempDir(),
+		}
+
+		dm, err := ddlmaker.New(conf)
+		if err != nil {
+			return err.Error()
+		}
+		res, err := dm.GenerateJSON(data)
+		if err != nil {
+			return err.Error()
+		}
+		return string(res)
+	}))
 }

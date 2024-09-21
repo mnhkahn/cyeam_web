@@ -4,11 +4,10 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/mnhkahn/resume"
-	"github.com/mnhkahn/resume/structs"
-
 	"github.com/mnhkahn/asciiimg"
 	"github.com/mnhkahn/gogogo/app"
+	"github.com/mnhkahn/resume"
+	"github.com/mnhkahn/resume/structs"
 )
 
 func ToolBox(c *app.Context) error {

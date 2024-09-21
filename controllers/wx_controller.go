@@ -3,25 +3,21 @@ package controllers
 import (
 	"bytes"
 	"crypto/sha1"
+	"cyeam/models"
+	"cyeam/search"
 	"encoding/xml"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"log"
+	"net/http"
 	"sort"
 	"strings"
 	"time"
 
-	"github.com/mnhkahn/peanut/index"
-
-	"cyeam/models"
-	"cyeam/search"
-
-	"io/ioutil"
-
-	"net/http"
-
 	"github.com/mnhkahn/gogogo/app"
 	"github.com/mnhkahn/gogogo/logger"
+	"github.com/mnhkahn/peanut/index"
 )
 
 const (

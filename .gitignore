@@ -4,3 +4,4 @@ main
 .idea/
 cyeam
 vendor
+.DS_Store

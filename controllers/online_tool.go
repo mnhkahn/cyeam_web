@@ -179,3 +179,9 @@ func DiffExec(c *app.Context) error {
 	log.Println(d)
 	return err
 }
+
+func Json2DDL(c *app.Context) error {
+	c.HTML([]string{"./views/json2ddl.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"},
+		map[string]interface{}{})
+	return nil
+}
