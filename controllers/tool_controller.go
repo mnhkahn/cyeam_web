@@ -13,6 +13,11 @@ import (
 )
 
 func ToolBox(c *app.Context) error {
+	if c.Request.Host != "localhost" && c.Request.Header.Get("X-Forwarded-Proto") == "http" {
+		http.Redirect(c.ResponseWriter, c.Request, "https://"+c.Request.Host+c.Request.RequestURI, http.StatusMovedPermanently)
+		return nil
+	}
+
 	loc, err := time.LoadLocation("Asia/Shanghai")
 	if err != nil {
 		return err
