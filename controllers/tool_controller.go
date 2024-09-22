@@ -96,12 +96,13 @@ func Robots(c *app.Context) error {
 }
 
 func Sitemap(c *app.Context) error {
+	autoHttps(c)
 	c.HTML([]string{"./static/sitemap.xml"}, nil)
 	return nil
 }
 
 func Feed(c *app.Context) error {
-	http.Redirect(c.ResponseWriter, c.Request, "http://blog.cyeam.com/rss.xml", http.StatusFound)
+	http.Redirect(c.ResponseWriter, c.Request, "//blog.cyeam.com/rss.xml", http.StatusFound)
 	return nil
 }
 

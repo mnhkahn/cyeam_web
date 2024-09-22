@@ -3,4 +3,4 @@ Disallow: /categories.html
 Disallow: /archive.html
 Disallow: /tags.html
 Disallow: /pages.html
-Sitemap: http://blog.cyeam.com/sitemap.xml
+Sitemap: https://www.cyeam.com/sitemap.xml
