@@ -56,18 +56,6 @@
             <div class="navbar-default sidebar" role="navigation" style="margin-top: 20px;">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        {{/*
-                        <li class="sidebar-search">*/}} {{/*
-                            <div class="input-group custom-search-form">*/}} {{/*
-                                <input type="text" class="form-control" placeholder="Search...">*/}} {{/*
-                                <span class="input-group-btn">*/}}
-                                    {{/*<button class="btn btn-default" type="button">*/}}
-                                        {{/*<i class="fa fa-search"></i>*/}}
-                                        {{/*</button>*/}}
-                                    {{/*</span>*/}} {{/*
-                            </div>*/}} {{/*
-                            <!-- /input-group -->*/}} {{/*
-                        </li>*/}}
                         <li>
                             <a href="/tool/formatjson"><i class="fa fa-indent fa-fw"></i> 格式化 json</a>
                         </li>
@@ -93,54 +81,70 @@
                             <a href="/tool/json2thriftstruct"><i class="fa fa-font fa-fw"></i>JSON 转 Thrift</a>
                         </li>
                         <li>
-                            <a href="/tool/urlescape"><i class="fa fa-refresh fa-fw"></i> Url Encode 编码</a>
-                        </li>
-                        <li>
-                            <a href="/tool/urlunescape"><i class="fa fa-refresh fa-fw"></i> Url Decode 解码</a>
-                        </li>
-                        <li>
-                            <a href="/tool/base32"><i class="fa fa-refresh fa-fw"></i> Base 32 编码</a>
-                        </li>
-                        <li>
-                            <a href="/tool/base32decode"><i class="fa fa-refresh fa-fw"></i> Base 32 解码</a>
-                        </li>
-                        <li>
-                            <a href="/tool/base64"><i class="fa fa-refresh fa-fw"></i> Base 64 编码</a>
-                        </li>
-                        <li>
-                            <a href="/tool/base64decode"><i class="fa fa-refresh fa-fw"></i> Base 64 解码</a>
-                        </li>
-                        <li>
-                            <a href="/tool/hex"><i class="fa fa-refresh fa-fw"></i> Hex 十六进制编码</a>
-                        </li>
-                        <li>
-                            <a href="/tool/hexdecode"><i class="fa fa-refresh fa-fw"></i> Hex 十六进制解码</a>
-                        </li>
-                        <li>
                             <a href="/tool/formatxml"><i class="fa fa-refresh fa-fw"></i> 格式化 xml</a>
-                        </li>
-                        <li>
-                            <a href="/tool/msgpacktojson"><i class="fa fa-refresh fa-fw"></i> MessagePack 转 JSON</a>
                         </li>
                         <li>
                             <a href="/tool/jsonpack"><i class="fa fa-file-zip-o fa-fw"></i> 字符串压缩</a>
                         </li>
-                        {{/*
-                        <li>*/}} {{/*
-                            <a href="/tool/ascii"><i class="fa fa-refresh fa-fw"></i> 转 ASCII 码</a>*/}} {{/*
-                        </li>*/}}
+                        <li class="nav-item">
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                                <i class="fa fa-fw fa-angle-double-down"></i>
+                                <span style="font-size: 18px;">编解码</span>
+                            </a>
+                            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                                <div class="bg-white py-2 collapse-inner rounded">
+                                    <ul>
+                                        <style>
+                                            li>a {
+                                                position: relative;
+                                                display: block;
+                                                padding: 10px 15px;
+                                            }
+                                            
+                                            #collapsePages>div>ul>li {
+                                                list-style-type: none
+                                            }
+                                            
+                                            #collapsePages>div>ul>li>a {
+                                                text-decoration: none
+                                            }
+                                        </style>
+                                        <li>
+                                            <a href="/tool/urlescape"><i class="fa fa-refresh fa-fw"></i> Url Encode 编码</a>
+                                        </li>
+                                        <li>
+                                            <a href="/tool/urlunescape"><i class="fa fa-refresh fa-fw"></i> Url Decode 解码</a>
+                                        </li>
+                                        <li>
+                                            <a href="/tool/base32"><i class="fa fa-refresh fa-fw"></i> Base 32 编码</a>
+                                        </li>
+                                        <li>
+                                            <a href="/tool/base32decode"><i class="fa fa-refresh fa-fw"></i> Base 32 解码</a>
+                                        </li>
+                                        <li>
+                                            <a href="/tool/base64"><i class="fa fa-refresh fa-fw"></i> Base 64 编码</a>
+                                        </li>
+                                        <li>
+                                            <a href="/tool/base64decode"><i class="fa fa-refresh fa-fw"></i> Base 64 解码</a>
+                                        </li>
+                                        <li>
+                                            <a href="/tool/hex"><i class="fa fa-refresh fa-fw"></i> Hex 十六进制编码</a>
+                                        </li>
+                                        <li>
+                                            <a href="/tool/hexdecode"><i class="fa fa-refresh fa-fw"></i> Hex 十六进制解码</a>
+                                        </li>
+                                        <li>
+                                            <a href="/tool/msgpacktojson"><i class="fa fa-refresh fa-fw"></i> MessagePack 转 JSON</a>
+                                        </li>
+                                        {{/*
+                                        <li>*/}} {{/*
+                                            <a href="/tool/ascii"><i class="fa fa-refresh fa-fw"></i> 转 ASCII 码</a>*/}} {{/*
+                                        </li>*/}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
-
-                    <!-- <script type="text/javascript">
-                        var sc_project = 11400439;
-                        var sc_invisible = 0;
-                        var sc_security = "e8ed289e";
-                        var scJsHost = (("https:" == document.location.protocol) ?
-                            "https://secure." : "http://www.");
-                        document.write("<sc" + "ript type='text/javascript' src='" +
-                            scJsHost +
-                            "statcounter.com/counter/counter.js'></" + "script>");
-                    </script> -->
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
