@@ -41,6 +41,8 @@ func DMLToGoStruct(c *app.Context) error {
 }
 
 func FormatJson(c *app.Context) error {
+	autoHttps(c)
+
 	c.HTML([]string{"./views/formatjson.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
 	return nil
 }
