@@ -3,15 +3,21 @@ package controllers
 import (
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/mnhkahn/asciiimg"
 	"github.com/mnhkahn/gogogo/app"
 	"github.com/mnhkahn/resume"
 	"github.com/mnhkahn/resume/structs"
+	"github.com/youngzhu/go2chinese"
 )
 
 func ToolBox(c *app.Context) error {
-	c.HTML([]string{"./views/toolbox.html", "./views/head.html", "./views/tail.html"}, nil)
+	now := time.Now()
+	c.HTML([]string{"./views/toolbox.html", "./views/head.html", "./views/tail.html"}, map[string]string{
+		"now":  now.Format(time.TimeOnly),
+		"date": now.Format("1月2日") + go2chinese.Weekday(now),
+	})
 	return nil
 }
 

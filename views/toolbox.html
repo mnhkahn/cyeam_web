@@ -30,20 +30,18 @@
             <div class="row ">
                 <div class="col-lg-12 ">
                     <div class="intro-message ">
-                        <h1>
-                            <!-- <span id="Beijing_z43d" style="font-size:36px"></span> -->
-                        </h1>
-                        <a href="https://time.is/Beijing" id="time_is_link" rel="nofollow" style="font-size:36px; color: white; text-decoration:none；">北京时间:</a>
-                        <span id="Beijing_z43d" style="font-size:36px"></span>
+                        <a href="https://time.is/Beijing" id="time_is_link" rel="nofollow" style="font-size:36px; color: white; text-decoration:none；"></a>
+                        <h1 id="Beijing_z43d">{{.now}}</h1>
                         <script src="//widget.time.is/zh.js"></script>
                         <script>
                             time_is_widget.init({
                                 Beijing_z43d: {
-                                    template: "TIME<br>DATE",
-                                    date_format: "year年mnum月dnum日dayname"
+                                    template: "TIME",
+                                    date_format: "mnum月dnum日"
                                 }
                             });
                         </script>
+                        <h3>{{.date}}</h3>
 
                         <hr class="intro-divider ">
                         <!-- <script async src="https://cse.google.com/cse.js?cx=141f46e5753654fb3"></script> -->
@@ -93,9 +91,6 @@
                             </div> -->
                             <div class="col-md-1">
                                 <a class="ahrefstyle" href="//time.geekbang.org/column/81">从0开始学架构</a>
-                            </div>
-                            <div class="col-md-1">
-                                <a class="ahrefstyle" href="//blog.cyeam.com/1pone.github.io/">Kindle Web</a>
                             </div>
                         </div>
 
