@@ -13,7 +13,11 @@ import (
 )
 
 func ToolBox(c *app.Context) error {
-	now := time.Now()
+	loc, err := time.LoadLocation("Asia/Shanghai")
+	if err != nil {
+		return err
+	}
+	now := time.Now().In(loc)
 	c.HTML([]string{"./views/toolbox.html", "./views/head.html", "./views/tail.html"}, map[string]string{
 		"now":  now.Format(time.TimeOnly),
 		"date": now.Format("1月2日") + go2chinese.Weekday(now),
