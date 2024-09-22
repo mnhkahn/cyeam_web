@@ -116,6 +116,11 @@ func GoogleVerify(c *app.Context) error {
 	return nil
 }
 
+func BingVerify(c *app.Context) error {
+	c.HTML([]string{"./static/BingSiteAuth.xml"}, nil)
+	return nil
+}
+
 func Toutiao(c *app.Context) error {
 	c.HTML([]string{"./views/toutiao.html", "./views/head.html", "./views/tail.html"}, nil)
 	return nil

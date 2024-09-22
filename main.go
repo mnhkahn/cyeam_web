@@ -85,6 +85,7 @@ func init() {
 
 	app.Handle("/.well-known/pki-validation/fileauth.htm", &app.Got{controllers.SSLVerify})
 	app.Handle("/google97ec3a9b69e1f4db.html", &app.Got{controllers.GoogleVerify})
+	app.Handle("/BingSiteAuth.xml", &app.Got{controllers.BingVerify})
 
 	app.Handle("/tool", &app.Got{controllers.FormatJson})
 	app.Handle("/tool/json2gostruct", &app.Got{controllers.JsonToGoStruct})
