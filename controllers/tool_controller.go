@@ -90,6 +90,7 @@ func Resume(c *app.Context) error {
 }
 
 func Robots(c *app.Context) error {
+	autoHttps(c)
 	c.HTML([]string{"./views/robots.txt"}, nil)
 	return nil
 }
