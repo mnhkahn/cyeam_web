@@ -1,5 +1,4 @@
 ! function(e, t, a) {
-    console.log("AAAA");
     /* code */
     var initCopyCode = function() {
         var copyHtml = '';
