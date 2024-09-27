@@ -18,7 +18,9 @@ func buildSitemap() *stm.Sitemap {
 	sm.SetDefaultHost(fmt.Sprintf("https://%s", app.String("host")))
 	sm.Create()
 	for _, pattern := range app.GoEngine.Patterns() {
-		if strings.HasPrefix(pattern, "/tool") || pattern == "/" {
+		if strings.HasSuffix(pattern, "/exec") {
+			continue
+		} else if strings.HasPrefix(pattern, "/tool") || pattern == "/" {
 			sm.Add(stm.URL{{"loc", pattern}, {"changefreq", "daily"}, {"priority", "1"}})
 		}
 	}
@@ -28,7 +30,9 @@ func buildSitemap() *stm.Sitemap {
 
 func SiteMapRaw(c *app.Context) error {
 	for _, pattern := range app.GoEngine.Patterns() {
-		if strings.HasPrefix(pattern, "/tool") || pattern == "/" {
+		if strings.HasSuffix(pattern, "/exec") {
+			continue
+		} else if strings.HasPrefix(pattern, "/tool") || pattern == "/" {
 			c.WriteString(pattern + "\n")
 		}
 	}

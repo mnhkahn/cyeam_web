@@ -103,7 +103,7 @@ func init() {
 	app.Handle("/tool/base64decode", &app.Got{controllers.Base64Decode})
 	app.Handle("/tool/hex", &app.Got{controllers.Hex})
 	app.Handle("/tool/hexdecode", &app.Got{controllers.HexDecode})
-	app.Handle("/tool/ascii", &app.Got{controllers.Hex})
+	// app.Handle("/tool/ascii", &app.Got{controllers.Hex})
 	app.Handle("/tool/msgpacktojson", &app.Got{controllers.MsgPackToJson})
 	app.Handle("/tool/jsonpack", &app.Got{controllers.JsonPack})
 	app.Handle("/tool/timestamp", &app.Got{controllers.Timestamp})
