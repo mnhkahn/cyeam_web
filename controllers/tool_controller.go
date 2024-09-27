@@ -89,18 +89,6 @@ func Resume(c *app.Context) error {
 	return nil
 }
 
-func Robots(c *app.Context) error {
-	autoHttps(c)
-	c.HTML([]string{"./views/robots.txt"}, nil)
-	return nil
-}
-
-func Sitemap(c *app.Context) error {
-	autoHttps(c)
-	c.HTML([]string{"./static/sitemap.xml"}, nil)
-	return nil
-}
-
 func Feed(c *app.Context) error {
 	http.Redirect(c.ResponseWriter, c.Request, "//blog.cyeam.com/rss.xml", http.StatusFound)
 	return nil

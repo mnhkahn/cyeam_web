@@ -1,9 +1,7 @@
 // +heroku goVersion go1.11
 module cyeam
 
-go 1.22.0
-
-toolchain go1.23.1
+go 1.23.1
 
 require (
 	github.com/ChimeraCoder/gojson v1.0.1-0.20180818231315-fa01aa3a2088
@@ -13,7 +11,7 @@ require (
 	github.com/miku/zek v0.1.7
 	github.com/mnhkahn/asciiimg v1.0.0
 	github.com/mnhkahn/ddl-maker v0.0.0-20240921043833-9e6ff89aa3f5
-	github.com/mnhkahn/gogogo v1.0.9
+	github.com/mnhkahn/gogogo v1.0.10-0.20240927132053-bd0d703b9cf2
 	github.com/mnhkahn/maodou v1.0.6
 	github.com/mnhkahn/peanut v1.0.3
 	github.com/mnhkahn/pkg v0.0.0-20181030083427-71a5c5c3f3ba
@@ -32,15 +30,18 @@ require (
 	github.com/Shelnutt2/db2struct v0.0.0-20181222174121-11c43c24bfb2 // indirect
 	github.com/adamzy/cedar-go v0.0.0-20170805034717-80a9c64b256d // indirect
 	github.com/andybalholm/cascadia v1.0.0 // indirect
+	github.com/beevik/etree v1.1.0 // indirect
 	github.com/boltdb/bolt v1.3.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/denisenkom/go-mssqldb v0.0.0-20190111225525-2fea367d496d // indirect
+	github.com/fatih/structs v1.1.0 // indirect
 	github.com/franela/goblin v0.0.0-20181003173013-ead4ad1d2727 // indirect
 	github.com/franela/goreq v0.0.0-20171204163338-bcd34c9993f8 // indirect
 	github.com/go-sql-driver/mysql v1.4.1 // indirect
 	github.com/golang/protobuf v1.2.0 // indirect
 	github.com/gopherjs/gopherjs v0.0.0-20181103185306-d547d1d9531e // indirect
 	github.com/huichen/sego v0.0.0-20180617034105-3f3c8a8cfacc // indirect
+	github.com/ikeikeikeike/go-sitemap-generator/v2 v2.0.2 // indirect
 	github.com/jimsmart/schema v0.0.0-20181113191328-8d0563922e25 // indirect
 	github.com/mattn/go-sqlite3 v1.10.0 // indirect
 	github.com/mnhkahn/gods v1.0.1 // indirect
