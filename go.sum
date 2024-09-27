@@ -91,6 +91,8 @@ github.com/mnhkahn/gogogo v1.0.10-0.20240927130634-98bcfa14014e h1:9hXETlYimE6d9
 github.com/mnhkahn/gogogo v1.0.10-0.20240927130634-98bcfa14014e/go.mod h1:Vac7hEzaukHschVhIQgnmL/2QTTEA0yyiJbozGLYaTI=
 github.com/mnhkahn/gogogo v1.0.10-0.20240927132053-bd0d703b9cf2 h1:tnpklsx0xodIwXDGzNFGbdTpwvpcaWXqw+pk0xwNe6M=
 github.com/mnhkahn/gogogo v1.0.10-0.20240927132053-bd0d703b9cf2/go.mod h1:Vac7hEzaukHschVhIQgnmL/2QTTEA0yyiJbozGLYaTI=
+github.com/mnhkahn/gogogo v1.0.10-0.20240927140300-2292769b09f9 h1:ULr45wMcmFqH27W5sI/VMwnMwTOZZioCGbkCPPls1ow=
+github.com/mnhkahn/gogogo v1.0.10-0.20240927140300-2292769b09f9/go.mod h1:Vac7hEzaukHschVhIQgnmL/2QTTEA0yyiJbozGLYaTI=
 github.com/mnhkahn/maodou v1.0.6 h1:ZTtFxWa12T0UvGhUSSlLbBgUZS5ZizjoViiOx/N83D8=
 github.com/mnhkahn/maodou v1.0.6/go.mod h1:JkPkoRPhkOSoLTEglW+DpVnh1VXpSdhv4w5c7cPmovs=
 github.com/mnhkahn/peanut v1.0.3 h1:n/77qc19c2JT2ZSO7vNZowfs9nq6oEE4HVaF9/o2ty0=

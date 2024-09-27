@@ -11,7 +11,7 @@ require (
 	github.com/miku/zek v0.1.7
 	github.com/mnhkahn/asciiimg v1.0.0
 	github.com/mnhkahn/ddl-maker v0.0.0-20240921043833-9e6ff89aa3f5
-	github.com/mnhkahn/gogogo v1.0.10-0.20240927132053-bd0d703b9cf2
+	github.com/mnhkahn/gogogo v1.0.10-0.20240927140300-2292769b09f9
 	github.com/mnhkahn/maodou v1.0.6
 	github.com/mnhkahn/peanut v1.0.3
 	github.com/mnhkahn/pkg v0.0.0-20181030083427-71a5c5c3f3ba
