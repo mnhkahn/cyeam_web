@@ -25,6 +25,9 @@ COPY ./static/. .
 WORKDIR /templates
 COPY ./templates/. .
 
+WORKDIR /conf
+COPY ./conf/. .
+
 WORKDIR /
 
 CMD ["/cyeam"]
