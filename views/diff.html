@@ -43,7 +43,6 @@
         <script>
             function drawDiff(diffString) {
                 console.log(diffString);
-                // document.addEventListener('DOMContentLoaded', function() {
                 var targetElement = document.getElementById('myDiffElement');
                 var configuration = {
                     drawFileList: false,
@@ -59,16 +58,7 @@
                 var diff2htmlUi = new Diff2HtmlUI(targetElement, diffString, configuration);
                 diff2htmlUi.draw();
                 diff2htmlUi.highlightCode();
-                // });
             }
-
-            //             let diffString = `diff --git a/sample.js b/sample.js
-            // index 0000001..0ddf2ba
-            // --- a/sample.js
-            // +++ b/sample.js
-            // @@ -1 +1 @@
-            // -console.log("Hello World!")
-            // +console.log("Hello from Diff2Html!")`;
         </script>
         <div id="myDiffElement"></div>
 
@@ -96,8 +86,30 @@
             }
         </script>
 
-
-
+        <div class="row">
+            <div class="col-md-12">
+                <p>Diff最常用的场景是在提交代码的时候，不过日常一些文本分析的场景也会用到。他可以帮助我们快速识别新增、删除、未变化的内容。</p>
+                <pre style="margin: 5px;">
+~ git diff a b
+diff --git a/a b/b
+index a30a52a..c200906 100644
+--- a/a
++++ b/b
+@@ -1,2 +1 @@
+-111
+ 222</pre>
+                <p>比较111\n222与222两个文件为例，在本地执行上面的命令，可以展示Diff内容。
+                </p>
+                <ul>
+                    <li>第一行表示结果为git格式的diff；</li>
+                    <li>第二行表示两个文件的Git哈希值；</li>
+                    <li>三四行表示变化内容，---是变化前的文件，+++是变化后的文件；</li>
+                    <li>第五行表示变化的位置，-1,2代表前一个文件的第一行到第二行，+1表示后一个文件的第一行；</li>
+                    <li>后面部分表示变化具体内容。</li>
+                </ul>
+                <p><a class="btn btn-primary btn-lg" href="https://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html" role="button">Learn more</a></p>
+            </div>
+        </div>
 
         <!-- /.row -->
         <div class="row">
