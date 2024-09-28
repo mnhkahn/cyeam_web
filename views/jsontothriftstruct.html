@@ -35,7 +35,8 @@
         <div class="row">
             <div class="col-md-12">
                 <h3>通过JSON数据在线自动生成Thrift</h3>
-                <p>Thrift是一个轻量级、跨语言的远程服务调用框架，最初由Facebook开发，后面进入Apache开源项目。它通过自身的IDL中间语言, 并借助代码生成引擎生成各种主流语言的RPC服务端/客户端模板代码。本工具就是在帮助生成IDL文件。<a class="btn btn-primary btn-xs" href="https://blog.cyeam.com/golang/2014/07/22/go_thrift" role="button">Learn more</a></p>
+                <p>Thrift是一个轻量级、跨语言的远程服务调用框架，最初由Facebook开发，后面进入Apache开源项目。它通过自身的IDL中间语言, 并借助代码生成引擎生成各种主流语言的RPC服务端/客户端模板代码。本工具就是在帮助生成IDL文件。相比文本协议（如 JSON、XML），二进制协议更加紧凑，传输效率更高。减少了网络带宽的占用和传输时间，特别适用于对性能要求较高的分布式系统。<a class="btn btn-primary btn-xs" href="https://blog.cyeam.com/golang/2014/07/22/go_thrift"
+                        role="button">Learn more</a></p>
                 <p>试试：<pre>{"a":1}</pre></p>
                 <p></p>
             </div>
@@ -44,7 +45,78 @@
 
         <!-- /.row -->
         <div class="row">
-            <!-- /.col-lg-6 -->
+            <div class="col-md-12">
+                <style>
+                    .mytable {
+                        font-size: 14px;
+                        border: 1px solid #CCC;
+                        font-family: Arial, Helvetica, sans-serif;
+                        width: 100%;
+                        border-collapse: unset;
+                    }
+                    
+                    .mytable td {
+                        padding: 4px;
+                        margin: 3px;
+                        border: 1px solid #CCC;
+                    }
+                    
+                    .mytable th {
+                        background-color: #104E8B;
+                        color: #FFF;
+                        font-weight: bold;
+                    }
+                </style>
+                <table id="main-table" class="mytable">
+                    <tbody>
+                        <tr>
+                            <th>对比项目</th>
+                            <th>Thrift</th>
+                            <th>HTTP</th>
+                        </tr>
+                        <tr>
+                            <td>协议类型</td>
+                            <td>二进制的远程过程调用（RPC）框架协议。</td>
+                            <td>基于文本的应用层协议。</td>
+                        </tr>
+                        <tr>
+                            <td>设计目的</td>
+                            <td>高效的跨语言服务调用和数据交换。</td>
+                            <td>用于在客户端和服务器之间传输超文本。</td>
+                        </tr>
+                        <tr>
+                            <td>数据格式</td>
+                            <td>通常为二进制格式，紧凑高效。</td>
+                            <td>主要是文本格式（如 JSON、XML 等），也可传输二进制数据但相对复杂。</td>
+                        </tr>
+                        <tr>
+                            <td>跨语言支持</td>
+                            <td>强大的跨语言支持，通过接口定义语言（IDL）生成多语言代码。</td>
+                            <td>通过标准的数据格式可以实现一定程度跨语言，但不如 Thrift 直接。</td>
+                        </tr>
+                        <tr>
+                            <td>性能</td>
+                            <td>通常性能较高，尤其是在数据量大和频繁调用的情况下。</td>
+                            <td>相对较低，特别是在处理大量数据和高并发时可能有性能瓶颈。</td>
+                        </tr>
+                        <tr>
+                            <td>连接管理</td>
+                            <td>可灵活配置连接方式，支持长连接等。</td>
+                            <td>通常基于短连接，可通过 Keep-Alive 模拟长连接但不够灵活。</td>
+                        </tr>
+                        <tr>
+                            <td>开发难度</td>
+                            <td>相对复杂，需要学习特定框架和 IDL 的使用。</td>
+                            <td>较为简单，开发人员熟悉度高，基于请求 - 响应模式。</td>
+                        </tr>
+                        <tr>
+                            <td>应用场景</td>
+                            <td>分布式系统内部服务通信、高性能数据处理等。</td>
+                            <td>Web 应用、公开 API、与浏览器交互等。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <!-- /.row -->
         <div class="row">

@@ -43,21 +43,106 @@
                 <code style="margin: 5px;">{"compact":true,"schema":0}</code>
                 <p>从上面例子来看，本身占27字节，压缩完只需要18字节。</p>
                 <p>MsgPack兼顾了可读性和性能，不过一些内容编码后不可读，需要进行十六进制编码或者Base64编码。</p>
-                <p><a class="btn btn-primary btn-lg" href="https://msgpack.org/" role="button">Learn more</a></p>
+                <p><a class="btn btn-primary btn-xs" href="https://msgpack.org/" role="button">Learn more</a></p>
             </div>
         </div>
 
         <!-- /.row -->
         <div class="row">
-            <!-- /.col-lg-6 -->
-        </div>
-        <!-- /.row -->
-        <div class="row">
-        </div>
-        <!-- /.row -->
-        <div class="row">
-        </div>
-        <!-- /.row -->
+        </div class="col-lg-12">
+        <style>
+            .mytable {
+                font-size: 14px;
+                border: 1px solid #CCC;
+                font-family: Arial, Helvetica, sans-serif;
+                width: 100%;
+                border-collapse: unset;
+            }
+            
+            .mytable td {
+                padding: 4px;
+                margin: 3px;
+                border: 1px solid #CCC;
+            }
+            
+            .mytable th {
+                background-color: #104E8B;
+                color: #FFF;
+                font-weight: bold;
+            }
+        </style>
+        <table id="main-table" class="mytable">
+            <tbody>
+                <tr>
+                    <th>对比项目</th>
+                    <th>Msgpack</th>
+                    <th>JSON</th>
+                    <th>XML</th>
+                </tr>
+                <tr>
+                    <td>数据格式</td>
+                    <td>二进制格式</td>
+                    <td>文本格式</td>
+                    <td>文本格式</td>
+                </tr>
+                <tr>
+                    <td>数据大小</td>
+                    <td>通常较小</td>
+                    <td>一般</td>
+                    <td>通常较大</td>
+                </tr>
+                <tr>
+                    <td>编码效率</td>
+                    <td>高</td>
+                    <td>较高</td>
+                    <td>低</td>
+                </tr>
+                <tr>
+                    <td>可读性</td>
+                    <td>低（二进制难直接阅读）</td>
+                    <td>高（人类可读）</td>
+                    <td>高（人类可读，但较复杂）</td>
+                </tr>
+                <tr>
+                    <td>语言支持</td>
+                    <td>多种编程语言支持良好</td>
+                    <td>广泛支持多种编程语言</td>
+                    <td>广泛支持多种编程语言</td>
+                </tr>
+                <tr>
+                    <td>扩展性</td>
+                    <td>较好，可灵活定义结构</td>
+                    <td>较好，可通过对象和数组扩展</td>
+                    <td>非常好，具有丰富的扩展性和自定义标签</td>
+                </tr>
+                <tr>
+                    <td>适用场景</td>
+                    <td>对数据大小和效率要求高的场景，如内部通信、存储紧凑数据等</td>
+                    <td>数据交换、API 通信等</td>
+                    <td>复杂的文档结构、配置文件、数据存储等</td>
+                </tr>
+                <tr>
+                    <td>解析速度</td>
+                    <td>快</td>
+                    <td>较快</td>
+                    <td>相对较慢</td>
+                </tr>
+                <tr>
+                    <td>复杂性</td>
+                    <td>相对简单</td>
+                    <td>简单</td>
+                    <td>较复杂</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- /.row -->
+    <div class="row">
+    </div>
+    <!-- /.row -->
+    <div class="row">
+    </div>
+    <!-- /.row -->
     </div>
     <script type="application/javascript">
         $('#data-json').bind('input propertychange', function() {

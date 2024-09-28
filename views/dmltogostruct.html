@@ -25,18 +25,84 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-6">
-                <textarea id="data-json" placeholder="在此输入SQL..." class="form-control" style="height:100%;height: 87vh;min-height:520px;padding:10px 10px 10px 30px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
+                <textarea id="data-json" placeholder="在此输入SQL..." class="form-control" style="height:100%; min-height:500px;padding:10px 10px 10px 30px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
             </div>
             <div class="col-lg-6">
-                <pre class="language-go" id="go-struct-view" style="height:100%;height: 87vh;min-height:520px;margin: 0px;">
+                <pre class="language-go" id="go-struct-view" style="height:100%; min-height:500px;margin: 0px;">
             </pre>
             </div>
-            <script src="/static/clipboard-use.js"></script>
-
         </div>
+        <script src="/static/clipboard-use.js"></script>
         <!-- /.row -->
         <div class="row">
-            <!-- /.col-lg-6 -->
+            <div class="col-lg-12">
+                <h3>CREATE SQL 在线生成Go结构体</h3>
+                <style>
+                    .mytable {
+                        font-size: 14px;
+                        border: 1px solid #CCC;
+                        font-family: Arial, Helvetica, sans-serif;
+                        width: 100%;
+                        border-collapse: unset;
+                    }
+                    
+                    .mytable td {
+                        padding: 4px;
+                        margin: 3px;
+                        border: 1px solid #CCC;
+                    }
+                    
+                    .mytable th {
+                        background-color: #104E8B;
+                        color: #FFF;
+                        font-weight: bold;
+                    }
+                </style>
+                <table id="main-table" class="mytable">
+                    <tbody>
+                        <tr>
+                            <th>SQL 类型</th>
+                            <th>Go 类型</th>
+                        </tr>
+                        <tr>
+                            <td>INT, INTEGER, SMALLINT, TINYINT</td>
+                            <td>int, int32, int64（具体取决于数据库中整数的范围和你的应用需求）</td>
+                        </tr>
+                        <tr>
+                            <td>BIGINT</td>
+                            <td>int64</td>
+                        </tr>
+                        <tr>
+                            <td>FLOAT, REAL</td>
+                            <td>float32</td>
+                        </tr>
+                        <tr>
+                            <td>DOUBLE, DOUBLE PRECISION</td>
+                            <td>float64</td>
+                        </tr>
+                        <tr>
+                            <td>DECIMAL(p,s), NUMERIC(p,s)</td>
+                            <td>database/sql包中的sql.NullFloat64（可空浮点型）、sql.NullInt64（可处理整数型的小数部分）等，或者使用自定义结构体结合sql.Scanner和driver.Valuer接口处理</td>
+                        </tr>
+                        <tr>
+                            <td>CHAR(n), VARCHAR(n), TEXT</td>
+                            <td>string、sql.NullString（可空字符串）</td>
+                        </tr>
+                        <tr>
+                            <td>DATE</td>
+                            <td>time.Time</td>
+                        </tr>
+                        <tr>
+                            <td>DATETIME, TIMESTAMP</td>
+                            <td>time.Time</td>
+                        </tr>
+                        <tr>
+                            <td>BOOLEAN</td>
+                            <td>bool、sql.NullBool（可空布尔型）</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <!-- /.row -->
         <div class="row">

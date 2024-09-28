@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta name="description" content="Base64 编码">
-    <title>Base64 编码</title>
+    <meta name="description" content="JSON在线生成CREATE SQL">
+    <title>JSON在线生成CREATE SQL</title>
     {{template "TOOLHEAD"}}
 
     <div id="page-wrapper">
@@ -25,19 +25,34 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-6">
-                <textarea id="data-json" placeholder="在此输入..." class="form-control" style="height:100%;height: 87vh;min-height:520px;padding:10px 10px 10px 30px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
+                <textarea id="data-json" placeholder="在此输入..." class="form-control" style="height:100%; min-height:500px;padding:10px 10px 10px 30px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
             </div>
             <div class="col-lg-6">
-                <pre class="language-go" id="go-struct-view" style="height:100%;height: 87vh;min-height:520px;margin: 0px;">
+                <pre class="language-go" id="go-struct-view" style="height:100%; min-height:500px;margin: 0px;">
             </pre>
             </div>
         </div>
-        <script src="/static/clipboard-use.js"></script>
-
         <!-- /.row -->
         <div class="row">
-            <!-- /.col-lg-6 -->
+            <div class="col-lg-12"></div>
+            <h3>JSON在线生成CREATE SQL</h3>
+            <h4>数据库设计规范</h4>
+            <ul>
+                <li>采用有意义的英文单词或词组命名，使用下划线分隔多个单词，例如 user_info。</li>
+                <li>明确列的数据类型和约束，例如 user_name VARCHAR(50) NOT NULL。</li>
+                <li>PK应该是有序并且无意义的，由开发人员自定义，尽可能简短，并且是自增序列。</li>
+                <li>唯一性约束的,可以在数据库中创建以 uk_ 作为前缀的唯一约束索引。</li>
+                <li>尽量避免使用 SELECT *，明确指定需要查询的列，减少数据传输量。</li>
+                <li>使用 WHERE 子句过滤数据，避免返回不必要的数据。</li>
+                <li>严禁使用%前缀进行模糊前缀查询</li>
+                <li>禁止使用DELETE，使用软删除剔除数据。</li>
+            </ul>
+            <h4>试试看</h4>
+            <pre>{"a":1}</pre>
         </div>
+        <script src="/static/clipboard-use.js"></script>
+
+
         <!-- /.row -->
         <div class="row">
         </div>

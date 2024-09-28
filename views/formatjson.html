@@ -20,11 +20,20 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-6">
-                <textarea id="data-json" placeholder="在此输入json..." class="form-control" style="height:100%;height: 87vh;min-height:520px;padding:10px 10px 10px 30px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;">{"a": 1}</textarea>
+                <textarea id="data-json" placeholder="在此输入json..." class="form-control" style="height:100%;height: 80vh;min-height:500px;padding:10px 10px 10px 30px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;">{"a": 1}</textarea>
             </div>
             <div class="col-lg-6">
-                <pre class="language-go" id="go-struct-view" style="height:100%;height: 87vh;min-height:520px;margin: 0px;">
+                <pre class="language-go" id="go-struct-view" style="height:100%;height: 80vh;min-height:500px;margin: 0px;">
             </pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>JSON（JavaScript Object Notation）是一种轻量级的数据交换格式。</h3>
+                <ul>
+                    <li>对象表示：使用花括号 {} 包裹一组键值对，键是字符串，必须用双引号括起来，值可以是字符串、数字、布尔值、对象、数组或 null。例如：{"name":"John","age":30}。</li>
+                    <li>数组表示：使用方括号 [] 包裹一组值，值可以是字符串、数字、布尔值、对象、数组或 null。 例如：["apple","banana","orange"]。</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -43,24 +52,6 @@
         var editor = new JsonEditor('#go-struct-view', getJson());
         $('#data-json').bind('input propertychange', function() {
             editor.load(getJson());
-
-            // var json = $(this).val();
-            // var url = "/tool/formatjson/exec";
-            // $.ajax({
-            //     url: url,
-            //     dataType: 'json',
-            //     method: 'post',
-            //     data: JSON.stringify({
-            //         "in0": json
-            //     }),
-            // }).done(function(dd) {
-            //     $('#go-struct-view').html(dd.out0);
-            //     $('#go-struct-view').each(function(i, block) {
-            //         hljs.highlightBlock(block);
-            //     });
-            // }).fail(function(jqXHR, textStatus, errorThrown) {
-            //     $('#go-struct-view').html(jqXHR.responseText);
-            // });
         });
     </script>
     <!-- /#page-wrapper -->
