@@ -8,11 +8,6 @@
 
     <div id="page-wrapper">
         <div class="row">
-            {{/*
-            <div class="col-lg-12">*/}} {{/*
-                <h1 class="page-header">十六进制解码</h1>*/}} {{/*
-            </div>*/}} {{/*
-            <!-- /.col-lg-12 -->*/}}
             <div class="col-lg-12">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 工具扁 -->
@@ -25,18 +20,29 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-6">
-                <textarea id="data-json" placeholder="在此输入..." class="form-control" style="height:100%;height: 87vh;min-height:520px;padding:10px 10px 10px 30px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
+                <textarea id="data-json" placeholder="在此输入..." class="form-control" style="height:100%; min-height:500px;padding:10px 10px 10px 30px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
             </div>
             <div class="col-lg-6">
-                <pre class="language-go" id="go-struct-view" style="height:100%;height: 87vh;min-height:520px;margin: 0px;">
+                <pre class="language-go" id="go-struct-view" style="height:100%; min-height:500px;margin: 0px;">
             </pre>
             </div>
-            <script src="/static/clipboard-use.js"></script>
         </div>
-        <!-- /.row -->
         <div class="row">
-            <!-- /.col-lg-6 -->
+            <div class="col-md-12">
+                <h3>十六进制Hex在线解码</h3>
+                <p>只需提供JSON原始数据，实时生成Go结构体，在日常开发中，可以快速支持API开发、对接工作。</p>
+                <h4>转换方式</h4>
+                <ul>
+                    <li>从低位开始，每 4 位二进制数组成一组。</li>
+                    <li>将每组二进制数转换为对应的十六进制数字。</li>
+                    <li>例如，二进制数 11010110，可分为两组：1101 和 0110。1101 对应的十六进制是 D，0110 对应的十六进制是 6。所以该二进制数的十六进制表示为 D6。</li>
+                </ul>
+                <h4>Go实现</h4>
+                <pre>hex.EncodeToString([]byte("11010110"))</pre>
+                <h4>试试</h4><pre>68747470733a2f2f7777772e637965616d2e636f6d2f</pre>
+            </div>
         </div>
+        <script src="/static/clipboard-use.js"></script>
         <!-- /.row -->
         <div class="row">
         </div>
