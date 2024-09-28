@@ -25,10 +25,10 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-6">
-                <textarea id="data-json" placeholder="在此输入MessagePack..." class="form-control" style="height:100%;height: 27vh;min-height:20px;padding:10px 10px 10px 30px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
+                <textarea id="data-json" placeholder="在此输入JSON..." class="form-control" style="height:100%;height: 27vh;min-height:20px;padding:10px 10px 10px 30px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
             </div>
             <div class="col-lg-6">
-                <pre class="language-go" id="go-struct-view" style="height:100%;height: 27vh;min-height:20px;margin: 0px;">
+                <pre class="language-go" id="go-struct-view" style="height:100%;height: 27vh;min-height:20px;margin: 0px; white-space: pre-wrap; word-wrap: break-word;">
             </pre>
             </div>
         </div>
@@ -46,6 +46,7 @@
                 <p><a class="btn btn-primary btn-lg" href="https://msgpack.org/" role="button">Learn more</a></p>
             </div>
         </div>
+
         <!-- /.row -->
         <div class="row">
             <!-- /.col-lg-6 -->
@@ -62,7 +63,7 @@
         $('#data-json').bind('input propertychange', function() {
             // var json = '{"a":1}';
             var json = $(this).val();
-            var url = "/tool/msgpacktojson/exec";
+            var url = "/tool/jsontomsgpack/exec";
             $.ajax({
                 url: url,
                 dataType: 'json',

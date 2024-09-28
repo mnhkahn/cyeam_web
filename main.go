@@ -24,7 +24,6 @@ import (
 	"github.com/mnhkahn/gogogo/app"
 	"github.com/mnhkahn/gogogo/app/handler/func_to_handler"
 	"github.com/mnhkahn/gogogo/logger"
-	"github.com/mnhkahn/pkg/xhex"
 	"github.com/mnhkahn/togo/dmltogo"
 	"github.com/vmihailenco/msgpack"
 	"github.com/yosssi/gohtml"
@@ -105,6 +104,7 @@ func init() {
 	app.Handle("/tool/hexdecode", &app.Got{controllers.HexDecode})
 	// app.Handle("/tool/ascii", &app.Got{controllers.Hex})
 	app.Handle("/tool/msgpacktojson", &app.Got{controllers.MsgPackToJson})
+	app.Handle("/tool/jsontomsgpack", &app.Got{controllers.JsonToMsgPack})
 	app.Handle("/tool/jsonpack", &app.Got{controllers.JsonPack})
 	app.Handle("/tool/timestamp", &app.Got{controllers.Timestamp})
 	app.Handle("/tool/diff", &app.Got{controllers.Diff})
@@ -165,8 +165,21 @@ func init() {
 		return hex.EncodeToString([]byte(data))
 	}))
 	app.Handle("/tool/hexdecode/exec", func_to_handler.NewFuncToHandler(hex.DecodeString))
+	app.Handle("/tool/jsontomsgpack/exec", func_to_handler.NewFuncToHandler(func(data string) string {
+		m := make(map[string]interface{})
+		err := json.Unmarshal([]byte(data), &m)
+		if err != nil {
+			return err.Error()
+		}
+		res, err := msgpack.Marshal(m)
+		if err != nil {
+			return err.Error()
+		}
+		h := hex.EncodeToString(res)
+		return h
+	}))
 	app.Handle("/tool/msgpacktojson/exec", func_to_handler.NewFuncToHandler(func(data string) string {
-		d, err := xhex.DecodeString(data)
+		d, err := hex.DecodeString(data)
 		if err != nil {
 			return err.Error()
 		}
