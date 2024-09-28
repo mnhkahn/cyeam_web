@@ -33,7 +33,51 @@
                 <span type="text" class="form-control" id="res" placeholder="" style="width: 200px;">{{.res}}</span>
             </div>
         </form>
+        <div class="row">
+            <div class="col-md-6">
+                <h4 style="margin-top: 10px;">时间戳是指1970年01月01日00时00分00秒起至现在的总秒数</h4>
+                <p>使用time.Unix方法可以将时间戳转换为时间类型，时间类型如果要转换为可读内容，需要指定时区。我们的例子选用了常见的背景时间UTC+8(GMT)和格林威治时间UTC+0。</p>
+                <pre>
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	unixTime := time.Date(2009, time.November, 10, 23, 0, 0, 0, time.UTC)
+	fmt.Println(unixTime.Unix())
+	t := time.Unix(unixTime.Unix(), 0).UTC()
+	fmt.Println(t)
+
+}
+                </pre>
+                <p><a class="btn btn-primary btn-lg" href="https://pkg.go.dev/time#Unix" role="button">Learn more</a></p>
+            </div>
+            <div class="col-md-6">
+                <h4 style="margin-top: 10px;">时区划分包括24个时区，每隔经度15°划分一个时区，北京属于东八区</h4>
+                <p>时区默认使用本地时间，也就是服务器配置的时区，也可以通过<b>FixedZone</b>来指定时区进行转换。通过time.Format方法转换成可读字符串，新版本Go引入了<b>DateOnly</b>和<b>TimeOnly</b>两个格式类型，好评👍。</p>
+                <pre>
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	loc := time.FixedZone("UTC+8", 8*60*60)
+	t := time.Date(2009, time.November, 10, 23, 0, 0, 0, loc)
+	fmt.Println("The time is:", t.Format(time.RFC822))
+}
+                </pre>
+                <p><a class="btn btn-primary btn-lg" href="https://pkg.go.dev/time#FixedZone" role="button">Learn more</a></p>
+            </div>
+        </div>
     </div>
+    <script src="/static/clipboard-use.js"></script>
+
     <script type="application/javascript">
         $('#form-inline').submit(function(e) {
             e.preventDefault();
