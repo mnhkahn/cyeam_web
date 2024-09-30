@@ -11,7 +11,7 @@ require (
 	github.com/issue9/assert v1.1.0
 	github.com/miku/zek v0.1.7
 	github.com/mnhkahn/asciiimg v1.0.0
-	github.com/mnhkahn/curl-to-go v0.0.0-20240930000052-e686ca29ce2f
+	github.com/mnhkahn/curl-to-go v0.0.0-20240930011557-9c3191ffea92
 	github.com/mnhkahn/ddl-maker v0.0.0-20240921043833-9e6ff89aa3f5
 	github.com/mnhkahn/gogogo v1.0.10-0.20240927140300-2292769b09f9
 	github.com/mnhkahn/maodou v1.0.6
