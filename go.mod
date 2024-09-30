@@ -7,14 +7,15 @@ require (
 	github.com/ChimeraCoder/gojson v1.0.1-0.20180818231315-fa01aa3a2088
 	github.com/PuerkitoBio/goquery v1.5.0
 	github.com/hexops/gotextdiff v1.0.3
+	github.com/ikeikeikeike/go-sitemap-generator/v2 v2.0.2
 	github.com/issue9/assert v1.1.0
 	github.com/miku/zek v0.1.7
 	github.com/mnhkahn/asciiimg v1.0.0
+	github.com/mnhkahn/curl-to-go v0.0.0-20240930000052-e686ca29ce2f
 	github.com/mnhkahn/ddl-maker v0.0.0-20240921043833-9e6ff89aa3f5
 	github.com/mnhkahn/gogogo v1.0.10-0.20240927140300-2292769b09f9
 	github.com/mnhkahn/maodou v1.0.6
 	github.com/mnhkahn/peanut v1.0.3
-	github.com/mnhkahn/pkg v0.0.0-20181030083427-71a5c5c3f3ba
 	github.com/mnhkahn/resume v1.0.0
 	github.com/mnhkahn/togo v1.0.3
 	github.com/patrickmn/go-cache v2.1.0+incompatible
@@ -41,8 +42,8 @@ require (
 	github.com/golang/protobuf v1.2.0 // indirect
 	github.com/gopherjs/gopherjs v0.0.0-20181103185306-d547d1d9531e // indirect
 	github.com/huichen/sego v0.0.0-20180617034105-3f3c8a8cfacc // indirect
-	github.com/ikeikeikeike/go-sitemap-generator/v2 v2.0.2 // indirect
 	github.com/jimsmart/schema v0.0.0-20181113191328-8d0563922e25 // indirect
+	github.com/kumakichi/json-to-go v0.0.0-20200328091717-6a4e5c0c5515 // indirect
 	github.com/mattn/go-sqlite3 v1.10.0 // indirect
 	github.com/mnhkahn/gods v1.0.1 // indirect
 	github.com/nao1215/ddl-maker v1.2.0 // indirect
@@ -68,3 +69,5 @@ require (
 	gopkg.in/yaml.v2 v2.2.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
+
+replace github.com/mnhkahn/curl-to-go => ../curl-to-go

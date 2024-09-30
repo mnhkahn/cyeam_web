@@ -4,6 +4,7 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"strconv"
@@ -12,6 +13,7 @@ import (
 	"github.com/hexops/gotextdiff"
 	"github.com/hexops/gotextdiff/myers"
 	"github.com/hexops/gotextdiff/span"
+	curl_to_go "github.com/mnhkahn/curl-to-go"
 	"github.com/mnhkahn/gogogo/app"
 )
 
@@ -190,3 +192,24 @@ func Json2DDL(c *app.Context) error {
 		map[string]interface{}{})
 	return nil
 }
+
+func Curl2Go(c *app.Context) error {
+	c.HTML([]string{"./views/curl2go.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"},
+		map[string]interface{}{})
+	return nil
+}
+
+func Curl2GoExec(c *app.Context) error {
+	body, err := io.ReadAll(c.Request.Body)
+	if err != nil {
+		return err
+	}
+	result := curl_to_go.Parse(string(body))
+	c.WriteString(result)
+	return nil
+}
+
+// func_to_handler.NewFuncToHandler(func(data string) string {
+// 	result := curl_to_go.Parse(data)
+// 	return result
+// }

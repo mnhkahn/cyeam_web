@@ -109,6 +109,7 @@ func init() {
 	app.Handle("/tool/timestamp", &app.Got{controllers.Timestamp})
 	app.Handle("/tool/diff", &app.Got{controllers.Diff})
 	app.Handle("/tool/json2ddl", &app.Got{controllers.Json2DDL})
+	app.Handle("/tool/curl2go", &app.Got{controllers.Curl2Go})
 
 	app.Handle("/tool/json2gostruct/exec", func_to_handler.NewFuncToHandler(func(data string) (string, error) {
 		var parser gojson.Parser = gojson.ParseJson
@@ -228,4 +229,5 @@ func init() {
 		}
 		return string(res)
 	}))
+	app.Handle("/tool/curl2go/exec", app.Got{H: controllers.Curl2GoExec})
 }
