@@ -34,32 +34,6 @@
         enable_page_level_ads: true
     });
 </script>
-<script>
-  (function(h,o,u,n,d) {
-    h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
-    d=o.createElement(u);d.async=1;d.src=n
-    n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
-  })(window,document,'script','https://www.datadoghq-browser-agent.com/ap1/v5/datadog-rum.js','DD_RUM')
-  window.DD_RUM.onReady(function() {
-    window.DD_RUM.init({
-      clientToken: 'pub741e5f238cc34a30f71bb518d6f146f0',
-      applicationId: '613ed4bf-e5ac-4ff3-9627-72317cb1d93a',
-      // `site` refers to the Datadog site parameter of your organization
-      // see https://docs.datadoghq.com/getting_started/site/
-      site: 'ap1.datadoghq.com',
-      service: 'cyeam',
-      env: 'prod',
-      // Specify a version number to identify the deployed version of your application in Datadog
-      // version: '1.0.0',
-      sessionSampleRate: 100,
-      sessionReplaySampleRate: 20,
-      trackUserInteractions: true,
-      trackResources: true,
-      trackLongTasks: true,
-      defaultPrivacyLevel: 'mask-user-input',
-    });
-  })
-</script>
 </head>
 
 <body>
