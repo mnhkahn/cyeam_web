@@ -7,12 +7,18 @@ import (
 
 	"github.com/mnhkahn/asciiimg"
 	"github.com/mnhkahn/gogogo/app"
+	"github.com/mnhkahn/gogogo/logger"
 	"github.com/mnhkahn/resume"
 	"github.com/mnhkahn/resume/structs"
 	"github.com/youngzhu/go2chinese"
 )
 
 func ToolBox(c *app.Context) error {
+	if c.Request.URL.Path != "/" {
+		logger.Info("not found", c.Request.URL.Path)
+		return NotFound(c)
+	}
+
 	loc, err := time.LoadLocation("Asia/Shanghai")
 	if err != nil {
 		return err

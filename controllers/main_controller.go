@@ -103,4 +103,8 @@ func DoubanMovie(c *app.Context) error {
 	return nil
 }
 
-
+func NotFound(c *app.Context) error {
+	c.ResponseWriter.WriteHeader(http.StatusNotFound)
+	c.HTML([]string{"./views/404.html", "./views/head.html", "./views/tail.html"}, nil)
+	return nil
+}
