@@ -28,6 +28,9 @@ COPY ./templates/. .
 WORKDIR /conf
 COPY ./conf/. .
 
+WORKDIR /resource
+COPY ./resource/. .
+
 WORKDIR /
 
 CMD ["/cyeam"]

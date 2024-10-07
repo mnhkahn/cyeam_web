@@ -38,7 +38,7 @@ func main() {
 
 	str, _ := os.Getwd()
 	logger.Info(str)
-	err := filepath.Walk("/views", func(path string, info os.FileInfo, err error) error {
+	err := filepath.Walk("./views", func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			fmt.Println(err)
 			return err
@@ -61,7 +61,6 @@ func main() {
 func init() {
 	app.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 
-	// app.Handle("/", &app.Got{controllers.Index})
 	app.Handle("/", &app.Got{H: controllers.ToolBox})
 	app.Handle("/bing", &app.Got{H: controllers.Bing})
 	app.Handle("/s", &app.Got{controllers.Search})
@@ -110,6 +109,7 @@ func init() {
 	app.Handle("/tool/diff", &app.Got{controllers.Diff})
 	app.Handle("/tool/json2ddl", &app.Got{controllers.Json2DDL})
 	app.Handle("/tool/curl2go", &app.Got{controllers.Curl2Go})
+	app.Handle("/tool/arithmetic", &app.Got{H: controllers.Arithmetic})
 
 	app.Handle("/tool/json2gostruct/exec", func_to_handler.NewFuncToHandler(func(data string) (string, error) {
 		var parser gojson.Parser = gojson.ParseJson
@@ -230,4 +230,5 @@ func init() {
 		return string(res)
 	}))
 	app.Handle("/tool/curl2go/exec", app.Got{H: controllers.Curl2GoExec})
+	app.Handle("/tool/arithmetic/exec", func_to_handler.NewFuncToHandler(controllers.ArithmeticExec))
 }

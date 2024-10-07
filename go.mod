@@ -1,4 +1,3 @@
-// +heroku goVersion go1.11
 module cyeam
 
 go 1.23.1
@@ -26,6 +25,8 @@ require (
 	golang.org/x/oauth2 v0.0.0-20190115181402-5dab4167f31c
 )
 
+require github.com/mnhkahn/gofpdf v0.0.0-20241007103317-36f676dfaa45 // indirect
+
 require (
 	github.com/BurntSushi/toml v0.3.1 // indirect
 	github.com/Shelnutt2/db2struct v0.0.0-20181222174121-11c43c24bfb2 // indirect
@@ -33,6 +34,7 @@ require (
 	github.com/andybalholm/cascadia v1.0.0 // indirect
 	github.com/beevik/etree v1.1.0 // indirect
 	github.com/boltdb/bolt v1.3.1 // indirect
+	github.com/boombuler/barcode v1.0.2
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/denisenkom/go-mssqldb v0.0.0-20190111225525-2fea367d496d // indirect
 	github.com/fatih/structs v1.1.0 // indirect

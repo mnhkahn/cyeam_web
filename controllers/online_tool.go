@@ -2,6 +2,10 @@
 package controllers
 
 import (
+	"bytes"
+	"cyeam/painter"
+	"cyeam/service"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -14,6 +18,7 @@ import (
 	"github.com/hexops/gotextdiff/myers"
 	"github.com/hexops/gotextdiff/span"
 	curl_to_go "github.com/mnhkahn/curl-to-go"
+	"github.com/mnhkahn/gofpdf"
 	"github.com/mnhkahn/gogogo/app"
 )
 
@@ -209,7 +214,47 @@ func Curl2GoExec(c *app.Context) error {
 	return nil
 }
 
-// func_to_handler.NewFuncToHandler(func(data string) string {
-// 	result := curl_to_go.Parse(data)
-// 	return result
-// }
+func Arithmetic(c *app.Context) error {
+	c.HTML([]string{"./views/arithmetic.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"},
+		map[string]interface{}{})
+	return nil
+}
+
+func ArithmeticExec(data string) string {
+	p, err := painter.NewPdfPainterResource(210, 297, "./resource")
+	if err != nil {
+		return err.Error()
+	}
+	err = p.AddPage()
+	if err != nil {
+		return err.Error()
+	}
+	p.Text("Cyeam口算", painter.FontSimhei, painter.FontBold, 20, 10, 7, 35, 10, painter.AlignLeftMiddle, nil, gofpdf.BorderNone)
+	p.QRCode("https://www.cyeam.com/tool/arithmetic", 50, 2, 20, 20)
+	p.Text("日期:", painter.FontSimhei, painter.FontNone, 10, 140, 7, 10, 5, painter.AlignLeftMiddle, nil, gofpdf.BorderNone)
+	p.Line(150, 12, 167, 12, 0.5, false)
+	p.Text("姓名:", painter.FontSimhei, painter.FontNone, 10, 170, 7, 10, 5, painter.AlignLeftMiddle, nil, gofpdf.BorderNone)
+	p.Line(180, 12, 197, 12, 0.5, false)
+	p.Text("耗时:", painter.FontSimhei, painter.FontNone, 10, 140, 12, 10, 5, painter.AlignLeftMiddle, nil, gofpdf.BorderNone)
+	p.Line(150, 17, 167, 17, 0.5, false)
+	p.Text("班级:", painter.FontSimhei, painter.FontNone, 10, 170, 12, 10, 5, painter.AlignLeftMiddle, nil, gofpdf.BorderNone)
+	p.Line(180, 17, 197, 17, 0.5, false)
+
+	p.Line(5, 25, 205, 25, 2, true)
+
+	height := 12
+	for j := 0; j < 20; j++ {
+		for i := 0; i < 5; i++ {
+			p.Text(service.GenArithmetic(data, int64(i+1)*int64(j+1)), painter.FontSimhei, painter.FontNone, 11.5, float64(10+38*i), float64(30+height*j), 38, float64(height), painter.AlignLeftMiddle, nil, gofpdf.BorderNone)
+		}
+	}
+
+	buf := bytes.NewBuffer(nil)
+
+	err = p.Output(buf)
+	if err != nil {
+		return err.Error()
+	}
+
+	return base64.StdEncoding.EncodeToString(buf.Bytes())
+}

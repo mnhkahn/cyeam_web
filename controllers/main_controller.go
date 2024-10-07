@@ -3,14 +3,13 @@ package controllers
 import (
 	"cyeam/models"
 	"cyeam/search"
-	"cyeam/services"
+	"cyeam/service"
 	"cyeam/structs"
 	"net/http"
 
-	"github.com/mnhkahn/peanut/index"
-
 	"github.com/mnhkahn/gogogo/app"
 	"github.com/mnhkahn/gogogo/logger"
+	"github.com/mnhkahn/peanut/index"
 )
 
 func Index(c *app.Context) error {
@@ -84,7 +83,7 @@ func BinCalc(c *app.Context) error {
 	if err != nil {
 		return err
 	}
-	castruct.Dec = services.BinToDex(c.Request.FormValue("bin"))
+	castruct.Dec = service.BinToDex(c.Request.FormValue("bin"))
 	c.HTML([]string{"./views/calc.html", "./views/head.html", "./views/tail.html"}, castruct)
 
 	logger.Info("bincalc", castruct.Bin, castruct.Dec)
