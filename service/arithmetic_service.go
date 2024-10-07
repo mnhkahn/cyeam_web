@@ -24,8 +24,8 @@ func GenArithmetic(t string, seed int64) string {
 		c := r.Int63n(a - b - 10)
 		res = fmt.Sprintf("%d - %d - %d =", a, b, c)
 	case "1-1-mul-1":
-		a := r.Int63n(9) // 0~9
-		b := r.Int63n(9) // 0~9
+		a := r.Int63n(8) + 1 // 1~9
+		b := r.Int63n(8) + 1 // 1~9
 		res = fmt.Sprintf("%d × %d = ", a, b)
 	case "1-1-mul-sub-2-1":
 		a := r.Int63n(8) + 1 // 1~9
