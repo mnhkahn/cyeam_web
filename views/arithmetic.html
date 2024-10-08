@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta name="description" content="只需将 cURL 命令粘贴到输入表单中，我们就会实时、自动生成等效的 Go 请求代码，支持Get、Post方法，自动构造请求体，使 API 测试和网页抓取变得轻而易举！">
-    <title>在线把cURL命令转换成Go代码 在线把cURL命令转换成Golang代码</title>
+    <meta name="description" content="选择需要的题型，给宝宝打印出来，一次生成100题。建议做题时计时。">
+    <title>口算大通关 鸡娃的家长卷起来了！</title>
     {{template "TOOLHEAD"}}
 
     <div id="page-wrapper">
@@ -19,6 +19,10 @@
         </div>
         <!-- /.row -->
         <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">口算大通关</h1>
+                <p>选择需要的题型，给宝宝打印出来，一次生成100题。口算每天都要做，多关注正确率，建议做题时计时。</p>
+            </div>
             <div class="col-lg-12">
                 <form class="form-inline" id="form-arithmetic">
                     <div class="form-group">
@@ -56,6 +60,9 @@
             }).done(function(dd) {
                 $('#go-struct-view').attr("data", "data:application/pdf;base64," + dd.out0);
             });
+        });
+        $(document).ready(function() {
+            $('#collapsePages_other').collapse();
         });
     </script>
     <!-- /#page-wrapper -->

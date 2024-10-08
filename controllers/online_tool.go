@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"math/rand"
 	"net/http"
 	"strconv"
 	"time"
@@ -230,7 +231,7 @@ func ArithmeticExec(data string) string {
 		return err.Error()
 	}
 	p.Text("Cyeam口算", painter.FontSimhei, painter.FontBold, 20, 10, 7, 35, 10, painter.AlignLeftMiddle, nil, gofpdf.BorderNone)
-	p.QRCode("https://www.cyeam.com/tool/arithmetic", 50, 2, 20, 20)
+	p.QRCode("https://www.cyeam.com/tool/arithmetic", 50, 7, 20, 20)
 	p.Text("日期:", painter.FontSimhei, painter.FontNone, 10, 140, 7, 10, 5, painter.AlignLeftMiddle, nil, gofpdf.BorderNone)
 	p.Line(150, 12, 167, 12, 0.5, false)
 	p.Text("姓名:", painter.FontSimhei, painter.FontNone, 10, 170, 7, 10, 5, painter.AlignLeftMiddle, nil, gofpdf.BorderNone)
@@ -240,12 +241,13 @@ func ArithmeticExec(data string) string {
 	p.Text("班级:", painter.FontSimhei, painter.FontNone, 10, 170, 12, 10, 5, painter.AlignLeftMiddle, nil, gofpdf.BorderNone)
 	p.Line(180, 17, 197, 17, 0.5, false)
 
-	p.Line(5, 25, 205, 25, 2, true)
+	p.Line(5, 30, 205, 30, 2, true)
 
 	height := 12
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	for j := 0; j < 20; j++ {
 		for i := 0; i < 5; i++ {
-			p.Text(service.GenArithmetic(data, int64(i+1)*int64(j+1)), painter.FontSimhei, painter.FontNone, 11.5, float64(10+38*i), float64(30+height*j), 38, float64(height), painter.AlignLeftMiddle, nil, gofpdf.BorderNone)
+			p.Text(service.GenArithmetic(data, r), painter.FontSimhei, painter.FontNone, 11.5, float64(10+38*i), float64(32+height*j), 38, float64(height), painter.AlignLeftMiddle, nil, gofpdf.BorderNone)
 		}
 	}
 

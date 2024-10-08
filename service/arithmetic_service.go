@@ -3,14 +3,9 @@ package service
 import (
 	"fmt"
 	"math/rand"
-	"time"
 )
 
-func GenArithmetic(t string, seed int64) string {
-	r := rand.New(rand.NewSource(time.Now().Unix() + seed))
-	if t == "2-2-2-add-1" {
-
-	}
+func GenArithmetic(t string, r *rand.Rand) string {
 	var res = ""
 	switch t {
 	case "2-2-2-add-1":
