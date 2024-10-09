@@ -79,7 +79,8 @@ func init() {
 	app.Handle("/robots.txt", app.Got{controllers.Robots})
 	app.Handle("/feed/", &app.Got{controllers.Feed})
 	app.Handle("/resume", &app.Got{controllers.Resume})
-	app.Handle("/geek", &app.Got{controllers.Toutiao})
+	// app.Handle("/geek", &app.Got{controllers.Toutiao})
+	controllers.HandleViews("/geek", []string{"./views/toutiao.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
 	app.Handle("/neitui", &app.Got{controllers.Neitui})
 
 	app.Handle("/.well-known/pki-validation/fileauth.htm", &app.Got{controllers.SSLVerify})
