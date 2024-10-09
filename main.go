@@ -73,7 +73,6 @@ func init() {
 
 	app.Handle("/favicon.ico", &app.Got{controllers.Favicon})
 	app.Handle("/ads.txt", &app.Got{controllers.Ads})
-	app.Handle("/toolbox", &app.Got{controllers.ToolBox})
 	app.Handle("/ascii", &app.Got{controllers.Ascii})
 	app.Handle("/sitemap.xml", app.Got{H: controllers.SiteMapXML})
 	app.Handle("/sitemap.txt", app.Got{H: controllers.SiteMapRaw})
