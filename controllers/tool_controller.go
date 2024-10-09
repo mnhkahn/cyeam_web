@@ -24,6 +24,8 @@ func ToolBox(c *app.Context) error {
 		return err
 	}
 	now := time.Now().In(loc)
+
+	viewsMap["/"] = []string{"./views/toolbox.html", "./views/head.html", "./views/tail.html"}
 	c.HTML([]string{"./views/toolbox.html", "./views/head.html", "./views/tail.html"}, map[string]string{
 		"now":  now.Format(time.TimeOnly),
 		"date": now.Format("1月2日") + go2chinese.Weekday(now),
