@@ -41,6 +41,8 @@ func SiteMapRaw(c *app.Context) error {
 
 func Robots(c *app.Context) error {
 	c.WriteString(fmt.Sprintf(`User-agent: *
-Sitemap: https://%s/sitemap.xml`, app.String("host")))
+Disallow:
+Sitemap: https://%s/sitemap.xml
+Disallow: /*/exec$`, app.String("host")))
 	return nil
 }
