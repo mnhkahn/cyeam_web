@@ -2,10 +2,13 @@ package controllers
 
 import (
 	"fmt"
-	"strings"
+	"os"
+	"sort"
+	"time"
 
 	"github.com/ikeikeikeike/go-sitemap-generator/v2/stm"
 	"github.com/mnhkahn/gogogo/app"
+	"github.com/mnhkahn/gogogo/logger"
 )
 
 func SiteMapXML(c *app.Context) error {
@@ -17,24 +20,40 @@ func buildSitemap() *stm.Sitemap {
 	sm := stm.NewSitemap(1)
 	sm.SetDefaultHost(fmt.Sprintf("https://%s", app.String("host")))
 	sm.Create()
-	for _, pattern := range app.GoEngine.Patterns() {
-		if strings.HasSuffix(pattern, "/exec") {
-			continue
-		} else if strings.HasPrefix(pattern, "/tool") || pattern == "/" {
-			sm.Add(stm.URL{{"loc", pattern}, {"changefreq", "daily"}, {"priority", "1"}})
+
+	patterns := make([]string, 0, len(viewsMap))
+	for pattern := range viewsMap {
+		patterns = append(patterns, pattern)
+	}
+	sort.Slice(patterns, func(i, j int) bool {
+		return patterns[i] < patterns[j]
+	})
+
+	for _, pattern := range patterns {
+		viewName := viewsMap[pattern][0]
+		fileInfo, err := os.Stat(viewName)
+		lastmod := time.Now().Format(time.RFC3339)
+		if err != nil {
+			logger.Error(err.Error())
+		} else {
+			lastmod = fileInfo.ModTime().Format(time.RFC3339)
 		}
+		sm.Add(stm.URL{{"loc", pattern}, {"changefreq", "daily"}, {"priority", "1"}, {"lastmod", lastmod}})
 	}
 
 	return sm
 }
 
 func SiteMapRaw(c *app.Context) error {
-	for _, pattern := range app.GoEngine.Patterns() {
-		if strings.HasSuffix(pattern, "/exec") {
-			continue
-		} else if strings.HasPrefix(pattern, "/tool") || pattern == "/" {
-			c.WriteString(pattern + "\n")
-		}
+	patterns := make([]string, 0, len(viewsMap))
+	for pattern := range viewsMap {
+		patterns = append(patterns, pattern)
+	}
+	sort.Slice(patterns, func(i, j int) bool {
+		return patterns[i] < patterns[j]
+	})
+	for _, pattern := range patterns {
+		c.WriteString(pattern + "\n")
 	}
 	return nil
 }

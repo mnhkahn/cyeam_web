@@ -28,80 +28,80 @@ func OnlineToolHome(c *app.Context) error {
 	return nil
 }
 
-func JsonToGoStruct(c *app.Context) error {
-	c.HTML([]string{"./views/jsontogostruct.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
-	return nil
-}
+// func JsonToGoStruct(c *app.Context) error {
+// 	c.HTML([]string{"./views/jsontogostruct.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+// 	return nil
+// }
 
-func XMLToGoStruct(c *app.Context) error {
-	c.HTML([]string{"./views/xmltogostruct.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
-	return nil
-}
+// func XMLToGoStruct(c *app.Context) error {
+// 	c.HTML([]string{"./views/xmltogostruct.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+// 	return nil
+// }
 
-func JsonToThriftStruct(c *app.Context) error {
-	c.HTML([]string{"./views/jsontothriftstruct.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
-	return nil
-}
+// func JsonToThriftStruct(c *app.Context) error {
+// 	c.HTML([]string{"./views/jsontothriftstruct.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+// 	return nil
+// }
 
-func DMLToGoStruct(c *app.Context) error {
-	c.HTML([]string{"./views/dmltogostruct.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
-	return nil
-}
+// func DMLToGoStruct(c *app.Context) error {
+// 	c.HTML([]string{"./views/dmltogostruct.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+// 	return nil
+// }
 
-func FormatJson(c *app.Context) error {
-	c.HTML([]string{"./views/formatjson.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
-	return nil
-}
+// func FormatJson(c *app.Context) error {
+// 	c.HTML([]string{"./views/formatjson.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+// 	return nil
+// }
 
-func FormatXML(c *app.Context) error {
-	c.HTML([]string{"./views/formatxml.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
-	return nil
-}
+// func FormatXML(c *app.Context) error {
+// 	c.HTML([]string{"./views/formatxml.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+// 	return nil
+// }
 
 func UrlEscape(c *app.Context) error {
 	c.HTML([]string{"./views/urlescape.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
 	return nil
 }
 
-func UrlUnEscape(c *app.Context) error {
-	c.HTML([]string{"./views/urlunescape.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
-	return nil
-}
+// func UrlUnEscape(c *app.Context) error {
+// 	c.HTML([]string{"./views/urlunescape.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+// 	return nil
+// }
 
 func Base32(c *app.Context) error {
 	c.HTML([]string{"./views/base32.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
 	return nil
 }
 
-func Base32Decode(c *app.Context) error {
-	c.HTML([]string{"./views/base32decode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
-	return nil
-}
+// func Base32Decode(c *app.Context) error {
+// 	c.HTML([]string{"./views/base32decode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+// 	return nil
+// }
 
 func Base64(c *app.Context) error {
 	c.HTML([]string{"./views/base64.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
 	return nil
 }
 
-func Base64Decode(c *app.Context) error {
-	c.HTML([]string{"./views/base64decode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
-	return nil
-}
+// func Base64Decode(c *app.Context) error {
+// 	c.HTML([]string{"./views/base64decode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+// 	return nil
+// }
 
 func Hex(c *app.Context) error {
 	c.HTML([]string{"./views/hex.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
 	return nil
 }
 
-func HexDecode(c *app.Context) error {
-	c.HTML([]string{"./views/hexdecode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
-	return nil
-}
+// func HexDecode(c *app.Context) error {
+// 	c.HTML([]string{"./views/hexdecode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+// 	return nil
+// }
 
-func MsgPackToJson(c *app.Context) error {
-	c.HTML([]string{"./views/msgpacktojson.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
-	return nil
-}
+// func MsgPackToJson(c *app.Context) error {
+// 	c.HTML([]string{"./views/msgpacktojson.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
+// 	return nil
+// }
 
 func JsonToMsgPack(c *app.Context) error {
 	c.HTML([]string{"./views/jsontomsgpack.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, nil)
@@ -113,21 +113,21 @@ func JsonPack(c *app.Context) error {
 	return nil
 }
 
-func Timestamp(c *app.Context) error {
-	cook, _ := c.Request.Cookie("zone")
-	zone := "8"
-	if cook != nil {
-		zone = cook.Value
-	}
-	n := time.Now()
-	c.HTML([]string{"./views/timestamp.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"},
-		map[string]interface{}{
-			"now":  n.Unix(),
-			"zone": zone,
-			// "res":  n.Format(time.DateTime),
-		})
-	return nil
-}
+// func Timestamp(c *app.Context) error {
+// 	cook, _ := c.Request.Cookie("zone")
+// 	zone := "8"
+// 	if cook != nil {
+// 		zone = cook.Value
+// 	}
+// 	n := time.Now()
+// 	c.HTML([]string{"./views/timestamp.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"},
+// 		map[string]interface{}{
+// 			"now":  n.Unix(),
+// 			"zone": zone,
+// 			// "res":  n.Format(time.DateTime),
+// 		})
+// 	return nil
+// }
 
 func TimestampExec(c *app.Context) error {
 	m := make(map[string]interface{})
@@ -170,11 +170,11 @@ func TimestampExec(c *app.Context) error {
 	return nil
 }
 
-func Diff(c *app.Context) error {
-	c.HTML([]string{"./views/diff.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"},
-		map[string]interface{}{})
-	return nil
-}
+// func Diff(c *app.Context) error {
+// 	c.HTML([]string{"./views/diff.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"},
+// 		map[string]interface{}{})
+// 	return nil
+// }
 
 func DiffExec(c *app.Context) error {
 	m := make(map[string]interface{})
@@ -193,17 +193,17 @@ func DiffExec(c *app.Context) error {
 	return err
 }
 
-func Json2DDL(c *app.Context) error {
-	c.HTML([]string{"./views/json2ddl.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"},
-		map[string]interface{}{})
-	return nil
-}
+// func Json2DDL(c *app.Context) error {
+// 	c.HTML([]string{"./views/json2ddl.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"},
+// 		map[string]interface{}{})
+// 	return nil
+// }
 
-func Curl2Go(c *app.Context) error {
-	c.HTML([]string{"./views/curl2go.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"},
-		map[string]interface{}{})
-	return nil
-}
+// func Curl2Go(c *app.Context) error {
+// 	c.HTML([]string{"./views/curl2go.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"},
+// 		map[string]interface{}{})
+// 	return nil
+// }
 
 func Curl2GoExec(c *app.Context) error {
 	body, err := io.ReadAll(c.Request.Body)
@@ -215,11 +215,11 @@ func Curl2GoExec(c *app.Context) error {
 	return nil
 }
 
-func Arithmetic(c *app.Context) error {
-	c.HTML([]string{"./views/arithmetic.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"},
-		map[string]interface{}{})
-	return nil
-}
+// func Arithmetic(c *app.Context) error {
+// 	c.HTML([]string{"./views/arithmetic.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"},
+// 		map[string]interface{}{})
+// 	return nil
+// }
 
 func ArithmeticExec(data string) string {
 	p, err := painter.NewPdfPainterResource(210, 297, "./resource")

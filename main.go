@@ -17,6 +17,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/ChimeraCoder/gojson"
 	"github.com/miku/zek"
@@ -86,30 +87,40 @@ func init() {
 	app.Handle("/google97ec3a9b69e1f4db.html", &app.Got{controllers.GoogleVerify})
 	app.Handle("/BingSiteAuth.xml", &app.Got{controllers.BingVerify})
 
-	app.Handle("/tool", &app.Got{controllers.FormatJson})
-	app.Handle("/tool/json2gostruct", &app.Got{controllers.JsonToGoStruct})
-	app.Handle("/tool/xml2gostruct", &app.Got{controllers.XMLToGoStruct})
-	app.Handle("/tool/json2thriftstruct", &app.Got{controllers.JsonToThriftStruct})
-	app.Handle("/tool/dml2gostruct", &app.Got{controllers.DMLToGoStruct})
-	app.Handle("/tool/formatjson", &app.Got{controllers.FormatJson})
-	app.Handle("/tool/formatxml", &app.Got{controllers.FormatXML})
+	controllers.HandleViews("/tool", []string{"./views/formatjson.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
+	controllers.HandleViews("/tool/json2gostruct", []string{"./views/jsontogostruct.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
+	controllers.HandleViews("/tool/xml2gostruct", []string{"./views/xmltogostruct.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
+	controllers.HandleViews("/tool/json2thriftstruct", []string{"./views/jsontothriftstruct.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
+	controllers.HandleViews("/tool/dml2gostruct", []string{"./views/dmltogostruct.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
+	controllers.HandleViews("/tool/formatjson", []string{"./views/formatjson.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
+	controllers.HandleViews("/tool/formatxml", []string{"./views/formatxml.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
 	app.Handle("/tool/urlescape", &app.Got{controllers.UrlEscape})
-	app.Handle("/tool/urlunescape", &app.Got{controllers.UrlUnEscape})
+	controllers.HandleViews("/tool/urlunescape", []string{"./views/urlunescape.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
 	app.Handle("/tool/base32", &app.Got{controllers.Base32})
-	app.Handle("/tool/base32decode", &app.Got{controllers.Base32Decode})
+	controllers.HandleViews("/tool/base32decode", []string{"./views/base32decode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
 	app.Handle("/tool/base64", &app.Got{controllers.Base64})
-	app.Handle("/tool/base64decode", &app.Got{controllers.Base64Decode})
+	controllers.HandleViews("/tool/base64decode", []string{"./views/base64decode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
 	app.Handle("/tool/hex", &app.Got{controllers.Hex})
-	app.Handle("/tool/hexdecode", &app.Got{controllers.HexDecode})
-	// app.Handle("/tool/ascii", &app.Got{controllers.Hex})
-	app.Handle("/tool/msgpacktojson", &app.Got{controllers.MsgPackToJson})
+	controllers.HandleViews("/tool/hexdecode", []string{"./views/hexdecode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
 	app.Handle("/tool/jsontomsgpack", &app.Got{controllers.JsonToMsgPack})
-	app.Handle("/tool/jsonpack", &app.Got{controllers.JsonPack})
-	app.Handle("/tool/timestamp", &app.Got{controllers.Timestamp})
-	app.Handle("/tool/diff", &app.Got{controllers.Diff})
-	app.Handle("/tool/json2ddl", &app.Got{controllers.Json2DDL})
-	app.Handle("/tool/curl2go", &app.Got{controllers.Curl2Go})
-	app.Handle("/tool/arithmetic", &app.Got{H: controllers.Arithmetic})
+	controllers.HandleViews("/tool/msgpacktojson", []string{"./views/msgpacktojson.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
+	controllers.HandleViews("/tool/jsonpack", []string{"./views/jsonpack.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
+	controllers.HandleViews("/tool/timestamp", []string{"./views/timestamp.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, func(c *app.Context) interface{} {
+		cook, _ := c.Request.Cookie("zone")
+		zone := "8"
+		if cook != nil {
+			zone = cook.Value
+		}
+		n := time.Now()
+		return map[string]interface{}{
+			"now":  n.Unix(),
+			"zone": zone,
+		}
+	})
+	controllers.HandleViews("/tool/diff", []string{"./views/diff.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
+	controllers.HandleViews("/tool/json2ddl", []string{"./views/json2ddl.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
+	controllers.HandleViews("/tool/curl2go", []string{"./views/curl2go.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
+	controllers.HandleViews("/tool/arithmetic", []string{"./views/arithmetic.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
 
 	app.Handle("/tool/json2gostruct/exec", func_to_handler.NewFuncToHandler(func(data string) (string, error) {
 		var parser gojson.Parser = gojson.ParseJson
