@@ -97,7 +97,6 @@ func init() {
 	controllers.HandleViews("/tool/urlunescape", []string{"./views/urlunescape.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
 	controllers.HandleViews("/tool/base32decode", []string{"./views/base32decode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
 	controllers.HandleViews("/tool/base64decode", []string{"./views/base64decode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
-	app.Handle("/tool/hex", &app.Got{controllers.Hex})
 	controllers.HandleViews("/tool/hexdecode", []string{"./views/hexdecode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
 	app.Handle("/tool/jsontomsgpack", &app.Got{controllers.JsonToMsgPack})
 	controllers.HandleViews("/tool/msgpacktojson", []string{"./views/msgpacktojson.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)

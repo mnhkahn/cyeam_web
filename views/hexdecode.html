@@ -3,7 +3,7 @@
 
 <head>
     <meta name="description" content="十六进制Hex在线解码。提供十六进制编码内容，自动实时解析成原始数据。">
-    <title>十六进制Hex在线解码 ASCII字符串解码 16进制解码 16进制编解码原理</title>
+    <title>十六进制Hex在线编解码 ASCII字符串编解码 16进制编解码 16进制编解码原理</title>
     {{template "TOOLHEAD"}}
 
     <div id="page-wrapper">
@@ -19,17 +19,24 @@
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-6">
-                <textarea id="data-json" placeholder="在此输入..." class="form-control" style="height:100%; min-height:400px;padding:10px 10px 10px 30px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
+            <div class="col-lg-6" style="padding-right: 0px;">
+                <button class="btn-copy" data-clipboard-snippet=""><i class="fa fa-globe"></i><span>copy</span></button>
+                <textarea id="data-json" placeholder="在此输入字符串..." class="form-control" style="height:100%;height: 27vh;min-height:20px;padding:10px 10px 10px 10px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
             </div>
-            <div class="col-lg-6">
-                <pre class="language-go" id="go-struct-view" style="height:100%; min-height:400px;margin: 0px;">
-            </pre>
+            <div class="col-lg-6" style="padding-right: 0px;">
+                <button class="btn-copy" data-clipboard-snippet=""><i class="fa fa-globe"></i><span>copy</span></button>
+                <textarea id="go-struct-view" placeholder="在此输入Hex字符串..." class="form-control" style="height:100%;height: 27vh;min-height:20px;padding:10px 10px 10px 10px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-lg-12">
+                <button id="encode_btn" type="button" class="btn btn-primary">Hex编码</button>
+                <button id="decode_btn" type="button" class="btn btn-primary">Hex解码</button>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h1>十六进制Hex在线解码</h1>
+                <h1>十六进制Hex在线编解码</h1>
                 <p>提供十六进制编码内容，自动实时解析成原始数据，可支持ASCII字符串内容和十六进制字符串的转换。可以将不可见的二进制原始字节内容转换成可读的编码形式，也可用于存储、传输等场景。</p>
                 <h4>什么是十六进制</h4>
                 <p>十六进制是一种计数系统，使用 0-9 和 A-F 共 16 个字符来表示数值。特点包括：</p>
@@ -59,19 +66,26 @@
         <!-- /.row -->
     </div>
     <script type="application/javascript">
-        $('#data-json').bind('input propertychange', function() {
-            console.debug($(this).val());
-            // var json = '{"a":1}';
-            var json = $(this).val();
+        $('#encode_btn').click(function() {
+            var json = $('#data-json').val();
+            var url = "/tool/hex/exec?in0=" + json;
+            $.ajax({
+                url: url,
+                dataType: 'json',
+            }).done(function(dd) {
+                $('#go-struct-view').val(dd.out0);
+            });
+        });
+        $('#decode_btn').click(function() {
+            var json = $('#go-struct-view').val();
             var url = "/tool/hexdecode/exec?in0=" + json;
             $.ajax({
                 url: url,
                 dataType: 'json',
             }).done(function(dd) {
-                $('#go-struct-view').html(dd.out0);
+                $('#data-json').val(dd.out0);
             });
         });
-
         $(document).ready(function() {
             $('#collapsePages').collapse();
         });
