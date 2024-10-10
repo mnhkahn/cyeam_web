@@ -79,7 +79,6 @@ func init() {
 	app.Handle("/robots.txt", app.Got{controllers.Robots})
 	app.Handle("/feed/", &app.Got{controllers.Feed})
 	app.Handle("/resume", &app.Got{controllers.Resume})
-	// app.Handle("/geek", &app.Got{controllers.Toutiao})
 	controllers.HandleViews("/geek", []string{"./views/toutiao.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
 	app.Handle("/neitui", &app.Got{controllers.Neitui})
 
@@ -96,7 +95,7 @@ func init() {
 	controllers.HandleViews("/tool/formatxml", []string{"./views/formatxml.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
 	app.Handle("/tool/urlescape", &app.Got{controllers.UrlEscape})
 	controllers.HandleViews("/tool/urlunescape", []string{"./views/urlunescape.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
-	app.Handle("/tool/base32", &app.Got{controllers.Base32})
+	controllers.HandleViews("/tool/base32", []string{"./views/base32decode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
 	controllers.HandleViews("/tool/base32decode", []string{"./views/base32decode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
 	app.Handle("/tool/base64", &app.Got{controllers.Base64})
 	controllers.HandleViews("/tool/base64decode", []string{"./views/base64decode.html", "./views/onlinetoolheader.html", "./views/onlinetooltail.html"}, controllers.DataDefaultGetter)
@@ -168,7 +167,13 @@ func init() {
 	app.Handle("/tool/base32/exec", func_to_handler.NewFuncToHandler(func(data string) string {
 		return base32.StdEncoding.EncodeToString([]byte(data))
 	}))
-	app.Handle("/tool/base32decode/exec", func_to_handler.NewFuncToHandler(base32.StdEncoding.DecodeString))
+	app.Handle("/tool/base32decode/exec", func_to_handler.NewFuncToHandler(func(data string) string {
+		res, err := base32.StdEncoding.DecodeString(data)
+		if err != nil {
+			return err.Error()
+		}
+		return string(res)
+	}))
 	app.Handle("/tool/base64/exec", func_to_handler.NewFuncToHandler(func(data string) string {
 		return base64.StdEncoding.EncodeToString([]byte(data))
 	}))
