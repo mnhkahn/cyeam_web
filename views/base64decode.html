@@ -8,11 +8,6 @@
 
     <div id="page-wrapper">
         <div class="row">
-            {{/*
-            <div class="col-lg-12">*/}} {{/*
-                <h1 class="page-header">Base64 解码</h1>*/}} {{/*
-            </div>*/}} {{/*
-            <!-- /.col-lg-12 -->*/}}
             <div class="col-lg-12">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 工具扁 -->
@@ -21,42 +16,72 @@
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
+            <div class="col-lg-12">
+                <h1 class="page-header">Base64 在线编解码</h1>
+            </div>
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-6">
-                <textarea id="data-json" placeholder="在此输入..." class="form-control" style="height:100%;height: 87vh;min-height:520px;padding:10px 10px 10px 30px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
+            <div class="col-lg-6" style="padding-right: 0px;">
+                <button class="btn-copy" data-clipboard-snippet=""><i class="fa fa-globe"></i><span>copy</span></button>
+                <textarea id="data-json" placeholder="在此输入字符串..." class="form-control" style="height:100%;height: 27vh;min-height:20px;padding:10px 10px 10px 10px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
             </div>
-            <div class="col-lg-6">
-                <pre class="language-go" id="go-struct-view" style="height:100%;height: 87vh;min-height:520px;margin: 0px;">
-            </pre>
+            <div class="col-lg-6" style="padding-right: 0px;">
+                <button class="btn-copy" data-clipboard-snippet=""><i class="fa fa-globe"></i><span>copy</span></button>
+                <textarea id="go-struct-view" placeholder="在此输入Base32字符串..." class="form-control" style="height:100%;height: 27vh;min-height:20px;padding:10px 10px 10px 10px;border:solid 1px #E5EBEE;border-radius:inherit;resize: none; outline:none;font-size:15px;"></textarea>
             </div>
             <script src="/static/clipboard-use.js"></script>
-
         </div>
-        <!-- /.row -->
-        <div class="row">
-            <!-- /.col-lg-6 -->
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-lg-12">
+                <button id="encode_btn" type="button" class="btn btn-primary">Base64编码</button>
+                <button id="decode_btn" type="button" class="btn btn-primary">Base64解码</button>
+            </div>
         </div>
-        <!-- /.row -->
-        <div class="row">
-        </div>
-        <!-- /.row -->
-        <div class="row">
-        </div>
-        <!-- /.row -->
+        <h3>使用方式：</h3>
+        <ul style="margin-top: 10px;">
+            <li>字符串转Base64：原内容贴到左侧，点击「Base64编码」;</li>
+            <li>还原Base64：编码内容贴到右侧，点击「Base64解码」;</li>
+        </ul>
+        <h3>Base64介绍：</h3>
+        <p>Base64 编码使用了 64 个可打印字符，包括大写字母 A-Z、小写字母 a-z、数字 0-9 以及两个特殊字符 “+” 和 “/”。编码过程如下：</p>
+        <ul>
+            <li>将输入的二进制数据按每 3 个字节分为一组，共 24 位。</li>
+            <li>把这 24 位分成 4 组，每组 6 位。</li>
+            <li>用 6 位二进制数的值作为索引，从 Base64 编码表中查找对应的字符。</li>
+            <li>如果输入数据的字节数不是 3 的整数倍，则在末尾用 0 补齐，并在编码结果后添加相应数量的 “=” 作为填充字符。</li>
+        </ul>
+        <h3>优点</h3>
+        <ul>
+            <li>简单易用：编码和解码过程相对简单，易于实现。</li>
+            <li>兼容性好：只使用 ASCII 字符，几乎在所有的计算机系统和编程语言中都能被正确处理。</li>
+            <li>可扩展性：可以通过自定义编码表来满足特定的需求。</li>
+        </ul>
+        <h3>缺点</h3>
+        <ul>
+            <li>编码后的数据长度增加：通常情况下，Base64 编码后的数据长度会比原始数据长度增加约 33%。</li>
+            <li>不是加密方式：Base64 编码只是一种编码方式，不能提供真正的加密保护，编码后的数据可以很容易地被解码。</li>
+        </ul>
     </div>
     <script type="application/javascript">
-        $('#data-json').bind('input propertychange', function() {
-            console.debug($(this).val());
-            // var json = '{"a":1}';
-            var json = $(this).val();
+        $('#encode_btn').click(function() {
+            var json = $('#data-json').val();
+            var url = "/tool/base64/exec?in0=" + json;
+            $.ajax({
+                url: url,
+                dataType: 'json',
+            }).done(function(dd) {
+                $('#go-struct-view').val(dd.out0);
+            });
+        });
+        $('#decode_btn').click(function() {
+            var json = $('#go-struct-view').val();
             var url = "/tool/base64decode/exec?in0=" + json;
             $.ajax({
                 url: url,
                 dataType: 'json',
             }).done(function(dd) {
-                $('#go-struct-view').html(dd.out0);
+                $('#data-json').val(dd.out0);
             });
         });
 
